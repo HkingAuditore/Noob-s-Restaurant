@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{3F5622DF-E567-CE76-E241-5DC796B552D5}</ProjectGuid>
+    <ProjectGuid>{CADE9D39-B862-B6AA-A50F-DC6C338B873C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,11 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\PlayerMove.cs" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>G:/Unity/Noob's Restaurant/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>G:/Unity/Noob's Restaurant/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>G:/Noob's Resturant/Noob-s-Restaurant/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>G:/Noob's Resturant/Noob-s-Restaurant/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
