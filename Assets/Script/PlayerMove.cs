@@ -11,19 +11,28 @@ public class PlayerMove : MonoBehaviour {
         if (Input.GetKey(KeyCode.W))
         {
             player_rigbody.velocity = transform.forward * speed;
+            if (Input.GetKey(KeyCode.A))
+            {
+                this.transform.Rotate(0, -1 * rotate_speed * Time.deltaTime, 0);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                this.transform.Rotate(0, 1 * rotate_speed * Time.deltaTime, 0);
+            }
         }
         if (Input.GetKey(KeyCode.S))
         {
             player_rigbody.velocity = -1*transform.forward * speed;
+            if (Input.GetKey(KeyCode.A))
+            {
+                this.transform.Rotate(0, 1 * rotate_speed * Time.deltaTime, 0);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                this.transform.Rotate(0, -1 * rotate_speed * Time.deltaTime, 0);
+            }
         }
-        if (Input.GetKey(KeyCode.A))
-        {
-            this.transform.Rotate(0, -1 * rotate_speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.transform.Rotate(0, 1 * rotate_speed * Time.deltaTime, 0);
-        }
+        
     }
 
     void Start(){
