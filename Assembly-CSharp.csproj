@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\CamaraSwitch.cs" />
     <Compile Include="Assets\Script\PlayerMove.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>G:/Noob's Resturant/Noob-s-Restaurant/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
