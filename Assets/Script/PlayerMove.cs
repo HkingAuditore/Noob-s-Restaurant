@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour {
     }
 
 
-    void Update () {
+    void FixedUpdate () {
         Move();
     }
 }
