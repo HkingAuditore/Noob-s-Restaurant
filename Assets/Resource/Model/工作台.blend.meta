@@ -11,6 +11,8 @@ ModelImporter:
     100010: "\u67F1\u4F53"
     100012: "\u67F1\u4F53_001"
     100014: "\u67F1\u4F53_002"
+    100016: "\u5E73\u9762"
+    100018: "\u5E73\u9762_001"
     400000: Cube
     400002: //RootNode
     400004: "\u7ACB\u65B9\u4F53"
@@ -19,10 +21,13 @@ ModelImporter:
     400010: "\u67F1\u4F53"
     400012: "\u67F1\u4F53_001"
     400014: "\u67F1\u4F53_002"
+    400016: "\u5E73\u9762"
+    400018: "\u5E73\u9762_001"
     2100000: unnamed
     2100002: Material
     2100004: "\u6750\u8D28_002"
     2100006: "\u6750\u8D28_001"
+    2100008: "\u6750\u8D28"
     2300000: Cube
     2300002: "\u7ACB\u65B9\u4F53"
     2300004: "\u7ACB\u65B9\u4F53_001"
@@ -30,6 +35,8 @@ ModelImporter:
     2300008: "\u67F1\u4F53"
     2300010: "\u67F1\u4F53_001"
     2300012: "\u67F1\u4F53_002"
+    2300014: "\u5E73\u9762"
+    2300016: "\u5E73\u9762_001"
     3300000: Cube
     3300002: "\u7ACB\u65B9\u4F53"
     3300004: "\u7ACB\u65B9\u4F53_001"
@@ -37,6 +44,8 @@ ModelImporter:
     3300008: "\u67F1\u4F53"
     3300010: "\u67F1\u4F53_001"
     3300012: "\u67F1\u4F53_002"
+    3300014: "\u5E73\u9762"
+    3300016: "\u5E73\u9762_001"
     4300000: "\u7ACB\u65B9\u4F53_002"
     4300002: "\u7ACB\u65B9\u4F53_001"
     4300004: "\u7ACB\u65B9\u4F53"
@@ -44,6 +53,8 @@ ModelImporter:
     4300008: "\u67F1\u4F53_002"
     4300010: "\u67F1\u4F53_001"
     4300012: "\u67F1\u4F53"
+    4300014: "\u5E73\u9762_001"
+    4300016: "\u5E73\u9762"
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
@@ -85,7 +96,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
