@@ -42,8 +42,8 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 2.76
-      radius: 0.29
+      intensity: 3.14
+      radius: 0.14
       sampleCount: 16
       downsampling: 1
       forceForwardCompatibility: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
       colorWheels:
         mode: 1
         log:
-          slope: {r: 0.59278166, g: 0.70569414, b: 1, a: 0}
+          slope: {r: 0.74255717, g: 0.88601726, b: 1, a: 0}
           power: {r: 0.9632218, g: 0.9837167, b: 1, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
