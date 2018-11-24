@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Tools
+{
+    None,
+    Chopper,
+    Sink,
+    Pan,
+    Pot
+}
+
 public class CameraSwitch : MonoBehaviour
 {
     public GameObject thisCamera;
@@ -9,6 +18,9 @@ public class CameraSwitch : MonoBehaviour
     public GameObject player;
     //bool IsChanged = false;
     //bool Isinrange = false;
+    public Tools tool = Tools.None;
+    public GameObject toolGo;
+    //private bool isUsing = false;
 
     private void Start()
     {
@@ -28,12 +40,14 @@ public class CameraSwitch : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             thisCamera.SetActive(true);
+            BeginToolCtrl();
             player.GetComponent<PlayerMove>().enabled = false;
         }
 
         if (Input.GetKey(KeyCode.Q))
         {
             thisCamera.SetActive(false);
+            StopToolCtrl();
             player.GetComponent<PlayerMove>().enabled = true;
         }
     }
@@ -43,28 +57,50 @@ public class CameraSwitch : MonoBehaviour
         //Isinrange = false;
     }
 
-    //void Update()
-    //{
-    //    if (Input.GetKey(KeyCode.E) && (!IsChanged) && (Isinrange))
-    //    {
-    //        Debug.Log("0");
-    //        //Camera.GetComponent<Camera>().enabled = true;
-    //        //Maincamera.GetComponent<Camera>().enabled = false;
-    //        thisCamera.SetActive(true);
-    //        player.GetComponent<PlayerMove>().enabled = false;
-    //        IsChanged = true;
-    //        Debug.Log("1");
-    //    }
+    void Update()
+    {
 
-    //    if (Input.GetKey(KeyCode.Q) && (IsChanged) && (Isinrange))
-    //    {
-    //        //Maincamera.GetComponent<Camera>().enabled = true;
-    //        //Camera.GetComponent<Camera>().enabled = false;
-    //        thisCamera.SetActive(false);
-    //        player.GetComponent<PlayerMove>().enabled = true;
-    //        IsChanged = false;
-    //        Debug.Log("2");
-    //    }
-    //    // Debug.Log("in");
-    //}
+    }
+
+    private void BeginToolCtrl()
+    {
+        switch (tool)
+        {
+            case Tools.None:
+                break;
+            case Tools.Chopper:
+                if (toolGo != null)
+                    toolGo.GetComponent<ChopperCtrl>().isCtrlling = true;
+                break;
+            case Tools.Sink:
+                break;
+            case Tools.Pan:
+                break;
+            case Tools.Pot:
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void StopToolCtrl()
+    {
+        switch (tool)
+        {
+            case Tools.None:
+                break;
+            case Tools.Chopper:
+                if (toolGo != null)
+                    toolGo.GetComponent<ChopperCtrl>().isCtrlling = false;
+                break;
+            case Tools.Sink:
+                break;
+            case Tools.Pan:
+                break;
+            case Tools.Pot:
+                break;
+            default:
+                break;
+        }
+    }
 }
