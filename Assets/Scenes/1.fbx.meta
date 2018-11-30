@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 26cc7f00d0ff5a1448b9e1dd1c2a0080
+guid: 32c2da9f2a404e74f83205d3c5952c30
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -21,7 +21,13 @@ ModelImporter:
     400012: boy2:Group5507
     400014: boy2:Group61590
     400016: boy2:Group6942
-    2100000: lambert1
+    2100000: lambert3
+    2100002: lambert7
+    2100004: lambert4
+    2100006: lambert5
+    2100008: lambert1
+    2100010: lambert6
+    2100012: lambert2
     2300000: boy2:Group22341
     2300002: boy2:Group26614
     2300004: boy2:Group31606
