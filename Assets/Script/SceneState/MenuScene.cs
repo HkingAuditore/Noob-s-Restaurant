@@ -25,11 +25,11 @@ public class MenuScene : IState {
     public void OnStateStart()
     {
         Debug.Log("Scene:MenuSceneStart");
+        GameManager.Instance.UIManager.Init();
+        GameManager.Instance.UIManager.PushPanel("MainPanel");
     }
 
     public void OnStateUpdate()
     {
-        Debug.Log("Scene:MenuSceneUpdate");
     }
-
 }

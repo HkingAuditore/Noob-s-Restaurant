@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadScene : IState
-{
+public class GameScene : IState {
 
     public string GetStateName()
     {
-        return Const.SceneStateName.Load.ToString();
+        return Const.SceneStateName.Game.ToString();
     }
 
     public void OnStateEnd()
     {
-      
+        throw new System.NotImplementedException();
     }
 
     public void OnStateStart()
     {
-
+        throw new System.NotImplementedException();
     }
 
     public void OnStateUpdate()
     {
-        
+        throw new System.NotImplementedException();
     }
 }
