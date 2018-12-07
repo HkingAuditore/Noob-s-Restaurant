@@ -41,7 +41,6 @@ public class StartScene : IState{
 
     public void OnStateUpdate()
     {
-        Debug.Log("scene:StartSceneUpdate");
         ShowBG();
     }
 

@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoSingleton<GameManager>{
 
     // Use this for initialization
     //void Start () {
     //       Cursor.visible = false;
     //}
 
-    SceneStateManager SceneStateManager;
-    UIManager UIManager;
+    public SceneStateManager SceneStateManager;
+    public UIManager UIManager;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this.gameObject);
-        SceneStateManager = new SceneStateManager(this);
+
+        SceneStateManager = new SceneStateManager();
         UIManager = new UIManager();
     }
 

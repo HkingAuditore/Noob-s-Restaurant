@@ -6,14 +6,12 @@ using UnityEngine.SceneManagement;
 public class SceneStateManager
 {
     IState state;
-    AsyncOperation loadSceneAo = null;
-    GameManager gameManager;
+    //AsyncOperation loadSceneAo = null;
     bool isLoading = false;
     bool isCurrentStartFuncExecuted;
 
-    public SceneStateManager(GameManager gameManager)
+    public SceneStateManager()
     {
-        this.gameManager = gameManager;
         isCurrentStartFuncExecuted = true;
         state = new InitScene(this);
         state.OnStateStart();
@@ -63,7 +61,9 @@ public class SceneStateManager
                 if (state.GetStateName() != SceneManager.GetActiveScene().name)
                 {
                     this.state.OnStateEnd();
-                    gameManager.StartCoroutine(LoadSceneAsync(state.GetStateName())); //开启异步加载目标场景
+                    Debug.Log("开始加载" + state.GetStateName());
+                    LoadScene(new LoadScene());
+                    GameManager.Instance.StartCoroutine(LoadSceneAsync(state.GetStateName())); //开启异步加载目标场景
                 }
                 else
                 {
@@ -95,22 +95,18 @@ public class SceneStateManager
 
     IEnumerator LoadSceneAsync(string sceneName)
     {
-        //进入加载场景    
-        SceneManager.LoadScene("Load");
-        loadSceneAo = SceneManager.LoadSceneAsync(sceneName as string);
+        yield return null;
+        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(sceneName as string);
         loadSceneAo.allowSceneActivation = false;
 
-        while (loadSceneAo.progress < 0.9f)
+        while (!loadSceneAo.isDone)
         {
-            yield return new WaitForSeconds(1);
-        }
-        Debug.Log("load scene: wait 3s");
-        yield return new WaitForSeconds(3);        
-        while (!Input.anyKeyDown)
-        {
+            if (loadSceneAo.progress >= 0.9f)
+            {
+                //if(Input.GetKeyDown(KeyCode.Space))
+                    loadSceneAo.allowSceneActivation = true;
+            }
             yield return null;
         }
-        loadSceneAo.allowSceneActivation = true;
-        Debug.Log("load scene: done");
     }
 }
