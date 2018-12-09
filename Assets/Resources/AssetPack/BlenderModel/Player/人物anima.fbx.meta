@@ -118,6 +118,7 @@ ModelImporter:
     7400018: stank
     7400020: stand
     9500000: //RootNode
+    11100000: //RootNode
     13700000: _Group32833.002
     13700002: _Group32833.003
     13700004: polySurface2.003
@@ -171,7 +172,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Head' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -428,14 +430,6 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: spine.006_end
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     skeleton:
     - name: "\u4EBA\u7269anima(Clone)"
       parentName: 
@@ -520,17 +514,17 @@ ModelImporter:
     - name: shoulder.L
       parentName: spine.003
       position: {x: -0.00019986292, y: 0.0003637859, z: 0.0007120916}
-      rotation: {x: -0.66393214, y: 0.29317242, z: 0.43151882, w: 0.535757}
+      rotation: {x: -0.6203113, y: 0.36038125, z: 0.446332, w: 0.5349084}
       scale: {x: 0.9999999, y: 0.9999995, z: 0.9999998}
     - name: upper_arm.L
       parentName: shoulder.L
       position: {x: -0.00017900986, y: 0.0021797016, z: -0.0001227253}
-      rotation: {x: 0.118798345, y: 0.7172349, z: -0.54347664, w: -0.41963577}
+      rotation: {x: -0.17121978, y: 0.78139955, z: -0.0608254, w: -0.5969915}
       scale: {x: 1, y: 0.9999999, z: 0.9999999}
     - name: forearm.L
       parentName: upper_arm.L
       position: {x: -6.0768796e-10, y: 0.0025206134, z: 1.7695129e-10}
-      rotation: {x: 0.070947684, y: 0.22976974, z: 0.012114993, w: 0.97058004}
+      rotation: {x: 0.030301586, y: 0.23074548, z: -0.0021082377, w: 0.9725399}
       scale: {x: 0.99999976, y: 0.9999999, z: 0.9999997}
     - name: hand.L
       parentName: forearm.L
@@ -545,17 +539,17 @@ ModelImporter:
     - name: shoulder.R
       parentName: spine.003
       position: {x: 0.00016595464, y: 0.00036760955, z: 0.0007230031}
-      rotation: {x: -0.65985477, y: -0.2997991, z: -0.42331648, w: 0.54361326}
+      rotation: {x: -0.6017662, y: -0.38357213, z: -0.43936828, w: 0.54562384}
       scale: {x: 1.0000002, y: 0.99999964, z: 1.0000005}
     - name: upper_arm.R
       parentName: shoulder.R
       position: {x: 0.00017900977, y: 0.0021797013, z: -0.00012272436}
-      rotation: {x: -0.11507456, y: 0.69354576, z: -0.55052423, w: 0.4501947}
+      rotation: {x: 0.16823621, y: 0.75325894, z: -0.062106673, w: 0.63280356}
       scale: {x: 0.9999997, y: 1, z: 1}
     - name: forearm.R
       parentName: upper_arm.R
       position: {x: 5.727634e-10, y: 0.0025206124, z: 3.7252902e-11}
-      rotation: {x: 0.1321181, y: -0.23339306, z: -0.022559114, w: 0.963101}
+      rotation: {x: 0.033375658, y: -0.23655084, z: 0.0032962628, w: 0.9710401}
       scale: {x: 1.0000001, y: 0.9999998, z: 0.99999976}
     - name: hand.R
       parentName: forearm.R
@@ -580,17 +574,17 @@ ModelImporter:
     - name: thigh.L
       parentName: spine
       position: {x: -0.0011856963, y: -0.0005729416, z: 0.00056541746}
-      rotation: {x: 0.94914085, y: -0.00081165624, z: 0.03861983, w: 0.31247327}
+      rotation: {x: 0.98258835, y: -0.012022705, z: 0.04367665, w: 0.18018873}
       scale: {x: 1.0000001, y: 1, z: 0.99999976}
     - name: shin.L
       parentName: thigh.L
       position: {x: 1.7695129e-10, y: 0.0043027205, z: -4.377216e-10}
-      rotation: {x: 0.5097577, y: 0.024371363, z: -0.00401389, w: 0.8599634}
+      rotation: {x: 0.34153628, y: 0.018275036, z: 0.011403667, w: 0.93962175}
       scale: {x: 0.9999998, y: 0.9999992, z: 1.0000004}
     - name: foot.L
       parentName: shin.L
       position: {x: 1.8626451e-11, y: 0.00461789, z: 1.8626451e-11}
-      rotation: {x: -0.7043573, y: -0.021666499, z: 0.0036864055, w: 0.70950526}
+      rotation: {x: -0.6672891, y: -0.011704231, z: -0.028735915, w: 0.7441523}
       scale: {x: 1.0000004, y: 0.9999999, z: 1}
     - name: foot.L_end
       parentName: foot.L
