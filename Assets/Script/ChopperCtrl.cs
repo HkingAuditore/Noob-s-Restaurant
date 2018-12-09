@@ -16,7 +16,7 @@ public class ChopperCtrl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        oriPos = transform.position;
+        oriPos = transform.localPosition;
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         KnifeRB = GetComponent<Rigidbody>();
     }
@@ -31,8 +31,8 @@ public class ChopperCtrl : MonoBehaviour
             return;
         }
 
-        this.transform.rotation = Quaternion.Euler(0f,0f,0f);
-        KnifeRB.useGravity =false;                                      
+        this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        KnifeRB.useGravity = false;
         KnifeRB.isKinematic = true;                                                                 //拿起后摆正
 
 
@@ -41,10 +41,10 @@ public class ChopperCtrl : MonoBehaviour
         //pos.z = -delPos.x;
         //pos.y = delPos.y;
         //pos.x = 0;
-        Vector3 targetPos = transform.position + new Vector3(0, delPos.y, -delPos.x);
+        Vector3 targetPos = transform.localPosition + new Vector3(0, delPos.y, -delPos.x);
         targetPos.y = Mathf.Clamp(targetPos.y, oriPos.y - offsetY, oriPos.y + offsetY);
         targetPos.z = Mathf.Clamp(targetPos.z, oriPos.z - offsetZ, oriPos.z + offsetZ);
-        transform.position = targetPos;
+        transform.localPosition = targetPos;
 
         lastMousePos = Input.mousePosition;
     }

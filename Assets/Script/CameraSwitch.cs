@@ -22,9 +22,12 @@ public class CameraSwitch : MonoBehaviour
     public GameObject toolGo;
     //private bool isUsing = false;
 
+    private PlayerCtrl playerCtrl;
+
     private void Start()
     {
         //IsChanged = false;
+        playerCtrl = player.GetComponent<PlayerCtrl>();
     }
 
     void OnTriggerEnter()
@@ -41,14 +44,12 @@ public class CameraSwitch : MonoBehaviour
         {
             thisCamera.SetActive(true);
             BeginToolCtrl();
-            player.GetComponent<PlayerMove>().enabled = false;
         }
 
         if (Input.GetKey(KeyCode.Q))
         {
             thisCamera.SetActive(false);
             StopToolCtrl();
-            player.GetComponent<PlayerMove>().enabled = true;
         }
     }
 
@@ -64,6 +65,9 @@ public class CameraSwitch : MonoBehaviour
 
     private void BeginToolCtrl()
     {
+        playerCtrl.Hide();
+        playerCtrl.isCanCtrl = false;
+
         switch (tool)
         {
             case Tools.None:
@@ -75,6 +79,8 @@ public class CameraSwitch : MonoBehaviour
             case Tools.Sink:
                 break;
             case Tools.Pan:
+                if (toolGo != null)
+                    toolGo.GetComponent<TurnerCtrl>().isCtrlling = true;
                 break;
             case Tools.Pot:
                 break;
@@ -85,6 +91,9 @@ public class CameraSwitch : MonoBehaviour
 
     private void StopToolCtrl()
     {
+        playerCtrl.Show();
+        playerCtrl.isCanCtrl = true;
+
         switch (tool)
         {
             case Tools.None:
@@ -96,6 +105,8 @@ public class CameraSwitch : MonoBehaviour
             case Tools.Sink:
                 break;
             case Tools.Pan:
+                if (toolGo != null)
+                    toolGo.GetComponent<TurnerCtrl>().isCtrlling = false;
                 break;
             case Tools.Pot:
                 break;
