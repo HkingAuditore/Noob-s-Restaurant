@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour
 {
     private Rigidbody rig;
     private PlayerInput input;
     private Animator animator;
+    private GameObject model;
+    public bool isCanCtrl = true;
+
     public float rotate_speed;
     public float speed;
 
@@ -38,6 +41,10 @@ public class PlayerMove : MonoBehaviour
         //        this.transform.Rotate(0, -1 * rotate_speed * Time.deltaTime, 0);
         //    }
         //}
+
+        if (!isCanCtrl)
+            return;
+
         if (Mathf.Abs(input.hor) > 1e-6 || Mathf.Abs(input.ver) > 1e-6)
         {
             transform.position += new Vector3(input.hor * speed * Time.deltaTime, 0, input.ver * speed * Time.deltaTime);
@@ -52,11 +59,22 @@ public class PlayerMove : MonoBehaviour
         rig = this.GetComponent<Rigidbody>();
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        model = transform.Find("Model").gameObject;
     }
 
 
     void FixedUpdate()
     {
         Move();
+    }
+
+    public void Hide()
+    {
+        animator.SetFloat("walk", 0);
+        model.SetActive(false);
+    }
+    public void Show()
+    {
+        model.SetActive(true);
     }
 }
