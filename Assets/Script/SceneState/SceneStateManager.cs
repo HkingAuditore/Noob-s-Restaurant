@@ -6,107 +6,94 @@ using UnityEngine.SceneManagement;
 public class SceneStateManager
 {
     IState state;
-    //AsyncOperation loadSceneAo = null;
-    bool isLoading = false;
-    bool isCurrentStartFuncExecuted;
+    bool isLoadFinish = true;
 
-    public SceneStateManager()
+    public void Init()
     {
-        isCurrentStartFuncExecuted = true;
-        state = new InitScene(this);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        state = new InitScene();
         state.OnStateStart();
     }
 
     public void UpdateState()
     {
-        if (!isLoading&& isCurrentStartFuncExecuted)
+        if (isLoadFinish)
         {
             state.OnStateUpdate();
-        }
-        else if (!isLoading && !isCurrentStartFuncExecuted)
-        {
-            state.OnStateStart();
-            isCurrentStartFuncExecuted = true;
         }
     }
 
     public void SetState(IState state)
     {
-        isLoading = true;
-        isCurrentStartFuncExecuted = false;
         switch (state.GetStateName())
         {
             //2个特殊场景（init,load）单独处理
             case "Init":
                 Debug.LogWarning("Init场景用于创建gamemanager和初始化,不允许被二次加载");
-                isLoading = false;
-                isCurrentStartFuncExecuted = true;
-                return;
+                break;
 
             case "Load":
                 Debug.LogWarning("load场景不允许被单独加载");
-                isLoading = false;
-                isCurrentStartFuncExecuted = true;
-                return;
-
-            case "Start":
-                    LoadScene(state);
                 break;
 
-            case "Menu":
-                    LoadScene(state);
+            case "Game":
+                LoadScene(new LoadScene(), state);
                 break;
 
             default:
                 if (state.GetStateName() != SceneManager.GetActiveScene().name)
                 {
-                    this.state.OnStateEnd();
-                    Debug.Log("开始加载" + state.GetStateName());
-                    LoadScene(new LoadScene());
-                    GameManager.Instance.StartCoroutine(LoadSceneAsync(state.GetStateName())); //开启异步加载目标场景
+                    LoadScene(state);
                 }
                 else
                 {
                     Debug.Log(string.Format("当前已处于{0}场景", this.state.GetStateName()));
-                    isLoading = false;
-                    isCurrentStartFuncExecuted = true;
                 }
                 break;
         }
     }
 
-    void LoadScene(IState state)
+    void LoadScene(IState state, IState sState = null)
     {
-        if (state.GetStateName() != SceneManager.GetActiveScene().name)
-        {
-            this.state.OnStateEnd();
-            SceneManager.LoadScene(state.GetStateName());
-            this.state = state;
-            isLoading = false;
-            isCurrentStartFuncExecuted = false;
-        }
-        else
-        {
-            Debug.Log(string.Format( "当前已处于{0}场景中", state.GetStateName()));
-            isLoading = false;
-            isCurrentStartFuncExecuted = true;
-        }
+        isLoadFinish = false;
+        this.state.OnStateEnd();
+        SceneManager.LoadScene(state.GetStateName());
+        this.state = state;
+
+        if (sState != null)
+            GameManager.Instance.StartCoroutine(LoadSceneAsync(sState));
     }
 
-    IEnumerator LoadSceneAsync(string sceneName)
+    IEnumerator LoadSceneAsync(IState state)
     {
         yield return null;
-        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(sceneName as string);
+        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(state.GetStateName());
         loadSceneAo.allowSceneActivation = false;
 
         while (!loadSceneAo.isDone)
         {
             if (loadSceneAo.progress >= 0.9f)
             {
-                //if(Input.GetKeyDown(KeyCode.Space))
+                //if (Input.GetKeyDown(KeyCode.Space))
+                //{
+                    GameManager.Instance.uiManager.PopPanel();
                     loadSceneAo.allowSceneActivation = true;
+                    this.state = state;
+                //}
             }
             yield return null;
         }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //ui重载
+        GameManager.Instance.uiManager.GetCurrentSceneUIObject();
+
+        //场景start
+        state.OnStateStart();
+
+        //允许场景update
+        isLoadFinish = true;
     }
 }

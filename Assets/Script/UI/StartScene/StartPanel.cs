@@ -3,43 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartScene : IState{
+public class StartPanel :IPanel {
 
-    SceneStateManager sceneStateManager;
     Canvas canvas;
-
     //bg相关
     Image backGroundImage;
+    GameObject startPanel;
     float bgLerpSpeed = 1f;
     Color highValue = Color.white;
     Color lowValue = Color.black;
     Color targetValue;
 
-    public StartScene(SceneStateManager sceneStateManager)
+    public string GetPanelName()
     {
-        this.sceneStateManager = sceneStateManager;
+        return "StartPanel";
     }
 
-    public string GetStateName()
+    public void OnEnter()
     {
-        return Const.SceneStateName.Start.ToString();
-    }
-
-    public void OnStateEnd()
-    {
-        Debug.Log("scene:StartSceneEnd");
-    }
-
-    public void OnStateStart()
-    {
-        Debug.Log("scene:StartSceneStart");
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        backGroundImage = canvas.transform.Find("BG").GetComponent<Image>();
+        startPanel = canvas.transform.Find("StartPanel").gameObject;
+        backGroundImage = canvas.transform.Find("StartPanel/BG").GetComponent<Image>();
+        startPanel.SetActive(true); 
         backGroundImage.color = Color.black;
         targetValue = highValue;
     }
 
-    public void OnStateUpdate()
+    public void OnPause()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnExit()
+    {
+        
+    }
+
+    public void OnUpdate()
     {
         ShowBG();
     }
@@ -55,7 +55,7 @@ public class StartScene : IState{
             }
             else if (targetValue == lowValue)
             {
-                sceneStateManager.SetState(new MenuScene(sceneStateManager));
+                GameManager.Instance.sceneStateManager.SetState(new MenuScene());
             }
         }
     }
