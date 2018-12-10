@@ -36,7 +36,7 @@ public class TurnerCtrl : MonoBehaviour
         KnifeRB.isKinematic = true;                                                                 //拿起后摆正
 
 
-        Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.001f;
+        Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.003f;
         //Vector3 pos = new Vector3();
         //pos.z = -delPos.x;
         //pos.y = delPos.y;
