@@ -1,35 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>{
 
-    // Use this for initialization
-    //void Start () {
-    //       Cursor.visible = false;
-    //}
-
-    public SceneStateManager SceneStateManager;
-    public UIManager UIManager;
+    public SceneStateManager sceneStateManager;
+    public UIManager uiManager;
 
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(this.gameObject);
-
-        SceneStateManager = new SceneStateManager();
-        UIManager = new UIManager();
+        sceneStateManager = new SceneStateManager();
+        uiManager = new UIManager();
     }
 
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-
+        sceneStateManager.Init();
+        uiManager.Init();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SceneStateManager.UpdateState();
+        sceneStateManager.UpdateState();
+        uiManager.UpdateUI();
     }
 }
