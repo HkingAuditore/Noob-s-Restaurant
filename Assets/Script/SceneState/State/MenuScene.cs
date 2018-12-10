@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class MenuScene : IState {
 
-    SceneStateManager sceneStateManager;
-
-    public MenuScene(SceneStateManager sceneStateManager)
-    {
-        this.sceneStateManager = sceneStateManager;
-    }
-
     public string GetStateName()
     {
         return Const.SceneStateName.Menu.ToString();
@@ -20,16 +13,17 @@ public class MenuScene : IState {
     public void OnStateEnd()
     {
         Debug.Log("Scene:MenuSceneEnd");
+        GameManager.Instance.uiManager.PopPanel();
     }
 
     public void OnStateStart()
     {
         Debug.Log("Scene:MenuSceneStart");
-        GameManager.Instance.UIManager.Init();
-        GameManager.Instance.UIManager.PushPanel("MainPanel");
+        GameManager.Instance.uiManager.PushPanel(new MainPanel());
     }
 
     public void OnStateUpdate()
     {
+        Debug.Log("Scene:MenuSceneUpdate");
     }
 }

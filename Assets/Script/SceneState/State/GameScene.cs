@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadScene : IState
-{
+public class GameScene : IState {
 
     public string GetStateName()
     {
-        return Const.SceneStateName.Load.ToString();
+        return Const.SceneStateName.Game.ToString();
     }
 
     public void OnStateEnd()
     {
-      
+        
     }
 
     public void OnStateStart()
     {
-
+        
     }
 
     public void OnStateUpdate()

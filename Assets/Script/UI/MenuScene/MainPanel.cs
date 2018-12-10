@@ -3,34 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainPanel :MonoBehaviour,IPanel
+public class MainPanel :IPanel
 {
+    Canvas canvas;
+    GameObject mainPanel;
     Button StartButton;
-    Button SettingButton;
+    Button RecipeButton;
     Button QuitButton;
 
-    private void Awake()
+    public string GetPanelName()
     {
-        StartButton = this.transform.Find("StartButton").GetComponent<Button>();
-        SettingButton = this.transform.Find("SettingButton").GetComponent<Button>();
-        QuitButton = this.transform.Find("QuitButton").GetComponent<Button>();
-    }
-
-    private void Start()
-    {
-        StartButton.onClick.AddListener(OnStartButtonClick);
-        SettingButton.onClick.AddListener(OnSettingButtonClick);
-        QuitButton.onClick.AddListener(OnQuitButtonClick);
+        return "MainPanel";
     }
 
     public void OnEnter()
     {
-        this.gameObject.SetActive(true);
+        canvas = GameObject.FindObjectOfType<Canvas>();
+        mainPanel = canvas.transform.Find("MainPanel").gameObject;
+        StartButton = canvas.transform.Find("MainPanel/StartButton").GetComponent<Button>();
+        RecipeButton = canvas.transform.Find("MainPanel/RecipeButton").GetComponent<Button>();
+        QuitButton = canvas.transform.Find("MainPanel/QuitButton").GetComponent<Button>();
+        mainPanel.SetActive(true);
+        StartButton.onClick.AddListener(OnStartButtonClick);
+        RecipeButton.onClick.AddListener(OnRecipeButtonClick);
+        QuitButton.onClick.AddListener(OnQuitButtonClick);
     }
 
     public void OnExit()
     {
-
+        StartButton.onClick.RemoveListener(OnStartButtonClick);
+        RecipeButton.onClick.RemoveListener(OnRecipeButtonClick);
+        QuitButton.onClick.RemoveListener(OnQuitButtonClick);
     }
 
     public void OnPause()
@@ -39,17 +42,21 @@ public class MainPanel :MonoBehaviour,IPanel
 
     void OnStartButtonClick()
     {
-        GameManager.Instance.SceneStateManager.SetState(new GameScene());
+        GameManager.Instance.sceneStateManager.SetState(new GameScene());
     }
 
-    void OnSettingButtonClick()
+    void OnRecipeButtonClick()
     {
-        Debug.Log("OnSettingButtonClick");
-        GameManager.Instance.UIManager.PushPanel("SettingPanel");
+        GameManager.Instance.uiManager.PushPanel(new RecipePanel());
     }
 
     void OnQuitButtonClick()
     {
         Application.Quit();
+    }
+
+    public void OnUpdate()
+    {
+        Debug.Log("UI:MainPanelUpdate");
     }
 }
