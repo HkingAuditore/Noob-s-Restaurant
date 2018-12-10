@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class InitScene : IState
 {
-    SceneStateManager SceneStateManager;
-
-    public InitScene(SceneStateManager sceneStateManager)
-    {
-        SceneStateManager = sceneStateManager;
-    }
-
     public string GetStateName()
     {
         return Const.SceneStateName.Init.ToString();
@@ -25,7 +18,7 @@ public class InitScene : IState
     public void OnStateStart()
     {
         Debug.Log("Scene:InitSceneStart");
-        SceneStateManager.SetState(new StartScene(SceneStateManager));
+       GameManager.Instance.sceneStateManager.SetState(new StartScene());
     }
 
     public void OnStateUpdate()

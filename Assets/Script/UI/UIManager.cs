@@ -2,42 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class UIManager {
 
-    Canvas Canvas;
-    Dictionary<string,GameObject> CurrentSceneUIPanelDict = new Dictionary<string, GameObject>();
-    Stack<GameObject> PanelStack = new Stack<GameObject>();
+    Canvas canvas;
+    Dictionary<string,GameObject> currentSceneUIPanelDict = new Dictionary<string, GameObject>();
+    Stack<GPObject> panelStack = new Stack<GPObject>();
+    Action mdUpdateAction;
 
-    //每次切换场景后调用
+    struct GPObject
+    {
+       public GameObject panelObject;
+       public IPanel panelScript;
+    }
+
     public void Init()
     {
-        Canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        GetCurrentSceneUIObject();
+    }
+
+    public void UpdateUI()
+    {
+        if (mdUpdateAction != null && mdUpdateAction.GetInvocationList().Length > 0)
+        {
+            mdUpdateAction();
+        }
     }
 
     //获取当前场景所有UI
     public void GetCurrentSceneUIObject()
     {
-        if (CurrentSceneUIPanelDict.Count > 0)
-            CurrentSceneUIPanelDict.Clear();
-        if (Canvas != null)
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+
+        if (currentSceneUIPanelDict.Count > 0)
+            currentSceneUIPanelDict.Clear();
+        if (canvas != null)
         {
-            foreach (Transform temp in Canvas.transform)
+            foreach (Transform temp in canvas.transform)
             {
-                CurrentSceneUIPanelDict.Add(temp.name, temp.gameObject);
+                currentSceneUIPanelDict.Add(temp.name, temp.gameObject);
                 temp.gameObject.SetActive(false);
-                Debug.Log("当前场景UI：\n" + temp.name);
             }
         }
     }
 
-    public void PushPanel(string uiPanelName)
+    public void PushPanel(IPanel panelScript)
     {
-        GameObject UIPanel;
-        if (CurrentSceneUIPanelDict.TryGetValue(uiPanelName, out UIPanel))
+        GameObject panelObject;
+        GPObject gp;
+
+        //根据字典查找当前场景中是否存在目标ui
+        if (currentSceneUIPanelDict.TryGetValue(panelScript.GetPanelName(), out panelObject))
         {
-            Debug.Log(string.Format("查找到{0},准备入栈", UIPanel.name));
+            //Debug.Log(string.Format("查找到{0},准备入栈", panelScript.GetPanelName()));
         }
         else
         {
@@ -45,31 +62,40 @@ public class UIManager {
             return;
         }
 
-        if (PanelStack.Count > 0)
+        //调用前一个panel的OnPause()
+        if (panelStack.Count > 0)
         {
-            GameObject PrePanel = PanelStack.Peek();
-            PrePanel.GetComponent<IPanel>().OnPause();
+            GPObject temp= panelStack.Peek();
+            mdUpdateAction -= temp.panelScript.OnUpdate;
+            temp.panelScript.OnPause();
         }
 
-        PanelStack.Push(UIPanel);
-        UIPanel.GetComponent<IPanel>().OnEnter();
+        //打包入栈
+        gp.panelScript = panelScript;
+        gp.panelObject = panelObject;
+        panelStack.Push(gp);
 
-        Debug.Log("当前栈顶：" + PanelStack.Peek().name);
+        //初始化
+        gp.panelScript.OnEnter();
+        mdUpdateAction += gp.panelScript.OnUpdate;
     }
 
     public void PopPanel()
     {
-        GameObject UIPanel;
-        if (PanelStack.Count > 0)
+        if (panelStack.Count > 0)
         {
-            UIPanel = PanelStack.Pop();
-            UIPanel.GetComponent<IPanel>().OnExit();
-            if (PanelStack.Count > 0)
+            //出栈
+            GPObject gp = panelStack.Pop();
+            mdUpdateAction -= gp.panelScript.OnUpdate;
+            gp.panelScript.OnExit();
+
+            //调用前一个panel的OnEnter()
+            if (panelStack.Count > 0)
             {
-                UIPanel = PanelStack.Peek();
-                UIPanel.GetComponent<IPanel>().OnEnter();
+                gp = panelStack.Peek();
+                gp.panelScript.OnEnter();
+                mdUpdateAction += gp.panelScript.OnUpdate;
             }
         }
-        Debug.Log("当前栈顶：" + PanelStack.Peek().name);
     }
 }
