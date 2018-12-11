@@ -22,7 +22,6 @@ public class GameManager : MonoSingleton<GameManager>{
         uiManager.Init();
     }
 
-    // Update is called once per frame
     void Update()
     {
         sceneStateManager.UpdateState();
