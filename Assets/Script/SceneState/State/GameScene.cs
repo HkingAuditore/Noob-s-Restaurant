@@ -11,16 +11,17 @@ public class GameScene : IState {
 
     public void OnStateEnd()
     {
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void OnStateStart()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void OnStateUpdate()
     {
-        
     }
 }
