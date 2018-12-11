@@ -34,14 +34,15 @@ public class TurnerCtrl : MonoBehaviour
             return;
         }
 
-        this.transform.rotation = Quaternion.Euler(0f, 0, 0);
+        this.transform.rotation = Quaternion.Euler(0f, 95.604f, -50.44f);
         rb.useGravity = false;
         rb.isKinematic = true;                                                                 //拿起后摆正
 
         Move();
         DoAction();
     }
-
+    private void Move()
+    {
         Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.003f;
         //Vector3 pos = new Vector3();
         //pos.z = -delPos.x;
@@ -59,8 +60,9 @@ public class TurnerCtrl : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            float y = Mathf.Lerp(transform.localPosition.y, targetDownY, 0.3f);
-            transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
+            //float y = Mathf.Lerp(transform.localPosition.y, targetDownY, 0.3f);
+            // transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
+            this.transform.rotation = Quaternion.Euler(0f, 95.604f, -12.44f);
         }
         else
         {
