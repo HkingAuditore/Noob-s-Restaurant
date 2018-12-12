@@ -33,7 +33,7 @@ public class ChopperCtrl : MonoBehaviour
 
         this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         rb.useGravity = false;
-        rb.isKinematic = true;                                                                 //拿起后摆正
+        rb.isKinematic = true;//拿起后摆正
 
 
         Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.001f;
@@ -41,11 +41,16 @@ public class ChopperCtrl : MonoBehaviour
         //pos.z = -delPos.x;
         //pos.y = delPos.y;
         //pos.x = 0;
-        Vector3 targetPos = transform.localPosition + new Vector3(0, delPos.y, -delPos.x);
+        Vector3 targetPos = oriPos + new Vector3(0, delPos.y, -delPos.x);
         targetPos.y = Mathf.Clamp(targetPos.y, oriPos.y - offsetY, oriPos.y + offsetY);
         targetPos.z = Mathf.Clamp(targetPos.z, oriPos.z - offsetZ, oriPos.z + offsetZ);
         transform.localPosition = targetPos;
 
         lastMousePos = Input.mousePosition;
+    }
+
+    public void SetOriPos()
+    {
+        transform.position = oriPos;
     }
 }

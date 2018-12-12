@@ -74,13 +74,21 @@ public class CameraSwitch : MonoBehaviour
                 break;
             case Tools.Chopper:
                 if (toolGo != null)
-                    toolGo.GetComponent<ChopperCtrl>().isCtrlling = true;
+                {
+                    ChopperCtrl ctrl = toolGo.GetComponent<ChopperCtrl>();
+                    ctrl.isCtrlling = true;
+                    ctrl.SetOriPos();
+                }
                 break;
             case Tools.Sink:
                 break;
             case Tools.Pan:
                 if (toolGo != null)
-                    toolGo.GetComponent<TurnerCtrl>().isCtrlling = true;
+                {
+                    TurnerCtrl ctrl = toolGo.GetComponent<TurnerCtrl>();
+                    ctrl.isCtrlling = true;
+                    ctrl.SetOriPos();
+                }
                 break;
             case Tools.Pot:
                 break;
