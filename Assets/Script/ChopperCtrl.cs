@@ -36,7 +36,7 @@ public class ChopperCtrl : MonoBehaviour
         rb.isKinematic = true;//拿起后摆正
 
 
-        Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.001f;
+        Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.005f;
         //Vector3 pos = new Vector3();
         //pos.z = -delPos.x;
         //pos.y = delPos.y;

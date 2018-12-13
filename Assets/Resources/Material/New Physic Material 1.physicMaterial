@@ -5,7 +5,7 @@ PhysicMaterial:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Physic Material
+  m_Name: New Physic Material 1
   dynamicFriction: 50
   staticFriction: 50
   bounciness: 0.01
