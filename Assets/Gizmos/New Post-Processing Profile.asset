@@ -31,7 +31,7 @@ MonoBehaviour:
   antialiasing:
     m_Enabled: 1
     m_Settings:
-      method: 0
+      method: 1
       fxaaSettings:
         preset: 4
       taaSettings:
@@ -71,7 +71,7 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 1
     m_Settings:
-      focusDistance: 3.6
+      focusDistance: 2.24
       aperture: 1.9
       focalLength: 50
       useCameraFov: 1
