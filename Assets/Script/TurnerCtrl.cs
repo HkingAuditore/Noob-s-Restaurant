@@ -117,7 +117,14 @@ public class TurnerCtrl : ToolCtrl
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            fire.SetActive(true);
+            if (fire.activeSelf)
+            {
+                fire.SetActive(false);
+            }
+            else
+            {
+                fire.SetActive(true);
+            }
         }
     }
 }
