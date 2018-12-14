@@ -31,17 +31,22 @@ public class ChopperCtrl : MonoBehaviour
             return;
         }
 
-        this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        this.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         rb.useGravity = false;
         rb.isKinematic = true;//拿起后摆正
 
 
+        Move();
+    }
+
+    private void Move()
+    {
         Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.005f;
         //Vector3 pos = new Vector3();
         //pos.z = -delPos.x;
         //pos.y = delPos.y;
         //pos.x = 0;
-        Vector3 targetPos = oriPos + new Vector3(0, delPos.y, -delPos.x);
+        Vector3 targetPos = transform.localPosition + new Vector3(0, delPos.y, -delPos.x);
         targetPos.y = Mathf.Clamp(targetPos.y, oriPos.y - offsetY, oriPos.y + offsetY);
         targetPos.z = Mathf.Clamp(targetPos.z, oriPos.z - offsetZ, oriPos.z + offsetZ);
         transform.localPosition = targetPos;
@@ -51,6 +56,6 @@ public class ChopperCtrl : MonoBehaviour
 
     public void SetOriPos()
     {
-        transform.position = oriPos;
+        transform.localPosition = oriPos;
     }
 }
