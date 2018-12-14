@@ -68,33 +68,34 @@ public class CameraSwitch : MonoBehaviour
         playerCtrl.Hide();
         playerCtrl.isCanCtrl = false;
 
-        switch (tool)
-        {
-            case Tools.None:
-                break;
-            case Tools.Chopper:
-                if (toolGo != null)
-                {
-                    ChopperCtrl ctrl = toolGo.GetComponent<ChopperCtrl>();
-                    ctrl.isCtrlling = true;
-                    ctrl.SetOriPos();
-                }
-                break;
-            case Tools.Sink:
-                break;
-            case Tools.Pan:
-                if (toolGo != null)
-                {
-                    TurnerCtrl ctrl = toolGo.GetComponent<TurnerCtrl>();
-                    ctrl.isCtrlling = true;
-                    ctrl.SetOriPos();
-                }
-                break;
-            case Tools.Pot:
-                break;
-            default:
-                break;
-        }
+        toolGo.GetComponent<ToolCtrl>().BeginCtrl();
+        //switch (tool)
+        //{
+        //    case Tools.None:
+        //        break;
+        //    case Tools.Chopper:
+        //        if (toolGo != null)
+        //        {
+        //            ChopperCtrl ctrl = toolGo.GetComponent<ChopperCtrl>();
+        //            ctrl.isCtrlling = true;
+        //            ctrl.SetOriPos();
+        //        }
+        //        break;
+        //    case Tools.Sink:
+        //        break;
+        //    case Tools.Pan:
+        //        if (toolGo != null)
+        //        {
+        //            TurnerCtrl ctrl = toolGo.GetComponent<TurnerCtrl>();
+        //            ctrl.isCtrlling = true;
+        //            ctrl.SetOriPos();
+        //        }
+        //        break;
+        //    case Tools.Pot:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     private void StopToolCtrl()
@@ -102,24 +103,25 @@ public class CameraSwitch : MonoBehaviour
         playerCtrl.Show();
         playerCtrl.isCanCtrl = true;
 
-        switch (tool)
-        {
-            case Tools.None:
-                break;
-            case Tools.Chopper:
-                if (toolGo != null)
-                    toolGo.GetComponent<ChopperCtrl>().isCtrlling = false;
-                break;
-            case Tools.Sink:
-                break;
-            case Tools.Pan:
-                if (toolGo != null)
-                    toolGo.GetComponent<TurnerCtrl>().isCtrlling = false;
-                break;
-            case Tools.Pot:
-                break;
-            default:
-                break;
-        }
+        toolGo.GetComponent<ToolCtrl>().StopCtrl();
+        //switch (tool)
+        //{
+        //    case Tools.None:
+        //        break;
+        //    case Tools.Chopper:
+        //        if (toolGo != null)
+        //            toolGo.GetComponent<ChopperCtrl>().isCtrlling = false;
+        //        break;
+        //    case Tools.Sink:
+        //        break;
+        //    case Tools.Pan:
+        //        if (toolGo != null)
+        //            toolGo.GetComponent<TurnerCtrl>().isCtrlling = false;
+        //        break;
+        //    case Tools.Pot:
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 }

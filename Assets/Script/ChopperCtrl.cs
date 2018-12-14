@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChopperCtrl : MonoBehaviour
+public class ChopperCtrl : ToolCtrl
 {
-    public bool isCtrlling = false;
 
     private Vector3 oriPos;
     private Rigidbody rb;
@@ -18,25 +17,33 @@ public class ChopperCtrl : MonoBehaviour
     {
         oriPos = transform.localPosition;
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
         rb = GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!isCtrlling)
-        {
-            rb.useGravity = true;          //当玩家不使用时受重力控制
-            rb.isKinematic = false;
             return;
-        }
 
         this.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-        rb.useGravity = false;
-        rb.isKinematic = true;//拿起后摆正
-
 
         Move();
+    }
+
+    protected override void OnBeginCtrl()
+    {
+        SetPosAtOri();
+        rb.useGravity = false;
+        rb.isKinematic = true;//拿起后摆正
+    }
+    protected override void OnStopCtrl()
+    {
+        rb.useGravity = true;//当玩家不使用时受重力控制
+        rb.isKinematic = false;
     }
 
     private void Move()
@@ -54,7 +61,7 @@ public class ChopperCtrl : MonoBehaviour
         lastMousePos = Input.mousePosition;
     }
 
-    public void SetOriPos()
+    public void SetPosAtOri()
     {
         transform.localPosition = oriPos;
     }
