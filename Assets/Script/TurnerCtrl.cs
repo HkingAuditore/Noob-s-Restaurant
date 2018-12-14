@@ -14,7 +14,7 @@ public class TurnerCtrl : MonoBehaviour
     public float downY = 0.5f;
     public float offsetRadius = 0.8f;
     private float targetDownY;
-    private bool Is2Right=false;
+    private bool is2Right = false;
 
     private Vector3 lastMousePos;
 
@@ -44,7 +44,7 @@ public class TurnerCtrl : MonoBehaviour
         Move();
         if (Input.GetMouseButtonDown(1))
         {
-            Is2Right = !Is2Right;
+            is2Right = !is2Right;
         }
         DoAction();
     }
@@ -64,7 +64,7 @@ public class TurnerCtrl : MonoBehaviour
         Vector3 targetPos = transform.position + new Vector3(-delPos.y, 0, delPos.x);
         //targetPos.x = Mathf.Clamp(targetPos.x, oriPos.x - offsetX, oriPos.x + offsetX);
         //targetPos.z = Mathf.Clamp(targetPos.z, oriPos.z - offsetZ, oriPos.z + offsetZ);
-        Vector3 oriPos = Is2Right ? oriPosL : oriPosR;
+        Vector3 oriPos = is2Right ? oriPosL : oriPosR;
         transform.position = Vector3.Lerp(transform.position, Vector3.ClampMagnitude(targetPos - oriPos, offsetRadius) + oriPos, 0.8f);
 
         lastMousePos = Input.mousePosition;
@@ -76,7 +76,7 @@ public class TurnerCtrl : MonoBehaviour
 
     private void DoAction()
     {
-        if (Is2Right)
+        if (is2Right)
         {
             if (Input.GetMouseButton(0))
             {
@@ -85,7 +85,7 @@ public class TurnerCtrl : MonoBehaviour
             else
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, oriRotL, 0.3f);
-       //        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z- 0.05f);
+                //        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z- 0.05f);
             }
         }
         else
@@ -101,7 +101,7 @@ public class TurnerCtrl : MonoBehaviour
                 //float y = Mathf.Lerp(transform.localPosition.y, oriPos.y, 0.3f);
                 //transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
                 transform.rotation = Quaternion.Slerp(transform.rotation, oriRotR, 0.3f);
-          //      transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.05f);
+                //      transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.05f);
             }
         }
     }
