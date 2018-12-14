@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnerCtrl : MonoBehaviour
+public class TurnerCtrl : ToolCtrl
 {
-    public bool isCtrlling = false;
+    public GameObject fire;
 
     private Vector3 oriPosR;
     private Vector3 oriPosL;
@@ -24,7 +24,11 @@ public class TurnerCtrl : MonoBehaviour
         oriPosR = transform.position;
         oriPosL = transform.position - Vector3.forward * 1.6f;
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
         rb = GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
+
         targetDownY = oriPosR.y - downY;
     }
 
@@ -32,30 +36,36 @@ public class TurnerCtrl : MonoBehaviour
     void Update()
     {
         if (!isCtrlling)
-        {
-            rb.useGravity = true;//当玩家不使用时受重力控制
-            rb.isKinematic = false;
             return;
-        }
-
-        rb.useGravity = false;
-        rb.isKinematic = true;//拿起后摆正
 
         Move();
-        if (Input.GetMouseButtonDown(1))
-        {
-            is2Right = !is2Right;
-        }
         DoAction();
     }
 
-    public void SetOriPos()
+    protected override void OnBeginCtrl()
+    {
+        SetPosAtOri();
+        rb.useGravity = false;
+        rb.isKinematic = true;//拿起后摆正
+    }
+    protected override void OnStopCtrl()
+    {
+        rb.useGravity = true;//当玩家不使用时受重力控制
+        rb.isKinematic = false;
+    }
+
+    public void SetPosAtOri()
     {
         transform.position = oriPosR;
     }
 
     private void Move()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            is2Right = !is2Right;
+        }
+
         Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.003f;
         //Vector3 pos = new Vector3();
         //pos.z = -delPos.x;
@@ -103,6 +113,11 @@ public class TurnerCtrl : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, oriRotR, 0.3f);
                 //      transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.05f);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            fire.SetActive(true);
         }
     }
 }
