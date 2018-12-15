@@ -103,7 +103,7 @@ public class CameraSwitch : MonoBehaviour
         playerCtrl.Show();
         playerCtrl.isCanCtrl = true;
 
-        toolGo.GetComponent<ToolCtrl>().StopCtrl();
+        toolGo.GetComponent<ToolCtrl>().StopCtrl(); 
         //switch (tool)
         //{
         //    case Tools.None:
