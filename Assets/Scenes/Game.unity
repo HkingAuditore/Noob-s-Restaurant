@@ -669,7 +669,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &24557650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -910,7 +910,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &67558530
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1011,7 +1011,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &71396267
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1972,7 +1972,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &145675161
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2690,7 +2690,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &191839356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2857,7 +2857,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &202762306
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3818,7 +3818,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &239251087
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4396,7 +4396,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &284101428
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4542,7 +4542,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &306345201
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4689,7 +4689,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &332040242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5082,7 +5082,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &359571547
 GameObject:
   m_ObjectHideFlags: 0
@@ -6116,7 +6116,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &416859723
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6363,7 +6363,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &420769141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7344,7 +7344,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &548515617
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8273,7 +8273,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &651470357
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8405,7 +8405,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &665867025
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8506,7 +8506,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &667500051
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8607,7 +8607,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &673428601
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9376,7 +9376,6 @@ GameObject:
   m_Component:
   - component: {fileID: 731858807}
   - component: {fileID: 719807307}
-  - component: {fileID: 719807308}
   m_Layer: 0
   m_Name: Pan
   m_TagString: Untagged
@@ -9403,21 +9402,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &719807308
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 719807306}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 2
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &725082852 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f31b3950625bc5b43b4e75e2f176039b, type: 3}
@@ -9468,7 +9452,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &727290581
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9937,7 +9921,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &744927617
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10830,7 +10814,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &793050222
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10980,7 +10964,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &803680700
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11289,7 +11273,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &833833104
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12572,7 +12556,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &911409831
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13340,7 +13324,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1015636370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13441,7 +13425,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1017780224
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13694,7 +13678,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1044528815
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13795,7 +13779,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1046422069
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14163,7 +14147,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1090559898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14624,7 +14608,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1118741161
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15325,7 +15309,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1201326392
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15924,7 +15908,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1266006832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16143,7 +16127,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1271505016
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17156,7 +17140,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1314319878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18871,7 +18855,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1410662082
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19090,7 +19074,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1428402805
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20669,7 +20653,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1529956524
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -20944,7 +20928,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1543382753
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21045,7 +21029,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1550982563
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21950,7 +21934,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1604729337
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22598,7 +22582,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1661034048
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22988,7 +22972,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1682181526
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23203,7 +23187,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1683826351
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23577,7 +23561,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1716644284
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23756,7 +23740,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1727612208
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23908,7 +23892,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1747430468
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24286,7 +24270,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1768582772
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24795,7 +24779,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1819410645
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25468,7 +25452,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1888415412
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25647,7 +25631,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1901287566
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -26205,7 +26189,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1971385771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26342,7 +26326,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1983554110
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -26443,7 +26427,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &1987518306
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -27911,7 +27895,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &2046187457
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28101,7 +28085,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &2046861148
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28526,7 +28510,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &2068120891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28614,7 +28598,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &2072122033
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29017,7 +29001,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &2093319900
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29133,7 +29117,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &2108732716
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29247,7 +29231,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &2113674548
 SphereCollider:
   m_ObjectHideFlags: 0
