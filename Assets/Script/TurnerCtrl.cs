@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using DigitalRuby.PyroParticles;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TurnerCtrl : ToolCtrl
@@ -119,11 +122,13 @@ public class TurnerCtrl : ToolCtrl
         {
             if (fire.activeSelf)
             {
+                //fire.GetComponent<FireConstantBaseScript>().Stop();
                 fire.SetActive(false);
             }
             else
             {
                 fire.SetActive(true);
+                Array.ForEach(fire.GetComponentsInChildren<ParticleSystem>(), (ps) => ps.Play());
             }
         }
     }
