@@ -68,7 +68,8 @@ public class CameraSwitch : MonoBehaviour
         playerCtrl.Hide();
         playerCtrl.isCanCtrl = false;
 
-        toolGo.GetComponent<ToolCtrl>().BeginCtrl();
+        if (toolGo.GetComponent<ToolCtrl>() != null)
+            toolGo.GetComponent<ToolCtrl>().BeginCtrl();
         //switch (tool)
         //{
         //    case Tools.None:
@@ -103,7 +104,8 @@ public class CameraSwitch : MonoBehaviour
         playerCtrl.Show();
         playerCtrl.isCanCtrl = true;
 
-        toolGo.GetComponent<ToolCtrl>().StopCtrl(); 
+        if (toolGo.GetComponent<ToolCtrl>() != null)
+            toolGo.GetComponent<ToolCtrl>().StopCtrl();
         //switch (tool)
         //{
         //    case Tools.None:
