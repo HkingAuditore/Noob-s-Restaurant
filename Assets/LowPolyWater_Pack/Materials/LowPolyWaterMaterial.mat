@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: LowPolyWaterMaterial
-  m_Shader: {fileID: 4800000, guid: 16516895e8a79bf49a6562c3c3b84cbf, type: 3}
+  m_Shader: {fileID: 4800000, guid: c5617dffeb9944fa3a50334e9f9f8c5e, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -48,6 +48,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _DisplacementHeightMap:
         m_Texture: {fileID: 2800000, guid: a782b26d6436b48d9882906b9f8ca31a, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortionTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -133,11 +137,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _Displacement: 0.27863377
     - _DisplacementTiling: 18.586807
+    - _DistortionPower: 4
     - _DstBlend: 0
     - _FadeExp: 0.91503274
     - _FoamWaveDependency: 0.10205479
     - _FresnelPower: 1.7931035
-    - _FresnelScale: 2.06
+    - _FresnelScale: 2.12
     - _GerstnerIntensity: 1.6714286
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -146,6 +151,7 @@ Material:
     - _InvFade: 0.628783
     - _InvFadeDepthFade: 0.07197756
     - _InvFadeFoam: 0.1217
+    - _MaxTreshold: 0.581
     - _Metallic: 0
     - _Mode: 0
     - _NormalsDisplacement: 0
@@ -155,13 +161,18 @@ Material:
     - _RandomSpeed: 0.5
     - _ReflDistort: 0.9267696
     - _RefrDistort: 1.4393286
-    - _Shininess: 17.1
+    - _Shininess: 34
     - _ShoreTiling: 56.862743
     - _SkyBoxReflection: 0.426
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.4137931
     - _SrcBlend: 1
+    - _TargetValue: 0.177
+    - _TimeScale1: 30
+    - _TimeScale2: 5
+    - _TresholdDensity: 20
+    - _TresholdFalloff: 1.2
     - _UVSec: 0
     - _WaterDepth: 40.98077
     - _WaveCapsAmount: 0.18275861
@@ -170,13 +181,14 @@ Material:
     - _WaveLength: 0.5
     - _WaveScale: 0.046289656
     - _WaveSpeed: 1
+    - _WavesDensity: 10
     - _ZWrite: 1
     - _isInnerAlphaBlendOrColor: 0
     m_Colors:
     - WaveSpeed: {r: 1.086165, g: 4.440575, b: 12.105146, a: -3.0206447}
     - _AnimationDirection: {r: 0, g: 0, b: 0, a: 0}
     - _AnimationTiling: {r: 0.04582553, g: 0.0182, b: 0.045714468, a: 0.027129691}
-    - _BaseColor: {r: 0.92941177, g: 0.972549, b: 0.37254903, a: 1}
+    - _BaseColor: {r: 0.11213957, g: 0.46486247, b: 0.5283019, a: 1}
     - _BumpDirection: {r: 30, g: 30, b: 30, a: -50}
     - _BumpMap_ST: {r: 1, g: 1, b: 0, a: 0}
     - _BumpTiling: {r: 0.01, g: 0.01, b: 0.01, a: 0.01}
@@ -200,7 +212,7 @@ Material:
     - _HorizonColor: {r: 0.052907113, g: 0.24486735, b: 0.2835821, a: 1}
     - _InvFadeParemeter: {r: 0.67, g: 0.17, b: 27.39, a: 9.18}
     - _MainTex_ST: {r: 1, g: 1, b: 0, a: 0}
-    - _ReflectionColor: {r: 0.5794164, g: 0.6849238, b: 0.76119405, a: 0.43137255}
+    - _ReflectionColor: {r: 0, g: 0.5869565, b: 1, a: 0.43137255}
     - _ReflectionTex_ST: {r: 1, g: 1, b: 0, a: 0}
     - _ReflectiveColorCube_ST: {r: 1, g: 1, b: 0, a: 0}
     - _ReflectiveColor_ST: {r: 1, g: 1, b: 0, a: 0}
@@ -212,10 +224,11 @@ Material:
     - _ShorePerturbation: {r: 0, g: 0, b: 0, a: 0}
     - _ShoreTiling: {r: 1, g: 1, b: 0.1, a: 0.1}
     - _SpecColor: {r: 1, g: 0.912394, b: 0, a: 1}
-    - _SpecularColor: {r: 0.91791046, g: 0.91791046, b: 0.91791046, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderwaterColor: {r: 0.6950323, g: 0.89552236, b: 0.7502397, a: 1}
     - _WaveOffset: {r: -0, g: -0, b: -0, a: -0}
     - _WaveScale4: {r: 0, g: 0, b: 0, a: 0}
+    - _WavesColor: {r: 0.29999998, g: 0.34999996, b: 0.24999997, a: 0.25}
     - _WorldLightDir: {r: -0.030375138, g: -0.20139083, b: -0.97903997, a: 0}
 --- !u!1002 &2100001
 EditorExtensionImpl:
