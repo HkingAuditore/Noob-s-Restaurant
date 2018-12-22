@@ -5,43 +5,50 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurnerCtrl : ToolCtrl
+public class SFToolCtrl : ToolCtrl
 {
-    public Transform fireAnchor;
+    [SerializeField]
+    private Transform fireAnchor;
+    [SerializeField]
+    private GameObject turner;
     private GameObject firePrefab;
     private bool isFiring;
 
-    private ParticleSystemManager particleSystemManager;
+    //private ParticleSystemManager particleSystemManager;
     private Vector3 oriPosR;
     private Vector3 oriPosL;
     private Rigidbody rb;
-    public float offsetX = 0.8f;
-    public float offsetZ = 0.8f;
-    public float downY = 0.5f;
-    public float offsetRadius = 0.8f;
+
+    [SerializeField]
+    private float offsetX = 0.8f;
+    [SerializeField]
+    private float offsetZ = 0.8f;
+    [SerializeField]
+    private float downY = 0.5f;
+    [SerializeField]
+    private float offsetRadius = 0.8f;
+
     private float targetDownY;
     private bool is2Right = false;
 
     private Vector3 lastMousePos;
 
-    // Use this for initialization
     void Start()
     {
-        particleSystemManager = GameManager.Instance.particleSystemManager;
+        //particleSystemManager = GameManager.Instance.particleSystemManager;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
 
-        oriPosR = transform.position;
-        oriPosL = transform.position - Vector3.forward * 1.6f;
+        oriPosR = turner.transform.position;
+        oriPosL = turner.transform.position - Vector3.forward * 1.6f;
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-        rb = GetComponent<Rigidbody>();
+        rb = turner.GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
 
         targetDownY = oriPosR.y - downY;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!isCtrlling)
@@ -65,7 +72,7 @@ public class TurnerCtrl : ToolCtrl
 
     public void SetPosAtOri()
     {
-        transform.position = oriPosR;
+        turner.transform.position = oriPosR;
     }
 
     private void Move()
@@ -80,11 +87,11 @@ public class TurnerCtrl : ToolCtrl
         //pos.z = -delPos.x;
         //pos.y = delPos.y;
         //pos.x = 0;
-        Vector3 targetPos = transform.position + new Vector3(-delPos.y, 0, delPos.x);
+        Vector3 targetPos = turner.transform.position + new Vector3(-delPos.y, 0, delPos.x);
         //targetPos.x = Mathf.Clamp(targetPos.x, oriPos.x - offsetX, oriPos.x + offsetX);
         //targetPos.z = Mathf.Clamp(targetPos.z, oriPos.z - offsetZ, oriPos.z + offsetZ);
         Vector3 oriPos = is2Right ? oriPosL : oriPosR;
-        transform.position = Vector3.Lerp(transform.position, Vector3.ClampMagnitude(targetPos - oriPos, offsetRadius) + oriPos, 0.8f);
+        turner.transform.position = Vector3.Lerp(turner.transform.position, Vector3.ClampMagnitude(targetPos - oriPos, offsetRadius) + oriPos, 0.8f);
 
         lastMousePos = Input.mousePosition;
     }
@@ -99,11 +106,11 @@ public class TurnerCtrl : ToolCtrl
         {
             if (Input.GetMouseButton(0))
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotL, 0.05f);
+                turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, targetRotL, 0.05f);
             }
             else
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, oriRotL, 0.3f);
+                turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, oriRotL, 0.3f);
                 //        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z- 0.05f);
             }
         }
@@ -113,13 +120,13 @@ public class TurnerCtrl : ToolCtrl
             {
                 //float y = Mathf.Lerp(transform.localPosition.y, targetDownY, 0.3f);
                 // transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotR, 0.05f);
+                turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, targetRotR, 0.05f);
             }
             else
             {
                 //float y = Mathf.Lerp(transform.localPosition.y, oriPos.y, 0.3f);
                 //transform.localPosition = new Vector3(transform.localPosition.x, y, transform.localPosition.z);
-                transform.rotation = Quaternion.Slerp(transform.rotation, oriRotR, 0.3f);
+                turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, oriRotR, 0.3f);
                 //      transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.05f);
             }
         }
@@ -128,12 +135,12 @@ public class TurnerCtrl : ToolCtrl
         {
             if (!isFiring)
             {
-                particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
+                //particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
                 isFiring = true;
             }
             else
             {
-                particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
+                //particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
                 isFiring = false;
             }
         }

@@ -3,23 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotCtrl : ToolCtrl
+public class BToolCtrl : ToolCtrl
 {
-    private ParticleSystemManager particleSystemManager;
+    //private ParticleSystemManager particleSystemManager;
 
-    public GameObject cover;
+    [SerializeField]
+    private GameObject cover;
+    [SerializeField]
+    private GameObject pot;
+
     private Vector3 coverOriPos;
     private Rigidbody coverRb;
-    public Transform fireAnchor;
-    public Transform coverUpAnchor;
-    public Transform coverDownAnchor;
+
+    [SerializeField]
+    private Transform fireAnchor;
+    [SerializeField]
+    private Transform coverUpAnchor;
+    [SerializeField]
+    private Transform coverDownAnchor;
+
     private GameObject firePrefab;
     private bool isFiring;
     private bool isSealing;
 
     private void Start()
     {
-        particleSystemManager = GameManager.Instance.particleSystemManager;
+        //particleSystemManager = GameManager.Instance.particleSystemManager;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
         coverOriPos = cover.transform.position;
         coverRb = cover.GetComponent<Rigidbody>();
@@ -60,17 +69,12 @@ public class PotCtrl : ToolCtrl
         {
             if (!isFiring)
             {
-                //fire.GetComponent<FireConstantBaseScript>().Stop();
-                //Array.ForEach(fireAnchor.GetComponentsInChildren<ParticleSystem>(), (ps) => ps.Stop());
-                //fireAnchor.SetActive(false);
-                particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
+                //particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
                 isFiring = true;
             }
             else
             {
-                //fireAnchor.SetActive(true);
-                //Array.ForEach(fireAnchor.GetComponentsInChildren<ParticleSystem>(), (ps) => ps.Play());
-                particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
+                //particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
                 isFiring = false;
             }
         }
@@ -81,17 +85,11 @@ public class PotCtrl : ToolCtrl
 
         if (isSealing)
         {
-            //if (Vector3.Distance(cover.transform.position, coverDownAnchor.position) > 0.1f)
             cover.transform.position = Vector3.Lerp(cover.transform.position, coverDownAnchor.position, 0.2f);
-            //else
-            //    isSealed = true;
         }
         else
         {
-            //if (Vector3.Distance(cover.transform.position, coverUpAnchor.position) > 0.1f)
             cover.transform.position = Vector3.Lerp(cover.transform.position, coverUpAnchor.position, 0.2f);
-            //else
-            //    isSealed = false;
         }
     }
 }

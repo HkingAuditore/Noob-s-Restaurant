@@ -6,7 +6,7 @@ public class LoadScene : IState
 {
     public string GetStateName()
     {
-        return Const.SceneStateName.Load.ToString();
+        return SceneStateName.Load.ToString();
     }
 
     public void OnStateEnd()

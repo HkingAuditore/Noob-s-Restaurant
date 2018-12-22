@@ -7,7 +7,7 @@ public class StartScene : IState{
 
     public string GetStateName()
     {
-        return Const.SceneStateName.Start.ToString();
+        return SceneStateName.Start.ToString();
     }
 
     public void OnStateEnd()
