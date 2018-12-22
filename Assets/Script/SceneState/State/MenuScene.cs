@@ -7,7 +7,7 @@ public class MenuScene : IState {
 
     public string GetStateName()
     {
-        return Const.SceneStateName.Menu.ToString();
+        return SceneStateName.Menu.ToString();
     }
 
     public void OnStateEnd()

@@ -6,7 +6,7 @@ public class GameScene : IState {
 
     public string GetStateName()
     {
-        return Const.SceneStateName.Game.ToString();
+        return SceneStateName.Game.ToString();
     }
 
     public void OnStateEnd()
