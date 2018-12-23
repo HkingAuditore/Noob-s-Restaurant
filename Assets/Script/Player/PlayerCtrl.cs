@@ -8,12 +8,27 @@ public class PlayerCtrl : MonoBehaviour
     private PlayerInput input;
     private Animator animator;
     private GameObject model;
+    private GameObject heldFoodSet;
+    private Transform holdFoodMarkTrans;
     public bool isCanCtrl = true;
+    public bool isHoldFood = false;
 
     public float rotate_speed;
     public float speed;
 
+    private void Awake()
+    {
+        rig = this.GetComponent<Rigidbody>();
+        input = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
+        model = transform.Find("Model").gameObject;
+        holdFoodMarkTrans = transform.Find("HoldFoodMark").transform;
+    }
 
+    void FixedUpdate()
+    {
+        Move();
+    }
 
     void Move()
     {
@@ -28,28 +43,27 @@ public class PlayerCtrl : MonoBehaviour
             animator.SetFloat("walk", Mathf.Sqrt(input.hor * input.hor + input.ver * input.ver));
         }
     }
-
-    void Start()
-    {
-        rig = this.GetComponent<Rigidbody>();
-        input = GetComponent<PlayerInput>();
-        animator = GetComponent<Animator>();
-        model = transform.Find("Model").gameObject;
-    }
-
-
-    void FixedUpdate()
-    {
-        Move();
-    }
-
     public void Hide()
     {
         animator.SetFloat("walk", 0);
         model.SetActive(false);
     }
+
     public void Show()
     {
         model.SetActive(true);
+    }
+
+    public void SetPlayerHeldFoodSet(GameObject foodSet)
+    {
+        if (isHoldFood)
+        {
+            Debug.Log("已经持有" + heldFoodSet.name);
+            return;
+        }
+        heldFoodSet = foodSet;
+        heldFoodSet.transform.position = holdFoodMarkTrans.position;
+        heldFoodSet.transform.SetParent(this.transform);
+        isHoldFood = true;
     }
 }
