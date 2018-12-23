@@ -6,6 +6,9 @@ public class PlayerInput : MonoBehaviour
 {
     public float ver;
     public float hor;
+    public bool isEDown;
+    public bool isQDown;
+    public bool isFDown;
 
     // Use this for initialization
     void Start()

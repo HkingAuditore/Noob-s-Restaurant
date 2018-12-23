@@ -12,17 +12,12 @@ public sealed class CTable : Table {
     protected override void Awake()
     {
         base.Awake();
-        thisCamera = cCamera;
+        thisCameraGO = cCamera;
         toolGo = toolSet;
     }
 
     protected override void Start()
     {
         base.Start();
-    }
-
-    protected override void OnTriggerStay(Collider other)
-    {
-        base.OnTriggerStay(other);
     }
 }

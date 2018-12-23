@@ -3,8 +3,8 @@
 	Properties
 	{
 		_MainTex("Base (RGB)", 2D) = "white" { }
-		_OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
-		_OutlineWidth("Outline width", Range(0.0, 1.0)) = .005
+		_OutlineColor("Outline Color", Color) = (1, 1, 0, 1)
+		_OutlineWidth("Outline width", Range(0.0, 1.0)) = .07
 	}
 
 		SubShader

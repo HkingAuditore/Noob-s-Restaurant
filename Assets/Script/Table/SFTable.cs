@@ -12,17 +12,12 @@ public sealed class SFTable : Table {
     protected override void Awake()
     {
         base.Awake();
-        thisCamera = sfCamera;
+        thisCameraGO = sfCamera;
         toolGo = toolSet;
     }
 
     protected override void Start()
     {
         base.Start();
-    }
-
-    protected override void OnTriggerStay(Collider other)
-    {
-        base.OnTriggerStay(other);
     }
 }
