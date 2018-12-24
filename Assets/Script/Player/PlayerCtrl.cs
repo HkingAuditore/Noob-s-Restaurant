@@ -8,10 +8,11 @@ public class PlayerCtrl : MonoBehaviour
     private PlayerInput input;
     private Animator animator;
     private GameObject model;
-    private GameObject heldFoodSet;
-    private Transform holdFoodMarkTrans;
+    public GameObject heldFoodSet;
+    public Transform holdFoodMarkTrans;
+    private MatchTargetWeightMask matchTargetWeightMask;
     public bool isCanCtrl = true;
-    public bool isHoldFood = false;
+    public bool isHoldFoodSet = false;
 
     public float rotate_speed;
     public float speed;
@@ -23,11 +24,25 @@ public class PlayerCtrl : MonoBehaviour
         animator = GetComponent<Animator>();
         model = transform.Find("Model").gameObject;
         holdFoodMarkTrans = transform.Find("HoldFoodMark").transform;
+        matchTargetWeightMask = new MatchTargetWeightMask(new Vector3(1, 1, 1), 0);
     }
 
     void FixedUpdate()
     {
         Move();
+        SwitchHoldBolw();
+    }
+
+    void SwitchHoldBolw()
+    {
+        if (isHoldFoodSet)
+        {
+            animator.SetFloat("isHoldBowl", 1);
+        }
+        else
+        {
+            animator.SetFloat("isHoldBowl", 0);
+        }
     }
 
     void Move()
@@ -43,6 +58,7 @@ public class PlayerCtrl : MonoBehaviour
             animator.SetFloat("walk", Mathf.Sqrt(input.hor * input.hor + input.ver * input.ver));
         }
     }
+
     public void Hide()
     {
         animator.SetFloat("walk", 0);
@@ -54,16 +70,4 @@ public class PlayerCtrl : MonoBehaviour
         model.SetActive(true);
     }
 
-    public void SetPlayerHeldFoodSet(GameObject foodSet)
-    {
-        if (isHoldFood)
-        {
-            Debug.Log("已经持有" + heldFoodSet.name);
-            return;
-        }
-        heldFoodSet = foodSet;
-        heldFoodSet.transform.position = holdFoodMarkTrans.position;
-        heldFoodSet.transform.SetParent(this.transform);
-        isHoldFood = true;
-    }
 }
