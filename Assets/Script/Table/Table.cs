@@ -195,9 +195,12 @@ public class Table : MonoBehaviour
     //进入与退出处理派生在这里重写
     protected virtual void OnQuitTable()
     {
-        cBowl.GetComponent<Renderer>().materials = defaultMs;
-        StopCoroutine("SelectFoodSetCoroutine");
-        selectFoodSetCoroutine = null;
+        if (selectFoodSetCoroutine != null)
+        {
+            cBowl.GetComponent<Renderer>().materials = defaultMs;
+            StopCoroutine("SelectFoodSetCoroutine");
+            selectFoodSetCoroutine = null;
+        }
     }
     protected virtual void OnEnterTable() { }
 }
