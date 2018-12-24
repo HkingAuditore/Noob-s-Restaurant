@@ -17,7 +17,7 @@ TagManager:
   - PostProcessing
   - Player
   - FireLayer
-  - 
+  - FoodSet
   - 
   - 
   - 
@@ -41,4 +41,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Front
+    uniqueID: 3131237123
+    locked: 0
+  - name: Back
+    uniqueID: 3065090101
     locked: 0
