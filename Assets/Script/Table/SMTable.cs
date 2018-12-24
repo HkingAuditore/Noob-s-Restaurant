@@ -45,18 +45,13 @@ public sealed class SMTable : Table
         }
     }
 
-    protected override void SelectMethod(GameObject cBowl)
+    protected override void SelectMethod()
     {
-        base.SelectMethod(cBowl);
+        base.SelectMethod();
         PutFoodSetBack();
         foodSetScripts[foodSetScriptsIndex].transform.position = preelectionFoodSetTrans.position;
         currentChosenFoodSetGO = foodSetScripts[foodSetScriptsIndex].gameObject;
         foodSetScripts[foodSetScriptsIndex] = null;
-    }
-
-    protected override void CancelMethod(GameObject cBowl)
-    {
-        base.CancelMethod(cBowl);
     }
 
     protected override void OnEnterTable()

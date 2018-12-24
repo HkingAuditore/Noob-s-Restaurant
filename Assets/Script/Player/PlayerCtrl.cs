@@ -23,7 +23,7 @@ public class PlayerCtrl : MonoBehaviour
         input = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
         model = transform.Find("Model").gameObject;
-        holdFoodMarkTrans = transform.Find("HoldFoodMark").transform;
+        holdFoodMarkTrans = transform.Find("Model/metarig.001/HoldFoodMark").transform;
         matchTargetWeightMask = new MatchTargetWeightMask(new Vector3(1, 1, 1), 0);
     }
 
