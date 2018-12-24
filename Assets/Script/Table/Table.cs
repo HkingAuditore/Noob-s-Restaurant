@@ -170,14 +170,16 @@ public class Table : MonoBehaviour
 
             if (Input.GetMouseButtonDown(2))
             {
-                SelectMethod(cBowl);//每个桌子选择后处理方式不同可重写此方法
+                SelectMethod();//每个桌子选择后处理方式不同可重写此方法
+                cBowl.GetComponent<Renderer>().materials = defaultMs;
                 StopCoroutine("SelectFoodSetCoroutine");
                 selectFoodSetCoroutine = null;
             }
             else if (Input.GetMouseButtonDown(1))
             {
                 Debug.Log("取消");
-                CancelMethod(cBowl);//每个桌子选择后处理方式不同可重写此方法
+                CancelMethod();//每个桌子选择后处理方式不同可重写此方法
+                cBowl.GetComponent<Renderer>().materials = defaultMs;
                 StopCoroutine("SelectFoodSetCoroutine");
                 selectFoodSetCoroutine = null;
             }
@@ -186,15 +188,9 @@ public class Table : MonoBehaviour
     }
 
     //每个桌子选择后处理方式不同可重写此方法
-    protected virtual void SelectMethod(GameObject cBowl)
-    {
-        cBowl.GetComponent<Renderer>().materials = defaultMs;
-    }
+    protected virtual void SelectMethod() { }
     //每个桌子选择后处理方式不同可重写此方法 
-    protected virtual void CancelMethod(GameObject cBowl)
-    {
-        cBowl.GetComponent<Renderer>().materials = defaultMs;
-    }
+    protected virtual void CancelMethod() { }
     
     //进入与退出处理派生在这里重写
     protected virtual void OnQuitTable()
