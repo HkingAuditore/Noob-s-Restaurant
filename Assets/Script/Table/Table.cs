@@ -13,9 +13,9 @@ public class Table : MonoBehaviour
     protected List<FoodSet> foodSetScripts;//每个set都会挂有该脚本，表示一碗食材 foodSet（内部预定有方法获取所装食材）
     [SerializeField]
     protected GameObject currentChosenFoodSetGO;//存储选择完成后被选中的 foodSet
+    protected  GameObject cBowl;//需要点亮的碗
     protected Coroutine selectFoodSetCoroutine;
     protected int foodSetScriptsIndex;
-    protected int maxPlaceNum;//控制此桌的最大放碗数
     protected Material[] outLineMs;
     protected Material[] defaultMs;
 
@@ -96,8 +96,9 @@ public class Table : MonoBehaviour
     {
         if (this.transform.Find("FoodSet") != null && foodSetScripts == null)
         {
-            foodSetScripts = new List<FoodSet>(maxPlaceNum);
+            foodSetScripts = new List<FoodSet>();
             foodSetScripts.AddRange(this.transform.Find("FoodSet").GetComponentsInChildren<FoodSet>());
+            Debug.Log(foodSetScripts.Count);
         }
     }
 
@@ -121,7 +122,7 @@ public class Table : MonoBehaviour
         {
             foodSetScriptsIndex++;
         }
-        GameObject cBowl = foodSetScripts[foodSetScriptsIndex].transform.Find("Bowl/球体").gameObject;
+        cBowl = foodSetScripts[foodSetScriptsIndex].transform.Find("Bowl/球体").gameObject;
 
         while (true)
         {
@@ -196,6 +197,11 @@ public class Table : MonoBehaviour
     }
     
     //进入与退出处理派生在这里重写
-    protected virtual void OnQuitTable() { }
+    protected virtual void OnQuitTable()
+    {
+        cBowl.GetComponent<Renderer>().materials = defaultMs;
+        StopCoroutine("SelectFoodSetCoroutine");
+        selectFoodSetCoroutine = null;
+    }
     protected virtual void OnEnterTable() { }
 }

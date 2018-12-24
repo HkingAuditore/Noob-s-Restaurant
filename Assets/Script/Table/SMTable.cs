@@ -11,7 +11,12 @@ public sealed class SMTable : Table
     private Transform foodSetTrans;
     private Transform preelectionFoodSetTrans;
     private Transform _11MarkTrans;
-    private float FoodSetSpace;//用于设置桌子上foodset间的间隔，默认为0.5
+    [SerializeField]
+    private int thisSingleLineMaxPlaceNum =5;//控制此桌一排的最大放碗数
+    [SerializeField]
+    private float thisFoodSetSpace = 0.57f;//用于设置桌子上foodset间的间隔，默认为0.57
+    [SerializeField]
+    private int thisMaxPlaceNum = 10;//控制此桌最大容量
 
     protected override void Awake()
     {
@@ -19,13 +24,11 @@ public sealed class SMTable : Table
         preelectionFoodSetTrans = this.transform.Find("PreelectionFoodSetMark");
         foodSetTrans = this.transform.Find("FoodSet");
         _11MarkTrans = this.transform.Find("11Mark");
-        maxPlaceNum = 5;
     }
 
     protected override void Start()
     {
         base.Start();
-        FoodSetSpace = 0.5f;
         thisCameraGO = smCamera;
         toolGo = toolSet;
     }
@@ -33,12 +36,10 @@ public sealed class SMTable : Table
     protected override void SelectFoodSet()
     {
         base.SelectFoodSet();
-        Debug.Log("aaaa");
         if (currentChosenFoodSetGO != null)
         {
             if (Input.GetMouseButtonDown(1) && selectFoodSetCoroutine == null)
             {
-                Debug.Log("ppp");
                 PutFoodSetBack();
             }
         }
@@ -65,6 +66,7 @@ public sealed class SMTable : Table
 
     protected override void OnQuitTable()
     {
+        base.OnQuitTable();
         GivePlayerFoodSet();
     }
 
@@ -73,20 +75,29 @@ public sealed class SMTable : Table
         if (currentChosenFoodSetGO != null)
         {
             int i;
-            for (i = 0; i < maxPlaceNum; i++)
+            for (i = 0; i < thisMaxPlaceNum; i++)
             {
                 if (foodSetScripts[i] == null)
                 {
                     Debug.Log(i + "号位孔雀");
-                    Debug.Log((i * FoodSetSpace));
-                    currentChosenFoodSetGO.transform.localPosition =
-                        new Vector3(_11MarkTrans.localPosition.x, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - (i * FoodSetSpace));
+                    Debug.Log((i * thisFoodSetSpace));
+
+                    if (i >= thisSingleLineMaxPlaceNum)
+                    {
+                        currentChosenFoodSetGO.transform.localPosition =
+                            new Vector3(_11MarkTrans.localPosition.x - thisFoodSetSpace, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - ((i-thisSingleLineMaxPlaceNum) * thisFoodSetSpace));
+                    }
+                    else
+                    {       
+                        currentChosenFoodSetGO.transform.localPosition =
+                            new Vector3(_11MarkTrans.localPosition.x, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - (i * thisFoodSetSpace));    
+                    }
                     foodSetScripts[i] = currentChosenFoodSetGO.GetComponent<FoodSet>();
                     currentChosenFoodSetGO = null;
                     break;
                 }
             }
-            if (i >= maxPlaceNum)
+            if (i >= thisSingleLineMaxPlaceNum)
             {
                 Debug.Log("此桌已经没有空位了");
                 return;
