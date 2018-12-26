@@ -45,17 +45,17 @@ public class Table : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             //EnterTableInit
-            SwitchCamera(true);
-            SetPlayerCtrl(false);
+            SwitchCamera(true);        
             SetToolGo(true);
+            SetPlayerCtrl(false);
             OnEnterTable();
         }
         else if (Input.GetKey(KeyCode.Q))
         {
             //QuitTableInit
             SwitchCamera(false);
-            SetPlayerCtrl(true);
             SetToolGo(false);
+            SetPlayerCtrl(true);
             OnQuitTable();
         }
 
