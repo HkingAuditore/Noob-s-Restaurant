@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour {
+public interface IFood {
+
+    FoodName GetFoodName();
 
 }

@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomato : MonoBehaviour {
+public class Tomato : MonoBehaviour,IFood {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public FoodName GetFoodName()
+    {
+        return FoodName.Tomato;
+    }
 }
