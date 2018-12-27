@@ -14,7 +14,7 @@ public class SFToolCtrl : ToolCtrl
     private GameObject firePrefab;
     private bool isFiring;
 
-    //private ParticleSystemManager particleSystemManager;
+    private ParticleSystemManager particleSystemManager;
     private Vector3 oriPosR;
     private Vector3 oriPosL;
     private Rigidbody rb;
@@ -35,7 +35,7 @@ public class SFToolCtrl : ToolCtrl
 
     void Start()
     {
-        //particleSystemManager = GameManager.Instance.particleSystemManager;
+        particleSystemManager = GameManager.Instance.particleSystemManager;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
 
         oriPosR = turner.transform.position;
@@ -135,12 +135,12 @@ public class SFToolCtrl : ToolCtrl
         {
             if (!isFiring)
             {
-                //particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
+                particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
                 isFiring = true;
             }
             else
             {
-                //particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
+                particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
                 isFiring = false;
             }
         }
