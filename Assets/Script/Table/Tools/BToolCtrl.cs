@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BToolCtrl : ToolCtrl
 {
-    //private ParticleSystemManager particleSystemManager;
+    private ParticleSystemManager particleSystemManager;
 
     [SerializeField]
     private GameObject cover;
@@ -28,7 +28,7 @@ public class BToolCtrl : ToolCtrl
 
     private void Start()
     {
-        //particleSystemManager = GameManager.Instance.particleSystemManager;
+        particleSystemManager = GameManager.Instance.particleSystemManager;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
         coverOriPos = cover.transform.position;
         coverRb = cover.GetComponent<Rigidbody>();
@@ -69,12 +69,12 @@ public class BToolCtrl : ToolCtrl
         {
             if (!isFiring)
             {
-                //particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
+                particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
                 isFiring = true;
             }
             else
             {
-                //particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
+                particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
                 isFiring = false;
             }
         }
