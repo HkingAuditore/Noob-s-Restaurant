@@ -12,17 +12,14 @@ public class InitScene : IState
 
     public void OnStateEnd()
     {
-        Debug.Log("Scene:InitSceneEnd");
     }
 
     public void OnStateStart()
     {
-        Debug.Log("Scene:InitSceneStart");
        GameManager.Instance.sceneStateManager.SetState(new StartScene());
     }
 
     public void OnStateUpdate()
     {
-        Debug.Log("Scene:InitSceneUpdate");
     }
 }

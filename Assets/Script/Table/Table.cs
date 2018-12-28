@@ -98,7 +98,6 @@ public class Table : MonoBehaviour
         {
             foodSetScripts = new List<FoodSet>();
             foodSetScripts.AddRange(this.transform.Find("FoodSet").GetComponentsInChildren<FoodSet>());
-            Debug.Log(foodSetScripts.Count);
         }
     }
 

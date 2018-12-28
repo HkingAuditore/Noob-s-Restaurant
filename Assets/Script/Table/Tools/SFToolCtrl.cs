@@ -20,11 +20,11 @@ public class SFToolCtrl : ToolCtrl
     private Rigidbody rb;
 
     [SerializeField]
-    private float offsetX = 0.8f;
+    private float offsetX = 0f;
     [SerializeField]
-    private float offsetZ = 0.8f;
+    private float offsetZ = 0f;
     [SerializeField]
-    private float downY = 0.5f;
+    private float offsetY = 0f;
     [SerializeField]
     private float offsetRadius = 0.8f;
 
@@ -38,15 +38,13 @@ public class SFToolCtrl : ToolCtrl
         particleSystemManager = GameManager.Instance.particleSystemManager;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
 
-        oriPosR = turner.transform.position;
-        oriPosL = turner.transform.position - Vector3.forward * 1.6f;
+        oriPosR = turner.transform.position + new Vector3(offsetX, offsetY, offsetZ); ;
+        oriPosL = turner.transform.position - Vector3.forward * 1.6f + new Vector3(offsetX, offsetY, offsetZ); ;
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
         rb = turner.GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
-
-        targetDownY = oriPosR.y - downY;
     }
 
     void Update()
@@ -78,23 +76,16 @@ public class SFToolCtrl : ToolCtrl
     private void Move()
     {
         if (Input.GetMouseButtonDown(1))
-        {
             is2Right = !is2Right;
-        }
 
         Vector3 delPos = (Input.mousePosition - lastMousePos) * 0.003f;
-        //Vector3 pos = new Vector3();
-        //pos.z = -delPos.x;
-        //pos.y = delPos.y;
-        //pos.x = 0;
         Vector3 targetPos = turner.transform.position + new Vector3(-delPos.y, 0, delPos.x);
-        //targetPos.x = Mathf.Clamp(targetPos.x, oriPos.x - offsetX, oriPos.x + offsetX);
-        //targetPos.z = Mathf.Clamp(targetPos.z, oriPos.z - offsetZ, oriPos.z + offsetZ);
         Vector3 oriPos = is2Right ? oriPosL : oriPosR;
-        turner.transform.position = Vector3.Lerp(turner.transform.position, Vector3.ClampMagnitude(targetPos - oriPos, offsetRadius) + oriPos, 0.8f);
-
+        turner.transform.position = 
+            Vector3.Lerp(turner.transform.position, Vector3.ClampMagnitude(targetPos - oriPos, offsetRadius) + oriPos, 0.8f);
         lastMousePos = Input.mousePosition;
     }
+
     private Quaternion targetRotL = Quaternion.Euler(0f, -95.604f, -12.44f);
     private Quaternion oriRotL = Quaternion.Euler(0f, -95.604f, -50.44f);
     private Quaternion targetRotR = Quaternion.Euler(0f, 95.604f, -12.44f);
@@ -105,14 +96,9 @@ public class SFToolCtrl : ToolCtrl
         if (is2Right)
         {
             if (Input.GetMouseButton(0))
-            {
                 turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, targetRotL, 0.05f);
-            }
             else
-            {
-                turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, oriRotL, 0.3f);
-                //        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z- 0.05f);
-            }
+                turner.transform.rotation = Quaternion.Slerp(turner.transform.rotation, oriRotL, 0.3f);              
         }
         else
         {
