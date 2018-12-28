@@ -13,6 +13,11 @@ public class FoodSet : MonoBehaviour {
         FallingFoodsTrans = GameObject.Find("Environment/Inside/FallingFoods").transform;
     }
 
+    private void Update()
+    {
+        Debug.Log(foods[0].GetFoodName()+":"+ foods.Count);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<IFood>() != null)

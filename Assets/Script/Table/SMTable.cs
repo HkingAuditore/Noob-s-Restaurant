@@ -107,9 +107,7 @@ public sealed class SMTable : Table
         if (playerCtrlScript.isHoldFoodSet)
         {
             GameObject holdFoodSet = playerCtrlScript.transform.Find("Model/metarig.001").transform.GetComponentInChildren<FoodSet>().gameObject;
-            //holdFoodSet.SetActive(false);
             holdFoodSet.transform.position = preelectionFoodSetTrans.position;
-            //holdFoodSet.SetActive(true);
             holdFoodSet.transform.SetParent(foodSetTrans);
             currentChosenFoodSetGO = holdFoodSet;
             playerCtrlScript.isHoldFoodSet = false;
