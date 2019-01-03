@@ -41,7 +41,7 @@ namespace DigitalRuby.PyroParticles
         public bool IsProjectile;
 
         [Tooltip("Particle systems that must be manually started and will not be played on start.")]
-        public ParticleSystem[] ManualParticleSystems;
+        public UnityEngine.ParticleSystem[] ManualParticleSystems;
 
         private float startTimeMultiplier;
         private float startTimeIncrement;
@@ -59,7 +59,7 @@ namespace DigitalRuby.PyroParticles
 
         private void StartParticleSystems()
         {
-            foreach (ParticleSystem p in gameObject.GetComponentsInChildren<ParticleSystem>())
+            foreach (UnityEngine.ParticleSystem p in gameObject.GetComponentsInChildren<UnityEngine.ParticleSystem>())
             {
                 if (ManualParticleSystems == null || ManualParticleSystems.Length == 0 ||
                     System.Array.IndexOf(ManualParticleSystems, p) < 0)
@@ -175,7 +175,7 @@ namespace DigitalRuby.PyroParticles
             Stopping = true;
 
             // cleanup particle systems
-            foreach (ParticleSystem p in gameObject.GetComponentsInChildren<ParticleSystem>())
+            foreach (UnityEngine.ParticleSystem p in gameObject.GetComponentsInChildren<UnityEngine.ParticleSystem>())
             {
                 p.Stop();
             }

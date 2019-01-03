@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class SMTable : Table
+public sealed class SMTable : Table, IContainer<Container>
 {
     [SerializeField]
     private GameObject smCamera;
     [SerializeField]
     private GameObject toolSet;
-    private Transform foodSetTrans;
+    private Transform wareSetTrans;
     private Transform preelectionFoodSetTrans;
     private Transform _11MarkTrans;
     [SerializeField]
@@ -20,11 +20,16 @@ public sealed class SMTable : Table
     [SerializeField]
     private float thisRowFoodSetSpace = 0.57f;//用于设置桌子上foodset间的行间隔
 
+    public List<Container> Contents
+    {
+        get { return wareSet; }
+    }
+
     protected override void Awake()
     {
         base.Awake();
         preelectionFoodSetTrans = this.transform.Find("PreelectionFoodSetMark");
-        foodSetTrans = this.transform.Find("FoodSet");
+        wareSetTrans = this.transform.Find("WareSet");
         _11MarkTrans = this.transform.Find("11Mark");
     }
 
@@ -38,7 +43,7 @@ public sealed class SMTable : Table
     protected override void SelectFoodSet()
     {
         base.SelectFoodSet();
-        if (currentChosenFoodSetGO != null)
+        if (currentChosenWare != null)
         {
             if (Input.GetMouseButtonDown(1) && selectFoodSetCoroutine == null)
             {
@@ -51,46 +56,47 @@ public sealed class SMTable : Table
     {
         base.SelectMethod();
         PutFoodSetBack();
-        foodSetScripts[foodSetScriptsIndex].transform.position = preelectionFoodSetTrans.position;
-        currentChosenFoodSetGO = foodSetScripts[foodSetScriptsIndex].gameObject;
-        foodSetScripts[foodSetScriptsIndex] = null;
+        wareSet[wareSetIndex].transform.position = preelectionFoodSetTrans.position;
+        currentChosenWare = wareSet[wareSetIndex].gameObject.GetComponent<Ware>();
+        wareSet[wareSetIndex] = null;
     }
 
     protected override void OnEnterTable()
     {
-        PutFoodSetOnTablePreelectionPos();
+        base.OnEnterTable();
+        PutWareOnTablePreelectionPos();
     }
 
     protected override void OnQuitTable()
     {
         base.OnQuitTable();
-        GivePlayerFoodSet();
+        GivePlayerSelectedWare();
     }
 
     private void PutFoodSetBack()
     {
-        if (currentChosenFoodSetGO != null)
+        if (currentChosenWare != null)
         {
             int i;
             for (i = 0; i < thisMaxPlaceNum; i++)
             {
-                if (foodSetScripts[i] == null)
+                if (wareSet[i] == null)
                 {
                     Debug.Log(i + "号位孔雀");
                     Debug.Log((i * thisRowFoodSetSpace));
 
                     if (i >= thisRowMaxPlaceNum)
                     {
-                        currentChosenFoodSetGO.transform.localPosition =
-                            new Vector3(_11MarkTrans.localPosition.x -  thisColumnFoodSetSpace, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - ((i - thisRowMaxPlaceNum) * thisRowFoodSetSpace));
+                        currentChosenWare.transform.localPosition =
+                            new Vector3(_11MarkTrans.localPosition.x - thisColumnFoodSetSpace, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - ((i - thisRowMaxPlaceNum) * thisRowFoodSetSpace));
                     }
                     else
                     {
-                        currentChosenFoodSetGO.transform.localPosition =
+                        currentChosenWare.transform.localPosition =
                             new Vector3(_11MarkTrans.localPosition.x, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - (i * thisRowFoodSetSpace));
                     }
-                    foodSetScripts[i] = currentChosenFoodSetGO.GetComponent<FoodSet>();
-                    currentChosenFoodSetGO = null;
+                    wareSet[i] = currentChosenWare.GetComponent<Ware>();
+                    currentChosenWare = null;
                     break;
                 }
             }
@@ -102,33 +108,64 @@ public sealed class SMTable : Table
         }
     }
 
-    private void PutFoodSetOnTablePreelectionPos()
+    private void PutWareOnTablePreelectionPos()
     {
         if (playerCtrlScript.isHoldFoodSet)
         {
-            GameObject holdFoodSet = playerCtrlScript.transform.Find("Model/metarig.001").transform.GetComponentInChildren<FoodSet>().gameObject;
-            holdFoodSet.transform.position = preelectionFoodSetTrans.position;
-            holdFoodSet.transform.SetParent(foodSetTrans);
-            currentChosenFoodSetGO = holdFoodSet;
-            playerCtrlScript.isHoldFoodSet = false;
-
+            playerCtrlScript.TakeTheOneTo(this);
         }
     }
 
-    private void GivePlayerFoodSet()
+    private void GivePlayerSelectedWare()
     {
         if (playerCtrlScript.isHoldFoodSet)
         {
-            Debug.Log("已经持有" + playerCtrlScript.heldFoodSet.name);
+            Debug.Log("已经持有" + playerCtrlScript.Contents[0].name);
             return;
         }
-        if (currentChosenFoodSetGO != null)
-        {
-            currentChosenFoodSetGO.transform.position = playerCtrlScript.holdFoodMarkTrans.position;
-            currentChosenFoodSetGO.transform.SetParent(playerCtrlScript.transform.Find("Model/metarig.001").transform);
-            playerCtrlScript.heldFoodSet = currentChosenFoodSetGO;
-            playerCtrlScript.isHoldFoodSet = true;
-            currentChosenFoodSetGO = null;
-        }
+
+        TakeTheOneTo(playerCtrlScript);
     }
+
+    //IContainer Implement
+    public void Add(Container ware)
+    {
+        Contents.Add(ware);
+        ware.transform.position = preelectionFoodSetTrans.position;
+        ware.transform.SetParent(wareSetTrans);
+        currentChosenWare = ware as Ware;
+    }
+    public Container TakeTheOneTo(IContainer<Container> container)
+    {
+        if (currentChosenWare == null)
+        {
+            Debug.Log("Nothing chosen to take");
+            return null;
+        }
+        //if (!Contents.Contains(currentChosenWare))
+        //{
+        //    Debug.LogError("the given content does not exist in this container");
+        //    return null;
+        //}
+
+        Ware ware = currentChosenWare;
+        container.Add(ware);
+        Contents.Remove(ware);
+        currentChosenWare = null;
+        return ware;
+    }
+
+    public Container TakeOneTo(Container ware, IContainer<Container> container)
+    {
+        throw new System.NotImplementedException();
+    }
+    public void AddRange(List<Container> ingredient)
+    {
+        throw new System.NotImplementedException();
+    }
+    public List<Container> TakeOutAllTo(IContainer<Container> container)
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

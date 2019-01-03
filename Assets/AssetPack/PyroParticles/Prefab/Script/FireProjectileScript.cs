@@ -22,7 +22,7 @@ namespace DigitalRuby.PyroParticles
         public AudioSource ProjectileCollisionSound;
 
         [Tooltip("The particle system to play upon collision.")]
-        public ParticleSystem ProjectileExplosionParticleSystem;
+        public UnityEngine.ParticleSystem ProjectileExplosionParticleSystem;
 
         [Tooltip("The radius of the explosion upon collision.")]
         public float ProjectileExplosionRadius = 50.0f;
@@ -43,7 +43,7 @@ namespace DigitalRuby.PyroParticles
         public LayerMask ProjectileCollisionLayers = Physics.AllLayers;
 
         [Tooltip("Particle systems to destroy upon collision.")]
-        public ParticleSystem[] ProjectileDestroyParticleSystemsOnCollision;
+        public UnityEngine.ParticleSystem[] ProjectileDestroyParticleSystemsOnCollision;
 
         [HideInInspector]
         public FireProjectileCollisionDelegate CollisionDelegate;
@@ -81,7 +81,7 @@ namespace DigitalRuby.PyroParticles
             // destroy particle systems after a slight delay
             if (ProjectileDestroyParticleSystemsOnCollision != null)
             {
-                foreach (ParticleSystem p in ProjectileDestroyParticleSystemsOnCollision)
+                foreach (UnityEngine.ParticleSystem p in ProjectileDestroyParticleSystemsOnCollision)
                 {
                     GameObject.Destroy(p, 0.1f);
                 }

@@ -8,7 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public SceneStateManager sceneStateManager;
     public UIManager uiManager;
-    public ParticleSystemManager particleSystemManager;
+    public new ParticleSystem particleSystem;
 
     protected override void Awake()
     {
@@ -16,14 +16,14 @@ public class GameManager : MonoSingleton<GameManager>
         DontDestroyOnLoad(this.gameObject);
         sceneStateManager = new SceneStateManager();
         uiManager = new UIManager();
-        particleSystemManager = new ParticleSystemManager();
+        particleSystem = new ParticleSystem();
     }
 
     private void Start()
     {
         sceneStateManager.Init();
         uiManager.Init();
-        particleSystemManager.Init();
+        particleSystem.Init();
     }
 
     void Update()
