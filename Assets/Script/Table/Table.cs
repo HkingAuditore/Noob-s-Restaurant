@@ -8,19 +8,20 @@ public class Table : MonoBehaviour
     protected PlayerCtrl playerCtrlScript;
     protected GameObject toolGo;
     protected GameObject thisCameraGO;
+    protected bool isEnter;
 
     //食物选择相关
-    protected List<FoodSet> foodSetScripts;//每个set都会挂有该脚本，表示一碗食材 foodSet（内部预定有方法获取所装食材）
+    protected List<Container> wareSet;//每个set都会挂有该脚本，表示一碗食材 foodSet（内部预定有方法获取所装食材）
     [SerializeField]
-    protected GameObject currentChosenFoodSetGO;//存储选择完成后被选中的 foodSet
-    protected  GameObject cBowl;//需要点亮的碗
+    protected Ware currentChosenWare;//存储选择完成后被选中的 foodSet
+    protected GameObject cBowl;//需要点亮的碗
     protected Coroutine selectFoodSetCoroutine;
-    protected int foodSetScriptsIndex;
+    protected int wareSetIndex;
     protected Material[] outLineMs;
     protected Material[] defaultMs;
 
     protected virtual void Awake()
-    {       
+    {
         playerCtrlScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
         outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
         defaultMs = new Material[2] { new Material(Shader.Find("Standard (Specular setup)")), new Material(Shader.Find("Standard (Specular setup)")) };
@@ -42,15 +43,15 @@ public class Table : MonoBehaviour
         if (!other.CompareTag("Player") || thisCameraGO == null)
             return;
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !isEnter)
         {
             //EnterTableInit
-            SwitchCamera(true);        
+            SwitchCamera(true);
             SetToolGo(true);
             SetPlayerCtrl(false);
             OnEnterTable();
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q) && isEnter)
         {
             //QuitTableInit
             SwitchCamera(false);
@@ -94,10 +95,10 @@ public class Table : MonoBehaviour
 
     private void InitfoodSetScripts()
     {
-        if (this.transform.Find("FoodSet") != null && foodSetScripts == null)
+        if (this.transform.Find("WareSet") != null && wareSet == null)
         {
-            foodSetScripts = new List<FoodSet>();
-            foodSetScripts.AddRange(this.transform.Find("FoodSet").GetComponentsInChildren<FoodSet>());
+            wareSet = new List<Container>();
+            wareSet.AddRange(this.transform.Find("WareSet").GetComponentsInChildren<Ware>());
         }
     }
 
@@ -105,7 +106,7 @@ public class Table : MonoBehaviour
     {
         if (selectFoodSetCoroutine == null)
         {
-            if (Input.GetMouseButtonDown(2) && !playerCtrlScript.isCanCtrl && foodSetScripts.Count > 0)
+            if (Input.GetMouseButtonDown(2) && !playerCtrlScript.isCanCtrl && wareSet.Count > 0)
             {
                 selectFoodSetCoroutine = StartCoroutine("SelectFoodSetCoroutine");
             }
@@ -116,55 +117,55 @@ public class Table : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        foodSetScriptsIndex = 0;
-        if (foodSetScripts[foodSetScriptsIndex] == null)
+        wareSetIndex = 0;
+        if (wareSet[wareSetIndex] == null)
         {
-            foodSetScriptsIndex++;
+            wareSetIndex++;
         }
-        cBowl = foodSetScripts[foodSetScriptsIndex].transform.Find("Bowl/球体").gameObject;
+        cBowl = wareSet[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
 
         while (true)
         {
             if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
             {
-                foodSetScriptsIndex++;
-                if (foodSetScriptsIndex >= foodSetScripts.Count)
+                wareSetIndex++;
+                if (wareSetIndex >= wareSet.Count)
                 {
-                    foodSetScriptsIndex = 0;
+                    wareSetIndex = 0;
                 }
 
-                if (foodSetScripts[foodSetScriptsIndex] == null) 
+                if (wareSet[wareSetIndex] == null)
                 {
-                    foodSetScriptsIndex++;
+                    wareSetIndex++;
                 }
 
-                if (foodSetScriptsIndex >= foodSetScripts.Count)
+                if (wareSetIndex >= wareSet.Count)
                 {
-                    foodSetScriptsIndex = 0;
+                    wareSetIndex = 0;
                 }
             }
             else if (Input.GetAxisRaw("Mouse ScrollWheel") > 0)
             {
-                foodSetScriptsIndex--;
-                if (foodSetScriptsIndex <= -1)
+                wareSetIndex--;
+                if (wareSetIndex <= -1)
                 {
-                    foodSetScriptsIndex = foodSetScripts.Count - 1;
+                    wareSetIndex = wareSet.Count - 1;
                 }
 
-                if (foodSetScripts[foodSetScriptsIndex] == null)
+                if (wareSet[wareSetIndex] == null)
                 {
-                    foodSetScriptsIndex--;
+                    wareSetIndex--;
                 }
 
-                if (foodSetScriptsIndex <= -1)
+                if (wareSetIndex <= -1)
                 {
-                    foodSetScriptsIndex = foodSetScripts.Count - 1;
+                    wareSetIndex = wareSet.Count - 1;
                 }
             }
 
             //设置高亮    
             cBowl.GetComponent<Renderer>().materials = defaultMs;
-            cBowl = foodSetScripts[foodSetScriptsIndex].transform.Find("Bowl/球体").gameObject;
+            cBowl = wareSet[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
             cBowl.GetComponent<Renderer>().materials = outLineMs;
 
             if (Input.GetMouseButtonDown(2))
@@ -190,7 +191,7 @@ public class Table : MonoBehaviour
     protected virtual void SelectMethod() { }
     //每个桌子选择后处理方式不同可重写此方法 
     protected virtual void CancelMethod() { }
-    
+
     //进入与退出处理派生在这里重写
     protected virtual void OnQuitTable()
     {
@@ -200,6 +201,10 @@ public class Table : MonoBehaviour
             StopCoroutine("SelectFoodSetCoroutine");
             selectFoodSetCoroutine = null;
         }
+        isEnter = false;
     }
-    protected virtual void OnEnterTable() { }
+    protected virtual void OnEnterTable()
+    {
+        isEnter = true;
+    }
 }

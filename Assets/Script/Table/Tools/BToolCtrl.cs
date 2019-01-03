@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BToolCtrl : ToolCtrl
 {
-    private ParticleSystemManager particleSystemManager;
+    private ParticleSystem particleSystemManager;
 
     [SerializeField]
     private GameObject cover;
@@ -28,7 +28,7 @@ public class BToolCtrl : ToolCtrl
 
     private void Start()
     {
-        particleSystemManager = GameManager.Instance.particleSystemManager;
+        particleSystemManager = GameManager.Instance.particleSystem;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
         coverOriPos = cover.transform.position;
         coverRb = cover.GetComponent<Rigidbody>();

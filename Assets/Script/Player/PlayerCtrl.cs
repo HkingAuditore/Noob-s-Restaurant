@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCtrl : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour, IContainer<Container>
 {
     private Rigidbody rig;
     private PlayerInput input;
     private Animator animator;
     private GameObject model;
-    public GameObject heldFoodSet;
+    //public GameObject heldWare;
     public Transform holdFoodMarkTrans;
     private MatchTargetWeightMask matchTargetWeightMask;
     public bool isCanCtrl = true;
@@ -16,6 +16,12 @@ public class PlayerCtrl : MonoBehaviour
 
     public float rotate_speed;
     public float speed;
+
+    private List<Container> container = new List<Container>(1);
+    public List<Container> Contents
+    {
+        get { return container; }
+    }
 
     private void Awake()
     {
@@ -68,6 +74,50 @@ public class PlayerCtrl : MonoBehaviour
     public void Show()
     {
         model.SetActive(true);
+    }
+
+
+
+    //IContainer Implement
+    public void Add(Container content)
+    {
+        if (Contents.Count >= 1)
+        {
+            Debug.LogError("Try to add a content when the player have already held one");
+            return;
+        }
+
+        Contents.Add(content);
+        isHoldFoodSet = true;
+        content.transform.position = holdFoodMarkTrans.position;
+        content.transform.SetParent(transform.Find("Model/metarig.001").transform);
+    }
+    public Container TakeTheOneTo(IContainer<Container> container)
+    {
+        if (Contents.Count <= 0)
+        {
+            Debug.Log("Nothing in player's hand");
+            return null;
+        }
+
+        isHoldFoodSet = false;
+        Container movedContainer = Contents[0];
+        container.Add(movedContainer);
+        Contents.RemoveAt(0);
+        return movedContainer;
+    }
+    public Container TakeOneTo(Container content, IContainer<Container> container)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void AddRange(List<Container> contents)
+    {
+        throw new System.NotImplementedException();
+    }
+    public List<Container> TakeOutAllTo(IContainer<Container> container)
+    {
+        throw new System.NotImplementedException();
     }
 
 }

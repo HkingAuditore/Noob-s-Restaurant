@@ -20,10 +20,10 @@ namespace DigitalRuby.PyroParticles
         public GameObject MeteorPrefab;
 
         [Tooltip("Explosion particle system that should be emitted for each initial collision.")]
-        public ParticleSystem MeteorExplosionParticleSystem;
+        public UnityEngine.ParticleSystem MeteorExplosionParticleSystem;
 
         [Tooltip("Shrapnel particle system that should be emitted for each initial collision.")]
-        public ParticleSystem MeteorShrapnelParticleSystem;
+        public UnityEngine.ParticleSystem MeteorShrapnelParticleSystem;
 
         [Tooltip("A list of materials to use for the meteors. One will be chosen at random for each meteor.")]
         public Material[] MeteorMaterials;

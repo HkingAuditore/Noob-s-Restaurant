@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tomato : MonoBehaviour,IFood {
-
-    public FoodName GetFoodName()
+public class Tomato : Ingredient
+{
+    protected override void Start()
     {
-        return FoodName.Tomato;
+        base.Start();
+        FoodName = FoodName.Tomato;
     }
 }

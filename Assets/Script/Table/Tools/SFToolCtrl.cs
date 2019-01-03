@@ -14,7 +14,7 @@ public class SFToolCtrl : ToolCtrl
     private GameObject firePrefab;
     private bool isFiring;
 
-    private ParticleSystemManager particleSystemManager;
+    private ParticleSystem particleSystemManager;
     private Vector3 oriPosR;
     private Vector3 oriPosL;
     private Rigidbody rb;
@@ -35,7 +35,7 @@ public class SFToolCtrl : ToolCtrl
 
     void Start()
     {
-        particleSystemManager = GameManager.Instance.particleSystemManager;
+        particleSystemManager = GameManager.Instance.particleSystem;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
 
         oriPosR = turner.transform.position + new Vector3(offsetX, offsetY, offsetZ); ;

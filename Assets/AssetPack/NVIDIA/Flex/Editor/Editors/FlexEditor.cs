@@ -191,7 +191,7 @@ public class FlexEditor
         foreach (GameObject o in Selection.gameObjects)
         {
             bool valid = o.GetComponent<FlexActor>() != null
-                      && o.GetComponent<ParticleSystem>() != null;
+                      && o.GetComponent<UnityEngine.ParticleSystem>() != null;
             if (!valid) return false;
         }
         return Selection.gameObjects.Length > 0;

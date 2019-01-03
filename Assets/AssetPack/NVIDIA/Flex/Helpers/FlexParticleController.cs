@@ -32,7 +32,7 @@ namespace NVIDIA.Flex
 {
     [ExecuteInEditMode]
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(ParticleSystem))]
+    [RequireComponent(typeof(UnityEngine.ParticleSystem))]
     [AddComponentMenu("Flex/Flex Particle Controller")]
     public class FlexParticleController : MonoBehaviour
     {
@@ -44,7 +44,7 @@ namespace NVIDIA.Flex
             if (m_actor)
             {
                 m_actor.onFlexUpdate += OnFlexUpdate;
-                m_particleSystem = GetComponent<ParticleSystem>();
+                m_particleSystem = GetComponent<UnityEngine.ParticleSystem>();
                 if (m_particleSystem)
                 {
                     m_particleSystem.Emit(m_actor.indexCount);
@@ -142,13 +142,13 @@ namespace NVIDIA.Flex
                 float[] ages = sourceActor.ages;
                 m_particleSystem.Clear();
                 m_particleSystem.Emit(indices.Length);
-                if (m_particles.Length != indexCount) m_particles = new ParticleSystem.Particle[indexCount];
+                if (m_particles.Length != indexCount) m_particles = new UnityEngine.ParticleSystem.Particle[indexCount];
                 float startLifetime = main.startLifetime.Evaluate(0);
                 Color32 startColor = main.startColor.Evaluate(0);
                 float startSize = main.startSize.Evaluate(0);
                 for (int i = 0; i < indexCount; ++i)
                 {
-                    ParticleSystem.Particle p = m_particles[i];
+                    UnityEngine.ParticleSystem.Particle p = m_particles[i];
                     p.velocity = _particleData.GetVelocity(indices[i]); ;
                     p.position = (Vector3)_particleData.GetParticle(indices[i]) + p.velocity * (time - Time.fixedDeltaTime);
                     p.remainingLifetime = ages[i] - time;
@@ -167,12 +167,12 @@ namespace NVIDIA.Flex
                 int indexCount = actor.indexCount;
                 //m_particleSystem.Clear();
                 //m_particleSystem.Emit(indices.Length);
-                if (m_particles.Length != indexCount) m_particles = new ParticleSystem.Particle[indexCount];
+                if (m_particles.Length != indexCount) m_particles = new UnityEngine.ParticleSystem.Particle[indexCount];
                 Color32 startColor = main.startColor.Evaluate(0);
                 float startSize = main.startSize.Evaluate(0);
                 for (int i = 0; i < indexCount; ++i)
                 {
-                    ParticleSystem.Particle p = m_particles[i];
+                    UnityEngine.ParticleSystem.Particle p = m_particles[i];
                     p.velocity = _particleData.GetVelocity(indices[i]);
                     p.position = (Vector3)_particleData.GetParticle(indices[i]) + p.velocity * (time - Time.fixedDeltaTime);
                     p.remainingLifetime = m_particleSystem.main.startLifetime.Evaluate(0);
@@ -187,8 +187,8 @@ namespace NVIDIA.Flex
         }
 
         FlexActor m_actor;
-        ParticleSystem m_particleSystem;
-        ParticleSystem.Particle[] m_particles = new ParticleSystem.Particle[0];
+        UnityEngine.ParticleSystem m_particleSystem;
+        UnityEngine.ParticleSystem.Particle[] m_particles = new UnityEngine.ParticleSystem.Particle[0];
 
         #endregion
     }
