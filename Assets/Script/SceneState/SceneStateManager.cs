@@ -17,7 +17,7 @@ public class SceneStateManager
 
     public void UpdateState()
     {
-        if (isLoadFinish)
+        if (state != null && isLoadFinish)
         {
             state.OnStateUpdate();
         }
@@ -25,25 +25,36 @@ public class SceneStateManager
 
     public void SetState(IState state)
     {
+        isLoadFinish = false;
+
+        if (this.state != null)
+            this.state.OnStateEnd();
+
         switch (state.GetStateName())
         {
-            //2个特殊场景（init,load）单独处理
+            //2个特殊场景单独处理
             case "Init":
                 Debug.LogWarning("Init场景用于创建gamemanager和初始化,不允许被二次加载");
-                break;
+                return;
 
             case "Load":
                 Debug.LogWarning("load场景不允许被单独加载");
-                break;
-
-            case "Game":
-                LoadScene(new LoadScene(), state);
-                break;
+                return;
 
             default:
-                if (state.GetStateName() != SceneManager.GetActiveScene().name)
+                if (state.GetStateName() != this.state.GetStateName())
                 {
-                    LoadScene(state);
+                    if (state.IsNeedLoadScene())
+                    {
+                        this.state = new LoadScene();
+                        SceneManager.LoadScene(this.state.GetStateName(), LoadSceneMode.Single);
+                        GameManager.Instance.StartCoroutine(LoadSceneAsync(state));
+                    }
+                    else
+                    {
+                        this.state = state;
+                        SceneManager.LoadScene(this.state.GetStateName(), LoadSceneMode.Single);
+                    }
                 }
                 else
                 {
@@ -53,21 +64,10 @@ public class SceneStateManager
         }
     }
 
-    void LoadScene(IState state, IState sState = null)
-    {
-        isLoadFinish = false;
-        this.state.OnStateEnd();
-        SceneManager.LoadScene(state.GetStateName());
-        this.state = state;
-
-        if (sState != null)
-            GameManager.Instance.StartCoroutine(LoadSceneAsync(sState));
-    }
-
     IEnumerator LoadSceneAsync(IState state)
     {
         yield return null;
-        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(state.GetStateName());
+        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(state.GetStateName(),LoadSceneMode.Single);
         loadSceneAo.allowSceneActivation = false;
 
         while (!loadSceneAo.isDone)
@@ -76,9 +76,13 @@ public class SceneStateManager
             {
                 //if (Input.GetKeyDown(KeyCode.Space))
                 //{
+                    isLoadFinish = false;
                     GameManager.Instance.uiManager.PopPanel();
-                    loadSceneAo.allowSceneActivation = true;
+                    this.state.OnStateEnd();
                     this.state = state;
+                    loadSceneAo.allowSceneActivation = true;
+
+                    break;
                 //}
             }
             yield return null;

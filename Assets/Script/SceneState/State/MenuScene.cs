@@ -10,6 +10,11 @@ public class MenuScene : IState {
         return SceneStateName.Menu.ToString();
     }
 
+    public bool IsNeedLoadScene()
+    {
+        return false;
+    }
+
     public void OnStateEnd()
     {
         Debug.Log("Scene:MenuSceneEnd");

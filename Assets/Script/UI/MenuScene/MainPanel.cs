@@ -57,6 +57,5 @@ public class MainPanel :IPanel
 
     public void OnUpdate()
     {
-        Debug.Log("UI:MainPanelUpdate");
     }
 }

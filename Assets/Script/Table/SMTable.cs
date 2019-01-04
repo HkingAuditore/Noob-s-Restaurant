@@ -82,7 +82,7 @@ public sealed class SMTable : Table, IContainer<Container>
             {
                 if (wareSet[i] == null)
                 {
-                    Debug.Log(i + "号位孔雀");
+                    Debug.Log(i + "号位空缺");
                     Debug.Log((i * thisRowFoodSetSpace));
 
                     if (i >= thisRowMaxPlaceNum)
