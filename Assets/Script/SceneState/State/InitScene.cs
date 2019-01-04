@@ -10,6 +10,11 @@ public class InitScene : IState
         return SceneStateName.Init.ToString();
     }
 
+    public bool IsNeedLoadScene()
+    {
+        return false;
+    }
+
     public void OnStateEnd()
     {
     }

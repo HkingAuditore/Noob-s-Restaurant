@@ -9,6 +9,11 @@ public class LoadScene : IState
         return SceneStateName.Load.ToString();
     }
 
+    public bool IsNeedLoadScene()
+    {
+        return false;
+    }
+
     public void OnStateEnd()
     {
         Debug.Log("Scene:LoadSceneEnd");

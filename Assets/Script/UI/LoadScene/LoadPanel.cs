@@ -17,7 +17,7 @@ public class LoadPanel :IPanel {
 
     public void OnEnter()
     {
-        Debug.Log("UI:LoadPanelEnter");     
+        //Debug.Log("UI:LoadPanelEnter");     
         canvas = GameObject.Find("Canvas").GetComponentInParent<Canvas>();
         loadPanel = canvas.transform.Find("LoadPanel").gameObject;
         loadText = canvas.transform.Find("LoadPanel/Text").GetComponent<Text>();
@@ -27,17 +27,17 @@ public class LoadPanel :IPanel {
 
     public void OnExit()
     {
-        Debug.Log("UI:LoadPanelExit");
+        //Debug.Log("UI:LoadPanelExit");
     }
 
     public void OnPause()
     {
-        Debug.Log("UI:LoadPanelPause");
+        //Debug.Log("UI:LoadPanelPause");
     }
 
     public void OnUpdate()
     {
-        Debug.Log("UI:LoadPanelUpdate");
+        //Debug.Log("UI:LoadPanelUpdate");
         FlashingLoadText();
     }
 
