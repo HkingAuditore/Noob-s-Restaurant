@@ -9,15 +9,14 @@ public sealed class SFTable : Table {
     [SerializeField]
     GameObject toolSet;
 
-    protected override void Awake()
+    protected override void GetCamera()
     {
-        base.Awake();
-        thisCameraGO = sfCamera;
+        cameraGO = sfCamera;
+    }
+
+    protected override void GetTool()
+    {
         toolGo = toolSet;
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
 }

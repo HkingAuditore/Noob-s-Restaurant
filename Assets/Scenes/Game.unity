@@ -1856,7 +1856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0e9002902551f4c92f57b07dfc4d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChosenWare: {fileID: 0}
   bCamera: {fileID: 359571547}
   toolSet: {fileID: 447862301}
 --- !u!65 &84699141
@@ -2585,7 +2584,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 141394233}
-  m_LocalRotation: {x: -0.4075741, y: -0.039968476, z: 0.0070350184, w: 0.91226995}
+  m_LocalRotation: {x: -0.4075741, y: -0.03996849, z: 0.0070350207, w: 0.91226995}
   m_LocalPosition: {x: 1.0999999, y: -10.184356, z: 3.6732924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -9054,7 +9053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348da299a18434344985fe19851fec70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChosenWare: {fileID: 0}
   cCamera: {fileID: 806150635}
   toolSet: {fileID: 320116178}
 --- !u!65 &556564450
@@ -21396,7 +21394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4742dd710653c4287b790d2fc21976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChosenWare: {fileID: 0}
   sfCamera: {fileID: 367446395}
   toolSet: {fileID: 795477802}
 --- !u!65 &1338493900
@@ -24557,7 +24554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4d9e1eac472d34793b35be489bf9af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChosenWare: {fileID: 0}
   smCamera: {fileID: 1361806383}
   toolSet: {fileID: 2062075216}
   thisRowMaxPlaceNum: 5
@@ -29404,8 +29400,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1877855401}
-  m_LocalRotation: {x: 0.2005724, y: 0.8623093, z: -0.1461467, w: -0.44140074}
-  m_LocalPosition: {x: 17.330162, y: 2.969511, z: 24.076351}
+  m_LocalRotation: {x: -0.4075741, y: -0.039968476, z: 0.0070350184, w: 0.91226995}
+  m_LocalPosition: {x: 1.0999999, y: -10.184356, z: 3.6732924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049400552}
@@ -30324,9 +30320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ceaa296b5f6a5849b6e48e95698b311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentChosenWare: {fileID: 0}
   pCamera: {fileID: 1618024848}
-  tool: {fileID: 514337888}
+  toolSet: {fileID: 0}
 --- !u!65 &1948938981
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Table : MonoBehaviour
+public abstract class Table : MonoBehaviour
 {
 
     protected PlayerCtrl playerCtrlScript;
     protected GameObject toolGo;
-    protected GameObject thisCameraGO;
+    protected GameObject cameraGO;
     protected bool isEnter;
 
     //食物选择相关
     protected List<Container> wareSet;//每个set都会挂有该脚本，表示一碗食材 foodSet（内部预定有方法获取所装食材）
-    [SerializeField]
     protected Ware currentChosenWare;//存储选择完成后被选中的 foodSet
     protected GameObject cBowl;//需要点亮的碗
     protected Coroutine selectFoodSetCoroutine;
@@ -29,18 +28,15 @@ public class Table : MonoBehaviour
 
     protected virtual void Start()
     {
-        InitfoodSetScripts();
-        if (thisCameraGO != null)
-            thisCameraGO.SetActive(false);
+        GetWaresInChildren();
+        GetCamera();
+        GetTool();
+        SwitchCamera(false);
     }
 
-    private void Update()
+    protected void OnTriggerStay(Collider other)
     {
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (!other.CompareTag("Player") || thisCameraGO == null)
+        if (!other.CompareTag("Player") || cameraGO == null)
             return;
 
         if (Input.GetKeyDown(KeyCode.E) && !isEnter)
@@ -63,7 +59,7 @@ public class Table : MonoBehaviour
         SelectFoodSet();
     }
 
-    private void SetToolGo(bool isBeginCtrl)
+    protected void SetToolGo(bool isBeginCtrl)
     {
         if (toolGo != null && toolGo.GetComponent<ToolCtrl>() != null)
         {
@@ -74,7 +70,7 @@ public class Table : MonoBehaviour
         }
     }
 
-    private void SetPlayerCtrl(bool isShow)
+    protected void SetPlayerCtrl(bool isShow)
     {
         if (isShow)
         {
@@ -88,12 +84,12 @@ public class Table : MonoBehaviour
         }
     }
 
-    private void SwitchCamera(bool isActive)
+    protected void SwitchCamera(bool isActive)
     {
-        thisCameraGO.SetActive(isActive);
+        cameraGO.SetActive(isActive);
     }
 
-    private void InitfoodSetScripts()
+    protected void GetWaresInChildren()
     {
         if (this.transform.Find("WareSet") != null && wareSet == null)
         {
@@ -104,9 +100,9 @@ public class Table : MonoBehaviour
 
     protected virtual void SelectFoodSet()
     {
-        if (selectFoodSetCoroutine == null)
+        if (selectFoodSetCoroutine == null && wareSet !=null && !playerCtrlScript.isCanCtrl)
         {
-            if (Input.GetMouseButtonDown(2) && !playerCtrlScript.isCanCtrl && wareSet.Count > 0)
+            if (Input.GetMouseButtonDown(2) && wareSet.Count > 0)
             {
                 selectFoodSetCoroutine = StartCoroutine("SelectFoodSetCoroutine");
             }
@@ -115,7 +111,7 @@ public class Table : MonoBehaviour
 
     IEnumerator SelectFoodSetCoroutine()
     {
-        yield return new WaitForEndOfFrame();
+        yield return null;
 
         wareSetIndex = 0;
         if (wareSet[wareSetIndex] == null)
@@ -186,6 +182,10 @@ public class Table : MonoBehaviour
             yield return null;
         }
     }
+
+
+    protected abstract void GetCamera();
+    protected abstract void GetTool();
 
     //每个桌子选择后处理方式不同可重写此方法
     protected virtual void SelectMethod() { }
