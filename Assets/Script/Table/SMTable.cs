@@ -33,10 +33,13 @@ public sealed class SMTable : Table, IContainer<Container>
         _11MarkTrans = this.transform.Find("11Mark");
     }
 
-    protected override void Start()
+    protected override void GetCamera()
     {
-        base.Start();
-        thisCameraGO = smCamera;
+        cameraGO = smCamera;
+    }
+
+    protected override void GetTool()
+    {
         toolGo = toolSet;
     }
 

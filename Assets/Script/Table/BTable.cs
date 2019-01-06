@@ -9,15 +9,14 @@ public sealed class BTable : Table {
     [SerializeField]
     GameObject toolSet;
 
-    protected override void Awake()
+    protected override void GetCamera()
     {
-        base.Awake();
-        thisCameraGO = bCamera;
+        cameraGO = bCamera;
+    }
+
+    protected override void GetTool()
+    {
         toolGo = toolSet;
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
 }

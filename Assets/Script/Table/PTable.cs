@@ -7,17 +7,15 @@ public sealed class PTable : Table {
     [SerializeField]
     GameObject pCamera;
     [SerializeField]
-    GameObject tool;
+    GameObject toolSet;
 
-    protected override void Awake()
+    protected override void GetCamera()
     {
-        base.Awake();
-        thisCameraGO = pCamera;
-        toolGo = tool;
+        cameraGO = pCamera;
     }
 
-    protected override void Start()
+    protected override void GetTool()
     {
-        base.Start();
+        toolGo = toolSet;
     }
 }
