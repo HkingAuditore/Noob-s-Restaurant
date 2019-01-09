@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 8fcabf51ed439c1419725558ceb9fc3d
+guid: 0bfabc6080d0f054ba61da0a71cb752b
 ScriptedImporter:
   fileIDToRecycleName:
-    100006: "\u5012\u6CB9/\u5012\u6CB9"
-    100008: "\u5012\u6CB9/\u5012\u6CB9/\u7403\u4F53"
-    100010: "\u5012\u6CB9/\u5012\u6CB9/\u7403\u4F53/\u7403\u4F53Shape"
-    400006: "\u5012\u6CB9/\u5012\u6CB9/Transform"
-    400008: "\u5012\u6CB9/\u5012\u6CB9/\u7403\u4F53/Transform"
-    400010: "\u5012\u6CB9/\u5012\u6CB9/\u7403\u4F53/\u7403\u4F53Shape/Transform"
+    100000: PourOil/PourOil
+    100002: "PourOil/PourOil/\u7403\u4F53"
+    100004: "PourOil/PourOil/\u7403\u4F53/\u7403\u4F53Shape"
+    400000: PourOil/PourOil/Transform
+    400002: "PourOil/PourOil/\u7403\u4F53/Transform"
+    400004: "PourOil/PourOil/\u7403\u4F53/\u7403\u4F53Shape/Transform"
     2100000: Default Material
-    2300002: "\u5012\u6CB9/\u5012\u6CB9/\u7403\u4F53/\u7403\u4F53Shape/MeshRenderer"
-    3300002: "\u5012\u6CB9/\u5012\u6CB9/\u7403\u4F53/\u7403\u4F53Shape/MeshFilter"
+    2300000: "PourOil/PourOil/\u7403\u4F53/\u7403\u4F53Shape/MeshRenderer"
+    3300000: "PourOil/PourOil/\u7403\u4F53/\u7403\u4F53Shape/MeshFilter"
     4300000: "/\u7403\u4F53/\u7403\u4F53Shape"
     7400000: Default Animation
-    7400004: "\u5012\u6CB9_Frames"
-    11400004: "\u5012\u6CB9/\u5012\u6CB9/MonoBehaviour-UTJ.Alembic.AlembicStreamPlayer"
-    11400006: "\u5012\u6CB9_ABCDesc"
-    100100002: "\u5012\u6CB9"
+    7400002: PourOil_Frames
+    11400000: PourOil/PourOil/MonoBehaviour-UTJ.Alembic.AlembicStreamPlayer
+    11400002: PourOil_ABCDesc
+    100100000: PourOil
   externalObjects: {}
   userData: 
   assetBundleName: 
@@ -26,7 +26,7 @@ ScriptedImporter:
     normals: 1
     tangents: 1
     cameraAspectRatio: 2
-    scaleFactor: 0.4
+    scaleFactor: 0.01
     swapHandedness: 1
     flipFaces: 0
     turnQuadEdges: 0

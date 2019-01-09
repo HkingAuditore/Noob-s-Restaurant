@@ -6,8 +6,6 @@ public sealed class SMTable : Table, IContainer<Container>
 {
     [SerializeField]
     private GameObject smCamera;
-    [SerializeField]
-    private GameObject toolSet;
     private Transform wareSetTrans;
     private Transform preelectionFoodSetTrans;
     private Transform _11MarkTrans;
@@ -36,11 +34,6 @@ public sealed class SMTable : Table, IContainer<Container>
     protected override void GetCamera()
     {
         cameraGO = smCamera;
-    }
-
-    protected override void GetTool()
-    {
-        toolGo = toolSet;
     }
 
     protected override void SelectFoodSet()
@@ -113,21 +106,21 @@ public sealed class SMTable : Table, IContainer<Container>
 
     private void PutWareOnTablePreelectionPos()
     {
-        if (playerCtrlScript.isHoldFoodSet)
+        if (playerCtrl.isHoldFoodSet)
         {
-            playerCtrlScript.TakeTheOneTo(this);
+            playerCtrl.TakeTheOneTo(this);
         }
     }
 
     private void GivePlayerSelectedWare()
     {
-        if (playerCtrlScript.isHoldFoodSet)
+        if (playerCtrl.isHoldFoodSet)
         {
-            Debug.Log("已经持有" + playerCtrlScript.Contents[0].name);
+            Debug.Log("已经持有" + playerCtrl.Contents[0].name);
             return;
         }
 
-        TakeTheOneTo(playerCtrlScript);
+        TakeTheOneTo(playerCtrl);
     }
 
     //IContainer Implement

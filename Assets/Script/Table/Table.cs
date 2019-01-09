@@ -5,13 +5,13 @@ using UnityEngine;
 public abstract class Table : MonoBehaviour
 {
 
-    protected PlayerCtrl playerCtrlScript;
-    protected GameObject toolGo;
+    protected PlayerCtrl playerCtrl;
     protected GameObject cameraGO;
+    protected List<Tool> toolSet;
+    protected List<Container> wareSet;
     protected bool isEnter;
 
     //食物选择相关
-    protected List<Container> wareSet;//每个set都会挂有该脚本，表示一碗食材 foodSet（内部预定有方法获取所装食材）
     protected Ware currentChosenWare;//存储选择完成后被选中的 foodSet
     protected GameObject cBowl;//需要点亮的碗
     protected Coroutine selectFoodSetCoroutine;
@@ -21,16 +21,19 @@ public abstract class Table : MonoBehaviour
 
     protected virtual void Awake()
     {
-        playerCtrlScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
+        playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
+        toolSet = new List<Tool>();
+        wareSet = new List<Container>();
         outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
         defaultMs = new Material[2] { new Material(Shader.Find("Standard (Specular setup)")), new Material(Shader.Find("Standard (Specular setup)")) };
     }
 
     protected virtual void Start()
     {
-        GetWaresInChildren();
+        GetWareSet();
+        GetToolSet();
         GetCamera();
-        GetTool();
+
         SwitchCamera(false);
     }
 
@@ -59,14 +62,40 @@ public abstract class Table : MonoBehaviour
         SelectFoodSet();
     }
 
+    protected void GetWareSet()
+    {
+        if (this.transform.Find("WareSet") != null && wareSet != null)
+        {
+            wareSet.AddRange(this.transform.Find("WareSet").GetComponentsInChildren<Ware>());
+        }
+    }
+
+    protected void GetToolSet()
+    {
+        if (this.transform.Find("ToolSet") != null && toolSet != null)
+        {
+            toolSet.AddRange(this.transform.Find("ToolSet").gameObject.GetComponentsInChildren<Tool>());
+        }
+    }
+
+    protected abstract void GetCamera();
+
+    protected void SwitchCamera(bool isActive)
+    {
+        cameraGO.SetActive(isActive);
+    }
+
     protected void SetToolGo(bool isBeginCtrl)
     {
-        if (toolGo != null && toolGo.GetComponent<ToolCtrl>() != null)
+        if (toolSet != null && toolSet.Count>0)
         {
-            if (isBeginCtrl)
-                toolGo.GetComponent<ToolCtrl>().BeginCtrl();
-            else
-                toolGo.GetComponent<ToolCtrl>().StopCtrl();
+            foreach (Tool temp in toolSet)
+            {
+                if (isBeginCtrl)
+                    temp.OnBeginCtrl();
+                else
+                    temp.OnStopCtrl();
+            }
         }
     }
 
@@ -74,33 +103,35 @@ public abstract class Table : MonoBehaviour
     {
         if (isShow)
         {
-            playerCtrlScript.Show();
-            playerCtrlScript.isCanCtrl = true;
+            playerCtrl.Show();
+            playerCtrl.isCanCtrl = true;
         }
         else
         {
-            playerCtrlScript.Hide();
-            playerCtrlScript.isCanCtrl = false;
+            playerCtrl.Hide();
+            playerCtrl.isCanCtrl = false;
         }
     }
 
-    protected void SwitchCamera(bool isActive)
+    protected virtual void OnQuitTable()
     {
-        cameraGO.SetActive(isActive);
-    }
-
-    protected void GetWaresInChildren()
-    {
-        if (this.transform.Find("WareSet") != null && wareSet == null)
+        if (selectFoodSetCoroutine != null)
         {
-            wareSet = new List<Container>();
-            wareSet.AddRange(this.transform.Find("WareSet").GetComponentsInChildren<Ware>());
+            cBowl.GetComponent<Renderer>().materials = defaultMs;
+            StopCoroutine("SelectFoodSetCoroutine");
+            selectFoodSetCoroutine = null;
         }
+        isEnter = false;
+    }
+
+    protected virtual void OnEnterTable()
+    {
+        isEnter = true;
     }
 
     protected virtual void SelectFoodSet()
     {
-        if (selectFoodSetCoroutine == null && wareSet !=null && !playerCtrlScript.isCanCtrl)
+        if (selectFoodSetCoroutine == null && wareSet !=null && !playerCtrl.isCanCtrl)
         {
             if (Input.GetMouseButtonDown(2) && wareSet.Count > 0)
             {
@@ -183,28 +214,8 @@ public abstract class Table : MonoBehaviour
         }
     }
 
-
-    protected abstract void GetCamera();
-    protected abstract void GetTool();
-
     //每个桌子选择后处理方式不同可重写此方法
     protected virtual void SelectMethod() { }
     //每个桌子选择后处理方式不同可重写此方法 
     protected virtual void CancelMethod() { }
-
-    //进入与退出处理派生在这里重写
-    protected virtual void OnQuitTable()
-    {
-        if (selectFoodSetCoroutine != null)
-        {
-            cBowl.GetComponent<Renderer>().materials = defaultMs;
-            StopCoroutine("SelectFoodSetCoroutine");
-            selectFoodSetCoroutine = null;
-        }
-        isEnter = false;
-    }
-    protected virtual void OnEnterTable()
-    {
-        isEnter = true;
-    }
 }
