@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6983ab2008f7a9f499b3f8cd6bec328d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  streamDescriptor: {fileID: 11400002, guid: 0bfabc6080d0f054ba61da0a71cb752b, type: 3}
+  streamDescriptor: {fileID: 0}
   startTime: 0.0416666679084301
   endTime: 10.416666984558105
   currentTime: 9.28
