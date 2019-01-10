@@ -101,16 +101,16 @@ public sealed class OilPot : Tool {
             if (isInPlace && isPouring)
             {
                 targetRotation = pourAnchor.localRotation * pourRot;
+                SetPourOilAnim(true);
             }
-            SetPourOilAnim(true);
         }
         else if(Input.GetKeyUp(KeyCode.Space))
         {
             if (isInPlace && isPouring)
             {
                 targetRotation = pourAnchor.localRotation;
+                SetPourOilAnim(false);
             }
-            SetPourOilAnim(false);
         }
 
         if (Vector3.Magnitude(potTrans.localPosition - targetPosition) > 0.1f ||
@@ -129,16 +129,8 @@ public sealed class OilPot : Tool {
 
     void SetPourOilAnim(bool isStart)
     {
-        if (isInPlace && isPouring)
-        {
             pourOilAnimator.gameObject.SetActive(isStart);
             pourOilAnimator.SetBool("isPouring", isStart);
-        }
-        else
-        {
-            pourOilAnimator.gameObject.SetActive(false);
-            pourOilAnimator.SetBool("isPouring", false);
-        }
     }
 
     void ResetOilPotState()
