@@ -16,9 +16,7 @@ namespace UTJ.Alembic
         float lastUpdateTime;
         bool forceUpdate = false;
         bool updateStarted = false;
-
         public double duration { get { return endTime - startTime; } }
-
 
         void ClampTime()
         {

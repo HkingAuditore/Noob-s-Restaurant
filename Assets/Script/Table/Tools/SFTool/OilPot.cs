@@ -57,12 +57,7 @@ public sealed class OilPot : Tool {
     {
         base.OnStopCtrl();
 
-        targetPosition = potOriLocalPosition;
-        targetRotation = potOriLocalRotation;
-        potTrans.localPosition = potOriLocalPosition;
-        potTrans.localRotation = potOriLocalRotation;
-        isPouring = false;
-        isInPlace = true;
+        ResetOilPotState();
         SetPourOilAnim(false);
         SetPotRigidbody();
     }
@@ -97,6 +92,7 @@ public sealed class OilPot : Tool {
             {
                 targetPosition = potOriLocalPosition;
                 targetRotation = potOriLocalRotation;
+                SetPourOilAnim(false);
             }
         }
 
@@ -104,7 +100,7 @@ public sealed class OilPot : Tool {
         {
             if (isInPlace && isPouring)
             {
-                targetRotation = potTrans.localRotation * pourRot;
+                targetRotation = pourAnchor.localRotation * pourRot;
             }
             SetPourOilAnim(true);
         }
@@ -143,5 +139,15 @@ public sealed class OilPot : Tool {
             pourOilAnimator.gameObject.SetActive(false);
             pourOilAnimator.SetBool("isPouring", false);
         }
+    }
+
+    void ResetOilPotState()
+    {
+        targetPosition = potOriLocalPosition;
+        targetRotation = potOriLocalRotation;
+        potTrans.localPosition = potOriLocalPosition;
+        potTrans.localRotation = potOriLocalRotation;
+        isPouring = false;
+        isInPlace = true;
     }
 }
