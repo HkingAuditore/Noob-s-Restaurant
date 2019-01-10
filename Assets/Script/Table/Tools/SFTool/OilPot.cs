@@ -83,9 +83,6 @@ public sealed class OilPot : Tool {
 
     private void PourOil()
     {
-        Debug.Log("T"+targetRotation.eulerAngles);
-        Debug.Log("c" + potTrans.localRotation.eulerAngles);
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isPouring = !isPouring;
