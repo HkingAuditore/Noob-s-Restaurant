@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IContainer<T> //where T : Ingredient
+public interface IContainable<T> //where T : Ingredient
 {
     List<T> Contents { get; }
 
@@ -22,18 +22,18 @@ public interface IContainer<T> //where T : Ingredient
     /// 从此容器中取出唯一确定的那一项，需要实现数据列表的更新(移除)，并调用目标容器的添加方法
     /// </summary>
     /// <param name="container"></param>
-    T TakeTheOneTo(IContainer<T> container);
+    T TakeTheOneTo(IContainable<T> container);
 
     /// <summary>
     /// 从此容器中取出某一项给定的内容，需要实现数据列表的更新(移除)，并调用目标容器的添加方法
     /// </summary>
     /// <param name="content"></param>
     /// <param name="container"></param>
-    T TakeOneTo(T content, IContainer<T> container);
+    T TakeOneTo(T content, IContainable<T> container);
 
     /// <summary>
     /// 取出此容器中的所有内容，需要实现数据列表的更新(移除)，并调用目标容器的添加方法
     /// </summary>
     /// <returns></returns>
-    List<T> TakeOutAllTo(IContainer<T> container);
+    List<T> TakeOutAllTo(IContainable<T> container);
 }
