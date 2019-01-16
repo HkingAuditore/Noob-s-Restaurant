@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class SMTable : Table, IContainer<Container>
+public sealed class SMTable : Table, IContainable<Container>
 {
     [SerializeField]
     private GameObject smCamera;
@@ -131,7 +131,7 @@ public sealed class SMTable : Table, IContainer<Container>
         ware.transform.SetParent(wareSetTrans);
         currentChosenWare = ware as Ware;
     }
-    public Container TakeTheOneTo(IContainer<Container> container)
+    public Container TakeTheOneTo(IContainable<Container> container)
     {
         if (currentChosenWare == null)
         {
@@ -151,7 +151,7 @@ public sealed class SMTable : Table, IContainer<Container>
         return ware;
     }
 
-    public Container TakeOneTo(Container ware, IContainer<Container> container)
+    public Container TakeOneTo(Container ware, IContainable<Container> container)
     {
         throw new System.NotImplementedException();
     }
@@ -159,7 +159,7 @@ public sealed class SMTable : Table, IContainer<Container>
     {
         throw new System.NotImplementedException();
     }
-    public List<Container> TakeOutAllTo(IContainer<Container> container)
+    public List<Container> TakeOutAllTo(IContainable<Container> container)
     {
         throw new System.NotImplementedException();
     }
