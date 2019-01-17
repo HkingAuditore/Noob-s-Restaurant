@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Table : MonoBehaviour
+public abstract class Table : MonoBehaviour, IContainable<Container>
 {
 
     protected PlayerCtrl playerCtrl;
@@ -19,13 +19,37 @@ public abstract class Table : MonoBehaviour
     protected Material[] outLineMs;
     protected Material[] defaultMs;
 
+    protected Transform wareSetTrans;
+    protected Transform preelectionFoodSetTrans;
+    protected Transform _11MarkTrans;
+
+    //[SerializeField]
+    protected int thisRowMaxPlaceNum = 0;//控制此桌一排的最大放碗数
+    //[SerializeField]
+    protected int thisMaxPlaceNum = 0;//控制此桌最大容量
+    //[SerializeField]
+    protected float thisColumnFoodSetSpace = 0;//用于设置桌子上foodset间的列间隔 
+    //[SerializeField]
+    protected float thisRowFoodSetSpace = 0;//用于设置桌子上foodset间的行间隔
+
+    public List<Container> Contents
+    {
+        get
+        {
+            return wareSet;
+        }
+    }
+
     protected virtual void Awake()
     {
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
         toolSet = new List<Tool>();
-        wareSet = new List<Container>();
+        //wareSet = new List<Container>();
         outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
         defaultMs = new Material[2] { new Material(Shader.Find("Standard (Specular setup)")), new Material(Shader.Find("Standard (Specular setup)")) };
+        preelectionFoodSetTrans = transform.Find("PreelectionFoodSetMark");
+        wareSetTrans = transform.Find("WareSet");
+        _11MarkTrans = transform.Find("11Mark");
     }
 
     protected virtual void Start()
@@ -87,7 +111,7 @@ public abstract class Table : MonoBehaviour
 
     protected void SetToolGo(bool isBeginCtrl)
     {
-        if (toolSet != null && toolSet.Count>0)
+        if (toolSet != null && toolSet.Count > 0)
         {
             foreach (Tool temp in toolSet)
             {
@@ -131,7 +155,7 @@ public abstract class Table : MonoBehaviour
 
     protected virtual void SelectFoodSet()
     {
-        if (selectFoodSetCoroutine == null && wareSet !=null && !playerCtrl.isCanCtrl)
+        if (selectFoodSetCoroutine == null && wareSet != null && !playerCtrl.isCanCtrl)
         {
             if (Input.GetMouseButtonDown(2) && wareSet.Count > 0)
             {
@@ -145,10 +169,9 @@ public abstract class Table : MonoBehaviour
         yield return null;
 
         wareSetIndex = 0;
-        if (wareSet[wareSetIndex] == null)
-        {
+        while (wareSet[wareSetIndex] == null)
             wareSetIndex++;
-        }
+
         cBowl = wareSet[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
 
         while (true)
@@ -214,8 +237,125 @@ public abstract class Table : MonoBehaviour
         }
     }
 
+
+    protected void PutFoodSetBack()
+    {
+        if (currentChosenWare != null)
+        {
+            int i;
+            for (i = 0; i < thisMaxPlaceNum; i++)
+            {
+                if ((i >= wareSet.Count && i < wareSet.Capacity))
+                    wareSet.Add(null);
+
+                if (wareSet[i] == null)
+                {
+                    Debug.Log(i + "号位空缺");
+                    Debug.Log((i * thisRowFoodSetSpace));
+
+                    if (i >= thisRowMaxPlaceNum)
+                    {
+                        currentChosenWare.transform.localPosition =
+                            new Vector3(_11MarkTrans.localPosition.x - thisColumnFoodSetSpace, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - ((i - thisRowMaxPlaceNum) * thisRowFoodSetSpace));
+                    }
+                    else
+                    {
+                        currentChosenWare.transform.localPosition =
+                            new Vector3(_11MarkTrans.localPosition.x, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - (i * thisRowFoodSetSpace));
+                    }
+                    wareSet[i] = currentChosenWare;
+                    currentChosenWare = null;
+                    break;
+                }
+            }
+            if (i > thisRowMaxPlaceNum)
+            {
+                Debug.Log("此桌已经没有空位了");
+                return;
+            }
+        }
+    }
+
+    protected void PutWareOnTablePreelectionPos()
+    {
+        if (playerCtrl.isHoldFoodSet)
+        {
+            playerCtrl.TakeTheOneTo(this);
+        }
+    }
+
+    protected void GivePlayerSelectedWare()
+    {
+        if (playerCtrl.isHoldFoodSet)
+        {
+            Debug.Log("已经持有" + playerCtrl.Contents[0].name);
+            return;
+        }
+
+        TakeTheOneTo(playerCtrl);
+    }
+
+
     //每个桌子选择后处理方式不同可重写此方法
     protected virtual void SelectMethod() { }
     //每个桌子选择后处理方式不同可重写此方法 
     protected virtual void CancelMethod() { }
+
+    [ContextMenu("ResetWaresPos")]
+    public void ResetWaresPos()
+    {
+        _11MarkTrans = transform.Find("11Mark");
+        List<Container> l = new List<Container>();
+        l.AddRange(transform.Find("WareSet").GetComponentsInChildren<Ware>());
+        for (int i = 0; i < l.Count; i++)
+        {
+            int indexZ = i % thisRowMaxPlaceNum;
+            int indexX = i / thisRowMaxPlaceNum;
+            l[i].transform.localPosition = new Vector3(
+                _11MarkTrans.transform.localPosition.x - indexX * thisColumnFoodSetSpace,
+                _11MarkTrans.transform.localPosition.y,
+                _11MarkTrans.transform.localPosition.z - indexZ * thisRowFoodSetSpace);
+        }
+    }
+
+    //IContainable Implement
+    public void Add(Container ware)
+    {
+        Contents.Add(ware);
+        ware.transform.position = preelectionFoodSetTrans.position;
+        ware.transform.SetParent(wareSetTrans);
+        currentChosenWare = ware as Ware;
+    }
+    public Container TakeTheOneTo(IContainable<Container> container)
+    {
+        if (currentChosenWare == null)
+        {
+            Debug.Log("Nothing chosen to take");
+            return null;
+        }
+        //if (!Contents.Contains(currentChosenWare))
+        //{
+        //    Debug.LogError("the given content does not exist in this container");
+        //    return null;
+        //}
+
+        Ware ware = currentChosenWare;
+        container.Add(ware);
+        Contents.Remove(ware);
+        currentChosenWare = null;
+        return ware;
+    }
+
+    public Container TakeOneTo(Container ware, IContainable<Container> container)
+    {
+        throw new System.NotImplementedException();
+    }
+    public void AddRange(List<Container> ingredient)
+    {
+        throw new System.NotImplementedException();
+    }
+    public List<Container> TakeOutAllTo(IContainable<Container> container)
+    {
+        throw new System.NotImplementedException();
+    }
 }
