@@ -16,8 +16,13 @@ public sealed class CTable : Table, IContainable<Container>
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = 4.41f;
         thisRowFoodSetSpace = -1.89f;
+    }
 
+    protected override void Start()
+    {
         wareSet = new List<Container>(thisMaxPlaceNum);
+
+        base.Start();
     }
 
     protected override void GetCamera()
@@ -58,5 +63,11 @@ public sealed class CTable : Table, IContainable<Container>
         GivePlayerSelectedWare();
     }
 
+    [ContextMenu("ResetWaresPos")]
+    public void ResetWaresPos()
+    {
+        Awake();
 
+        ResetWaresPos(thisRowMaxPlaceNum, thisColumnFoodSetSpace, thisRowFoodSetSpace);
+    }
 }

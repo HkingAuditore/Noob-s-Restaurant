@@ -301,20 +301,20 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     //每个桌子选择后处理方式不同可重写此方法 
     protected virtual void CancelMethod() { }
 
-    [ContextMenu("ResetWaresPos")]
-    public void ResetWaresPos()
+
+    protected virtual void ResetWaresPos(int rowMaxPlaceNum, float columnFoodSetSpace, float rowFoodSetSpace)
     {
         _11MarkTrans = transform.Find("11Mark");
         List<Container> l = new List<Container>();
         l.AddRange(transform.Find("WareSet").GetComponentsInChildren<Ware>());
         for (int i = 0; i < l.Count; i++)
         {
-            int indexZ = i % thisRowMaxPlaceNum;
-            int indexX = i / thisRowMaxPlaceNum;
+            int indexZ = i % rowMaxPlaceNum;
+            int indexX = i / rowMaxPlaceNum;
             l[i].transform.localPosition = new Vector3(
-                _11MarkTrans.transform.localPosition.x - indexX * thisColumnFoodSetSpace,
+                _11MarkTrans.transform.localPosition.x - indexX * columnFoodSetSpace,
                 _11MarkTrans.transform.localPosition.y,
-                _11MarkTrans.transform.localPosition.z - indexZ * thisRowFoodSetSpace);
+                _11MarkTrans.transform.localPosition.z - indexZ * rowFoodSetSpace);
         }
     }
 

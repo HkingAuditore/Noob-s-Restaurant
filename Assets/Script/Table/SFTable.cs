@@ -16,8 +16,13 @@ public sealed class SFTable : Table, IContainable<Container>
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = 5.85f;
         thisRowFoodSetSpace = -2.02f;
+    }
 
+    protected override void Start()
+    {
         wareSet = new List<Container>(thisMaxPlaceNum);
+
+        base.Start();
     }
 
     protected override void GetCamera()
@@ -56,5 +61,13 @@ public sealed class SFTable : Table, IContainable<Container>
     {
         base.OnQuitTable();
         GivePlayerSelectedWare();
+    }
+
+    [ContextMenu("ResetWaresPos")]
+    public void ResetWaresPos()
+    {
+        Awake();
+
+        ResetWaresPos(thisRowMaxPlaceNum, thisColumnFoodSetSpace, thisRowFoodSetSpace);
     }
 }
