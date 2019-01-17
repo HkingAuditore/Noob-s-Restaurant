@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class BTable : Table {
+public sealed class BTable : Table
+{
 
     [SerializeField]
     GameObject bCamera;
@@ -15,8 +16,13 @@ public sealed class BTable : Table {
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = 5.85f;
         thisRowFoodSetSpace = -2.02f;
+    }
 
+    protected override void Start()
+    {
         wareSet = new List<Container>(thisMaxPlaceNum);
+
+        base.Start();
     }
 
     protected override void GetCamera()
@@ -55,5 +61,13 @@ public sealed class BTable : Table {
     {
         base.OnQuitTable();
         GivePlayerSelectedWare();
+    }
+
+    [ContextMenu("ResetWaresPos")]
+    public void ResetWaresPos()
+    {
+        Awake();
+
+        ResetWaresPos(thisRowMaxPlaceNum, thisColumnFoodSetSpace, thisRowFoodSetSpace);
     }
 }
