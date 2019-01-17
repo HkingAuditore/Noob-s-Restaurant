@@ -111,7 +111,7 @@
     <Compile Include="Assets\Script\Containers\Bowl.cs" />
     <Compile Include="Assets\Script\Containers\Pan.cs" />
     <Compile Include="Assets\Script\Core\Container.cs" />
-    <Compile Include="Assets\Script\Core\IContainer.cs" />
+    <Compile Include="Assets\Script\Core\IContainable.cs" />
     <Compile Include="Assets\Script\Core\IUsable.cs" />
     <Compile Include="Assets\Script\Core\Utensil.cs" />
     <Compile Include="Assets\Script\Core\Ware.cs" />
