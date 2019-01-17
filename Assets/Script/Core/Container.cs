@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// 容器，特指用于盛装食材的容器
 /// </summary>
-public abstract class Container : MonoBehaviour, IContainer<Ingredient>
+public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 {
     private Vector3 cenPos;
     protected float offset = 3;
@@ -36,7 +36,7 @@ public abstract class Container : MonoBehaviour, IContainer<Ingredient>
         ingredients.AddRange(ingredients);
     }
 
-    public Ingredient TakeOneTo(Ingredient ingredient, IContainer<Ingredient> container)
+    public Ingredient TakeOneTo(Ingredient ingredient, IContainable<Ingredient> container)
     {
         //int index = Random.Range(0, container.Ingredients.Count);
         //int index = container.Ingredients.Where(//((ingredient) => { return ingredient.transform.position.y; });
@@ -51,7 +51,7 @@ public abstract class Container : MonoBehaviour, IContainer<Ingredient>
         Contents.Remove(ingredient);
         return ingredient;
     }
-    public Ingredient TakeTheOneTo(IContainer<Ingredient> container)
+    public Ingredient TakeTheOneTo(IContainable<Ingredient> container)
     {
         Contents.Sort();
         Ingredient ingredient = Contents.Last();
@@ -60,7 +60,7 @@ public abstract class Container : MonoBehaviour, IContainer<Ingredient>
         return ingredient;
     }
 
-    public List<Ingredient> TakeOutAllTo(IContainer<Ingredient> container)
+    public List<Ingredient> TakeOutAllTo(IContainable<Ingredient> container)
     {
         List<Ingredient> outList = new List<Ingredient>(ingredients);
         container.AddRange(outList);

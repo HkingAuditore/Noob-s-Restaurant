@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCtrl : MonoBehaviour, IContainer<Container>
+public class PlayerCtrl : MonoBehaviour, IContainable<Container>
 {
     private Rigidbody rig;
     private PlayerInput input;
@@ -92,7 +92,7 @@ public class PlayerCtrl : MonoBehaviour, IContainer<Container>
         content.transform.position = holdFoodMarkTrans.position;
         content.transform.SetParent(transform.Find("Model/metarig.001").transform);
     }
-    public Container TakeTheOneTo(IContainer<Container> container)
+    public Container TakeTheOneTo(IContainable<Container> container)
     {
         if (Contents.Count <= 0)
         {
@@ -106,7 +106,7 @@ public class PlayerCtrl : MonoBehaviour, IContainer<Container>
         Contents.RemoveAt(0);
         return movedContainer;
     }
-    public Container TakeOneTo(Container content, IContainer<Container> container)
+    public Container TakeOneTo(Container content, IContainable<Container> container)
     {
         throw new System.NotImplementedException();
     }
@@ -115,7 +115,7 @@ public class PlayerCtrl : MonoBehaviour, IContainer<Container>
     {
         throw new System.NotImplementedException();
     }
-    public List<Container> TakeOutAllTo(IContainer<Container> container)
+    public List<Container> TakeOutAllTo(IContainable<Container> container)
     {
         throw new System.NotImplementedException();
     }

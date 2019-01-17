@@ -2,33 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class SMTable : Table, IContainer<Container>
+public sealed class SMTable : Table, IContainable<Container>
 {
     [SerializeField]
     private GameObject smCamera;
-    private Transform wareSetTrans;
-    private Transform preelectionFoodSetTrans;
-    private Transform _11MarkTrans;
-    [SerializeField]
-    private int thisRowMaxPlaceNum = 5;//控制此桌一排的最大放碗数
-    [SerializeField]
-    private int thisMaxPlaceNum = 10;//控制此桌最大容量
-    [SerializeField]
-    private float thisColumnFoodSetSpace = 0.63f;//用于设置桌子上foodset间的列间隔 
-    [SerializeField]
-    private float thisRowFoodSetSpace = 0.57f;//用于设置桌子上foodset间的行间隔
-
-    public List<Container> Contents
-    {
-        get { return wareSet; }
-    }
 
     protected override void Awake()
     {
         base.Awake();
-        preelectionFoodSetTrans = this.transform.Find("PreelectionFoodSetMark");
-        wareSetTrans = this.transform.Find("WareSet");
-        _11MarkTrans = this.transform.Find("11Mark");
+
+        thisRowMaxPlaceNum = 5;
+        thisMaxPlaceNum = 10;
+        thisColumnFoodSetSpace = 0.63f;
+        thisRowFoodSetSpace = 0.57f;
+
+        wareSet = new List<Container>(thisMaxPlaceNum);
     }
 
     protected override void GetCamera()
@@ -68,100 +56,4 @@ public sealed class SMTable : Table, IContainer<Container>
         base.OnQuitTable();
         GivePlayerSelectedWare();
     }
-
-    private void PutFoodSetBack()
-    {
-        if (currentChosenWare != null)
-        {
-            int i;
-            for (i = 0; i < thisMaxPlaceNum; i++)
-            {
-                if (wareSet[i] == null)
-                {
-                    Debug.Log(i + "号位空缺");
-                    Debug.Log((i * thisRowFoodSetSpace));
-
-                    if (i >= thisRowMaxPlaceNum)
-                    {
-                        currentChosenWare.transform.localPosition =
-                            new Vector3(_11MarkTrans.localPosition.x - thisColumnFoodSetSpace, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - ((i - thisRowMaxPlaceNum) * thisRowFoodSetSpace));
-                    }
-                    else
-                    {
-                        currentChosenWare.transform.localPosition =
-                            new Vector3(_11MarkTrans.localPosition.x, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - (i * thisRowFoodSetSpace));
-                    }
-                    wareSet[i] = currentChosenWare.GetComponent<Ware>();
-                    currentChosenWare = null;
-                    break;
-                }
-            }
-            if (i > thisRowMaxPlaceNum)
-            {
-                Debug.Log("此桌已经没有空位了");
-                return;
-            }
-        }
-    }
-
-    private void PutWareOnTablePreelectionPos()
-    {
-        if (playerCtrl.isHoldFoodSet)
-        {
-            playerCtrl.TakeTheOneTo(this);
-        }
-    }
-
-    private void GivePlayerSelectedWare()
-    {
-        if (playerCtrl.isHoldFoodSet)
-        {
-            Debug.Log("已经持有" + playerCtrl.Contents[0].name);
-            return;
-        }
-
-        TakeTheOneTo(playerCtrl);
-    }
-
-    //IContainer Implement
-    public void Add(Container ware)
-    {
-        Contents.Add(ware);
-        ware.transform.position = preelectionFoodSetTrans.position;
-        ware.transform.SetParent(wareSetTrans);
-        currentChosenWare = ware as Ware;
-    }
-    public Container TakeTheOneTo(IContainer<Container> container)
-    {
-        if (currentChosenWare == null)
-        {
-            Debug.Log("Nothing chosen to take");
-            return null;
-        }
-        //if (!Contents.Contains(currentChosenWare))
-        //{
-        //    Debug.LogError("the given content does not exist in this container");
-        //    return null;
-        //}
-
-        Ware ware = currentChosenWare;
-        container.Add(ware);
-        Contents.Remove(ware);
-        currentChosenWare = null;
-        return ware;
-    }
-
-    public Container TakeOneTo(Container ware, IContainer<Container> container)
-    {
-        throw new System.NotImplementedException();
-    }
-    public void AddRange(List<Container> ingredient)
-    {
-        throw new System.NotImplementedException();
-    }
-    public List<Container> TakeOutAllTo(IContainer<Container> container)
-    {
-        throw new System.NotImplementedException();
-    }
-
 }
