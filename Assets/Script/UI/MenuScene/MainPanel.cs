@@ -52,7 +52,11 @@ public class MainPanel :IPanel
 
     void OnQuitButtonClick()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void OnUpdate()
