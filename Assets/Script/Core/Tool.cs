@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 手动控制的工具
+/// </summary>
 public abstract class Tool : MonoBehaviour, IUsable
 {
     protected bool isCtrlling =false;

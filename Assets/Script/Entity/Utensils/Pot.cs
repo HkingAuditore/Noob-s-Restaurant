@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pot : Tool {
+public class Pot : Utensil
+{
 
     private GameObject cover;
     private Vector3 coverOriPos;
