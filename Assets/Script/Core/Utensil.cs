@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// 烹饪、食材处理用具
 /// </summary>
-public class Utensil : Container, IUsable
+public abstract class Utensil : Container, IUsable
 {
     public bool isCtrlling = false;
     public bool IsCtrlling
@@ -34,16 +34,9 @@ public class Utensil : Container, IUsable
         OnStopCtrl();
     }
 
-    public void DoCtrl()
-    {
-        throw new NotImplementedException();
-    }
+    public virtual void DoCtrl() { }
 
-    public virtual void OnBeginCtrl()
-    {
-    }
+    public virtual void OnBeginCtrl() { }
 
-    public virtual void OnStopCtrl()
-    {
-    }
+    public virtual void OnStopCtrl() { }
 }

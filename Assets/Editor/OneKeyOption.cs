@@ -8,7 +8,7 @@ using UnityStandardAssets.CinematicEffects;
 
 public class OneKeyOption : Editor
 {
-    [MenuItem("One Key Option/Performance/Separate/ReflectionProbe/Enable")]
+    [MenuItem("One Key Option/Performance/Separate/Reflection Probe/Enable")]
     private static void EnableAllReflectionProbe()
     {
         ReflectionProbe[] rps = FindObjectsOfType<ReflectionProbe>();
@@ -17,7 +17,7 @@ public class OneKeyOption : Editor
         Debug.Log(rps.Length + " Reflection Probes were enabled");
     }
 
-    [MenuItem("One Key Option/Performance/Separate/ReflectionProbe/Disable")]
+    [MenuItem("One Key Option/Performance/Separate/Reflection Probe/Disable")]
     private static void DisableAllReflectionProbe()
     {
         ReflectionProbe[] rps = FindObjectsOfType<ReflectionProbe>();
@@ -44,7 +44,7 @@ public class OneKeyOption : Editor
         Debug.Log(lights.Length + " Lights were disabled");
     }
 
-    [MenuItem("One Key Option/Performance/Separate/PostProcessing/Enable")]
+    [MenuItem("One Key Option/Performance/Separate/Post Processing/Enable")]
     private static void EnablePostProcessing()
     {
         GameObject camera = GameObject.Find("Camera/Main Camera");
@@ -58,7 +58,7 @@ public class OneKeyOption : Editor
         Debug.Log("Post Processings were enabled");
     }
 
-    [MenuItem("One Key Option/Performance/Separate/PostProcessing/Disable")]
+    [MenuItem("One Key Option/Performance/Separate/Post Processing/Disable")]
     private static void DisablePostProcessing()
     {
         GameObject camera = GameObject.Find("Camera/Main Camera");
