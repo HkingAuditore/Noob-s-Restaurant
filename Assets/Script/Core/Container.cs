@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
@@ -8,13 +9,8 @@ using UnityEngine;
 /// </summary>
 public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 {
-    private Vector3 cenPos;
-    protected float offset = 3;
 
-    protected virtual void Start()
-    {
-        cenPos = transform.position;
-    }
+    public virtual Vector3 DropFoodPos { get; set; }
 
     protected List<Ingredient> ingredients = new List<Ingredient>();
     public List<Ingredient> Contents
@@ -25,15 +21,25 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
         }
     }
 
+    protected virtual void Start() { }
+
     public void Add(Ingredient ingredient)
     {
         ingredients.Add(ingredient);
-        ingredient.transform.position = cenPos + Vector3.up * 5 + (Vector3)Random.insideUnitCircle * offset;
+        ingredient.transform.localPosition = DropFoodPos + ingredient.transform.up * 1 + (Vector3)UnityEngine.Random.insideUnitCircle * 0.1f;
+        ingredient.transform.SetParent(transform);
     }
 
-    public void AddRange(List<Ingredient> ingredients)
+    public void AddRange(List<Ingredient> ingredients, Vector3 posOffset)
     {
+        Debug.Log(posOffset);
         ingredients.AddRange(ingredients);
+        Array.ForEach(ingredients.ToArray(), (ingredient) =>
+        {
+            //ingredient.transform.position += posOffset;
+            ingredient.transform.position = DropFoodPos;
+            ingredient.transform.SetParent(transform);
+        });
     }
 
     public Ingredient TakeOneTo(Ingredient ingredient, IContainable<Ingredient> container)
@@ -60,17 +66,18 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
         return ingredient;
     }
 
-    public List<Ingredient> TakeOutAllTo(IContainable<Ingredient> container)
+    public virtual List<Ingredient> TakeOutAllTo(IContainable<Ingredient> container)
     {
         List<Ingredient> outList = new List<Ingredient>(ingredients);
-        container.AddRange(outList);
+        Debug.Log("utensil:" + container.DropFoodPos + "\tbowl:" + DropFoodPos);
+        container.AddRange(outList, container.DropFoodPos - DropFoodPos);
         ingredients.Clear();
         return outList;
     }
 
     public void Sort()
     {
-        ingredients.Sort((i1, i2) => i1.transform.position.y.CompareTo(i2.transform.position.y));
+        ingredients.Sort((i1, i2) => i1.transform.localPosition.y.CompareTo(i2.transform.localPosition.y));
     }
 
 }

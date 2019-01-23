@@ -8,6 +8,8 @@ public sealed class BTable : Table
     [SerializeField]
     GameObject bCamera;
 
+    private Utensil utensil;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,13 +23,33 @@ public sealed class BTable : Table
     protected override void Start()
     {
         wareSet = new List<Container>(thisMaxPlaceNum);
+        GetUtensil();
 
         base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (Input.GetKeyDown(KeyCode.P))
+            if (currentChosenWare != null)
+            {
+                currentChosenWare.TakeOutAllTo(utensil);
+            }
     }
 
     protected override void GetCamera()
     {
         cameraGO = bCamera;
+    }
+
+    private void GetUtensil()
+    {
+        if (transform.Find("UtensilSet") != null)
+        {
+            utensil = transform.Find("UtensilSet").gameObject.GetComponentInChildren<Pot>();
+        }
     }
 
     protected override void SelectFoodSet()
@@ -54,13 +76,27 @@ public sealed class BTable : Table
     protected override void OnEnterTable()
     {
         base.OnEnterTable();
+
+        SetUtensil(true);
         PutWareOnTablePreelectionPos();
     }
 
     protected override void OnQuitTable()
     {
         base.OnQuitTable();
+        SetUtensil(false);
         GivePlayerSelectedWare();
+    }
+
+    private void SetUtensil(bool isBeginCtrl)
+    {
+        if (utensil != null)
+        {
+            if (isBeginCtrl)
+                utensil.BeginCtrl();
+            else
+                utensil.StopCtrl();
+        }
     }
 
     [ContextMenu("ResetWaresPos")]

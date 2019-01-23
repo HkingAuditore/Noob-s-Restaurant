@@ -11,6 +11,11 @@ public abstract class Ware : Container, IUsable
 {
     private Transform FallingFoodsTrans;
 
+    public override Vector3 DropFoodPos
+    {
+        get { return transform.position; }
+        set { Debug.LogWarning("Setting DropFoodPos for Ware means nothing"); }
+    }
 
     protected void Awake()
     {

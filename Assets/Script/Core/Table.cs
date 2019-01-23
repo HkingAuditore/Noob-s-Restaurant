@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Table : MonoBehaviour, IContainable<Container>
 {
+    public Vector3 DropFoodPos { get; set; }
 
     protected PlayerCtrl playerCtrl;
     protected GameObject cameraGO;
@@ -45,6 +46,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
         toolSet = new List<Tool>();
         //wareSet = new List<Container>();
+        //utensil = new List<Utensil>();
         outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
         defaultMs = new Material[2] { new Material(Shader.Find("Standard (Specular setup)")), new Material(Shader.Find("Standard (Specular setup)")) };
         preelectionFoodSetTrans = transform.Find("PreelectionFoodSetMark");
@@ -61,6 +63,12 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         SwitchCamera(false);
     }
 
+    protected virtual void Update()
+    {
+        if (!isEnter)
+            return;
+    }
+
     protected void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Player") || cameraGO == null)
@@ -68,18 +76,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
         if (Input.GetKeyDown(KeyCode.E) && !isEnter)
         {
-            //EnterTableInit
-            SwitchCamera(true);
-            SetToolGo(true);
-            SetPlayerCtrl(false);
             OnEnterTable();
         }
         else if (Input.GetKeyDown(KeyCode.Q) && isEnter)
         {
-            //QuitTableInit
-            SwitchCamera(false);
-            SetToolGo(false);
-            SetPlayerCtrl(true);
             OnQuitTable();
         }
 
@@ -102,6 +102,8 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         }
     }
 
+
+
     protected abstract void GetCamera();
 
     protected void SwitchCamera(bool isActive)
@@ -116,9 +118,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             foreach (Tool temp in toolSet)
             {
                 if (isBeginCtrl)
-                    temp.OnBeginCtrl();
+                    temp.BeginCtrl();
                 else
-                    temp.OnStopCtrl();
+                    temp.StopCtrl();
             }
         }
     }
@@ -139,6 +141,11 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected virtual void OnQuitTable()
     {
+        //QuitTableInit
+        SwitchCamera(false);
+        SetToolGo(false);
+        SetPlayerCtrl(true);
+
         if (selectFoodSetCoroutine != null)
         {
             cBowl.GetComponent<Renderer>().materials = defaultMs;
@@ -150,6 +157,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected virtual void OnEnterTable()
     {
+        //EnterTableInit
+        SwitchCamera(true);
+        SetToolGo(true);
+        SetPlayerCtrl(false);
         isEnter = true;
     }
 
@@ -350,7 +361,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         throw new System.NotImplementedException();
     }
-    public void AddRange(List<Container> ingredient)
+    public void AddRange(List<Container> ingredient, Vector3 posOffset)
     {
         throw new System.NotImplementedException();
     }

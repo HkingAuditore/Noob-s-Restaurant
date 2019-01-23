@@ -17,6 +17,8 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
     public float rotate_speed;
     public float speed;
 
+    public Vector3 DropFoodPos { get; set; }
+
     private List<Container> container = new List<Container>(1);
     public List<Container> Contents
     {
@@ -111,7 +113,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
         throw new System.NotImplementedException();
     }
 
-    public void AddRange(List<Container> contents)
+    public void AddRange(List<Container> contents, Vector3 posOffset)
     {
         throw new System.NotImplementedException();
     }
