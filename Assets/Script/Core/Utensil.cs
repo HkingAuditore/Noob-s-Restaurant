@@ -9,7 +9,8 @@ using UnityEngine;
 /// </summary>
 public abstract class Utensil : Container, IUsable
 {
-    public bool isCtrlling = false;
+
+    protected bool isCtrlling = false;
     public bool IsCtrlling
     {
         get
@@ -23,10 +24,23 @@ public abstract class Utensil : Container, IUsable
         }
     }
 
+    protected virtual void Awake()
+    {
+        DropFoodPos = transform.Find("DropFoodPos").transform.position;
+    }
+
+    protected virtual void Update()
+    {
+        if (!isCtrlling)
+            return;
+
+        DoCtrl();
+    }
+
     public void BeginCtrl()
     {
-        OnBeginCtrl();
         isCtrlling = true;
+        OnBeginCtrl();
     }
     public void StopCtrl()
     {

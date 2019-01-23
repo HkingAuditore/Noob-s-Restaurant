@@ -8,7 +8,6 @@ class Bowl : Ware
     protected override void Start()
     {
         base.Start();
-        offset = 3;
     }
 
     protected override void InitIngredientsList()

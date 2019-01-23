@@ -14,14 +14,16 @@ public class Pot : Utensil
     private Transform coverDownAnchor;
     private bool isSealing;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         cover = this.transform.Find("Pot_Cover").gameObject;
         rb = cover.GetComponent<Rigidbody>();
         coverOriPos = cover.transform.position;
     }
 
-    private void Start()
+    protected override void Start()
     {
         SetRigidbody();
     }
@@ -73,7 +75,6 @@ public class Pot : Utensil
         if (Input.GetKeyDown(KeyCode.R))
         {
             isSealing = !isSealing;
-            Debug.Log(isSealing);
         }
 
         if (isSealing)

@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Tool : MonoBehaviour, IUsable
 {
-    protected bool isCtrlling =false;
+    protected bool isCtrlling = false;
 
     public bool IsCtrlling
     {
@@ -30,15 +30,21 @@ public abstract class Tool : MonoBehaviour, IUsable
         DoCtrl();
     }
 
-    public virtual void OnBeginCtrl()
+    public void BeginCtrl()
     {
         isCtrlling = true;
+        OnBeginCtrl();
     }
 
-    public virtual void OnStopCtrl()
+    public void StopCtrl()
     {
         isCtrlling = false;
+        OnStopCtrl();
     }
+
+    public virtual void OnBeginCtrl() { }
+
+    public virtual void OnStopCtrl() { }
 
     public virtual void DoCtrl() { }
 
