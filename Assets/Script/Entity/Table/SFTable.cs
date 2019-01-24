@@ -8,7 +8,7 @@ public sealed class SFTable : Table, IContainable<Container>
     [SerializeField]
     GameObject sfCamera;
 
-    private Utensil utensil;
+    private Pan pan;
 
     protected override void Awake()
     {
@@ -34,7 +34,7 @@ public sealed class SFTable : Table, IContainable<Container>
 
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null)
-                currentChosenWare.TakeOutAllTo(utensil);
+                currentChosenWare.TakeOutAllTo(pan);
     }
 
     protected override void GetCamera()
@@ -46,7 +46,7 @@ public sealed class SFTable : Table, IContainable<Container>
     {
         if (transform.Find("UtensilSet") != null)
         {
-            utensil = transform.Find("UtensilSet").gameObject.GetComponentInChildren<Utensil>();
+            pan = transform.Find("UtensilSet").gameObject.GetComponentInChildren<Pan>();
         }
     }
 
@@ -75,7 +75,7 @@ public sealed class SFTable : Table, IContainable<Container>
     {
         base.OnEnterTable();
 
-        SetUtensil(true);
+        SetUtensilState(true);
         PutWareOnTablePreelectionPos();
     }
 
@@ -83,18 +83,18 @@ public sealed class SFTable : Table, IContainable<Container>
     {
         base.OnQuitTable();
 
-        SetUtensil(false);
+        SetUtensilState(false);
         GivePlayerSelectedWare();
     }
 
-    private void SetUtensil(bool isBeginCtrl)
+    private void SetUtensilState(bool isBeginCtrl)
     {
-        if (utensil != null)
+        if (pan != null)
         {
             if (isBeginCtrl)
-                utensil.BeginCtrl();
+                pan.BeginCtrl();
             else
-                utensil.StopCtrl();
+                pan.StopCtrl();
         }
     }
 

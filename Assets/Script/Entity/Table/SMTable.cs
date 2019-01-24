@@ -13,8 +13,8 @@ public sealed class SMTable : Table, IContainable<Container>
 
         thisRowMaxPlaceNum = 5;
         thisMaxPlaceNum = 10;
-        thisColumnFoodSetSpace = 0.63f;
-        thisRowFoodSetSpace = 0.57f;
+        thisColumnFoodSetSpace = 1.25f;
+        thisRowFoodSetSpace = 1.2f;
     }
 
     protected override void Start()

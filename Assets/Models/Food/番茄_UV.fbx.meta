@@ -17,7 +17,17 @@ ModelImporter:
     3300002: "\u679C"
     4300000: "\u53F6"
     4300002: "\u679C"
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6750\u8D28.006"
+    second: {fileID: 2100000, guid: 66d8107f8f1908d4891479d7dd765e8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u6750\u8D28.007"
+    second: {fileID: 2100000, guid: d52c6ca9758c7f546afdb8d350cf164c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -48,7 +58,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.3
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

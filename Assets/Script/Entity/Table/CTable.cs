@@ -8,6 +8,8 @@ public sealed class CTable : Table, IContainable<Container>
     [SerializeField]
     GameObject cCamera;
 
+    private ChoppingBlock choppingBlock;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,13 +23,31 @@ public sealed class CTable : Table, IContainable<Container>
     protected override void Start()
     {
         wareSet = new List<Container>(thisMaxPlaceNum);
+        GetUtensil();
 
         base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (Input.GetKeyDown(KeyCode.P))
+            if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
+                currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], choppingBlock);
     }
 
     protected override void GetCamera()
     {
         cameraGO = cCamera;
+    }
+
+    private void GetUtensil()
+    {
+        if (transform.Find("UtensilSet") != null)
+        {
+            choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
+        }
     }
 
     protected override void SelectFoodSet()
@@ -54,13 +74,28 @@ public sealed class CTable : Table, IContainable<Container>
     protected override void OnEnterTable()
     {
         base.OnEnterTable();
+
+        SetUtensilState(true);
         PutWareOnTablePreelectionPos();
     }
 
     protected override void OnQuitTable()
     {
         base.OnQuitTable();
+
+        SetUtensilState(false);
         GivePlayerSelectedWare();
+    }
+
+    private void SetUtensilState(bool isBeginCtrl)
+    {
+        if (choppingBlock != null)
+        {
+            if (isBeginCtrl)
+                choppingBlock.BeginCtrl();
+            else
+                choppingBlock.StopCtrl();
+        }
     }
 
     [ContextMenu("ResetWaresPos")]

@@ -32,8 +32,8 @@ public abstract class Ware : Container, IUsable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Ingredient>() != null)
-            AddFoodIntoFoodsList(other);
+        //if (other.GetComponent<Ingredient>() != null)
+        //    AddFoodIntoFoodsList(other);
     }
 
     private void OnTriggerExit(Collider other)

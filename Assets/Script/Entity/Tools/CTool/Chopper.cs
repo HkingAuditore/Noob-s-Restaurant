@@ -6,6 +6,7 @@ public class Chopper : Tool
 {
     private Vector3 oriPos;
     private Rigidbody rb;
+    private BoxCollider blazeCollider;
     [SerializeField]
     private float offsetY = 0.3f;
     [SerializeField]
@@ -16,9 +17,10 @@ public class Chopper : Tool
     {
         oriPos = this.transform.localPosition;
         rb = this.GetComponent<Rigidbody>();
+        blazeCollider = transform.Find("Blade").GetComponent<BoxCollider>();
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-        SetRigidbody();
+        SetRigidbodyState();
     }
 
     public override void DoCtrl()
@@ -33,7 +35,8 @@ public class Chopper : Tool
         base.OnBeginCtrl();
 
         SetPosAtOri();
-        SetRigidbody();
+        SetRigidbodyState();
+        SetColliderState();
         Debug.Log("enter");
     }
 
@@ -41,11 +44,12 @@ public class Chopper : Tool
     {
         base.OnStopCtrl();
 
-        SetRigidbody();
+        SetRigidbodyState();
+        SetColliderState();
     }
 
-    private void SetRigidbody()
-    { 
+    private void SetRigidbodyState()
+    {
         if (isCtrlling)
         {
             rb.useGravity = false;
@@ -56,6 +60,11 @@ public class Chopper : Tool
             rb.useGravity = true;
             rb.isKinematic = false;
         }
+    }
+
+    private void SetColliderState()
+    {
+        blazeCollider.isTrigger = isCtrlling ? true : false;
     }
 
     public void SetPosAtOri()
