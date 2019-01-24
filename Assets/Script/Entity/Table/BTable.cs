@@ -8,7 +8,7 @@ public sealed class BTable : Table
     [SerializeField]
     GameObject bCamera;
 
-    private Utensil utensil;
+    private Pot pot;
 
     protected override void Awake()
     {
@@ -35,7 +35,7 @@ public sealed class BTable : Table
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null)
             {
-                currentChosenWare.TakeOutAllTo(utensil);
+                currentChosenWare.TakeOutAllTo(pot);
             }
     }
 
@@ -48,7 +48,7 @@ public sealed class BTable : Table
     {
         if (transform.Find("UtensilSet") != null)
         {
-            utensil = transform.Find("UtensilSet").gameObject.GetComponentInChildren<Pot>();
+            pot = transform.Find("UtensilSet").gameObject.GetComponentInChildren<Pot>();
         }
     }
 
@@ -77,25 +77,25 @@ public sealed class BTable : Table
     {
         base.OnEnterTable();
 
-        SetUtensil(true);
+        SetUtensilState(true);
         PutWareOnTablePreelectionPos();
     }
 
     protected override void OnQuitTable()
     {
         base.OnQuitTable();
-        SetUtensil(false);
+        SetUtensilState(false);
         GivePlayerSelectedWare();
     }
 
-    private void SetUtensil(bool isBeginCtrl)
+    private void SetUtensilState(bool isBeginCtrl)
     {
-        if (utensil != null)
+        if (pot != null)
         {
             if (isBeginCtrl)
-                utensil.BeginCtrl();
+                pot.BeginCtrl();
             else
-                utensil.StopCtrl();
+                pot.StopCtrl();
         }
     }
 

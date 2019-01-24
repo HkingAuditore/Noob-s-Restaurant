@@ -25,19 +25,21 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 
     public void Add(Ingredient ingredient)
     {
-        ingredients.Add(ingredient);
-        ingredient.transform.localPosition = DropFoodPos + ingredient.transform.up * 1 + (Vector3)UnityEngine.Random.insideUnitCircle * 0.1f;
+        Contents.Add(ingredient);
+        ingredient.transform.position = DropFoodPos + (Vector3)UnityEngine.Random.insideUnitCircle * 0.1f;
         ingredient.transform.SetParent(transform);
     }
 
     public void AddRange(List<Ingredient> ingredients, Vector3 posOffset)
     {
-        Debug.Log(posOffset);
-        ingredients.AddRange(ingredients);
-        Array.ForEach(ingredients.ToArray(), (ingredient) =>
+        //Transform parent = transform.Find("Contents");
+        Contents.AddRange(ingredients);
+        ingredients.Clear();
+        Array.ForEach(Contents.ToArray(), (ingredient) =>
         {
-            //ingredient.transform.position += posOffset;
-            ingredient.transform.position = DropFoodPos;
+            //Debug.DrawLine(ingredient.transform.position, ingredient.transform.position + posOffset, Color.red, 10000);
+            ingredient.transform.position += posOffset;
+            //ingredient.transform.position = DropFoodPos;
             ingredient.transform.SetParent(transform);
         });
     }
@@ -69,7 +71,7 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
     public virtual List<Ingredient> TakeOutAllTo(IContainable<Ingredient> container)
     {
         List<Ingredient> outList = new List<Ingredient>(ingredients);
-        Debug.Log("utensil:" + container.DropFoodPos + "\tbowl:" + DropFoodPos);
+        //Debug.Log("utensil:" + container.DropFoodPos + "\tbowl:" + DropFoodPos + "\t" + ingredients.Count + "\t" + outList.Count + "\t" + (ingredients == outList) + "\t" + (ingredients.Equals(outList)));
         container.AddRange(outList, container.DropFoodPos - DropFoodPos);
         ingredients.Clear();
         return outList;

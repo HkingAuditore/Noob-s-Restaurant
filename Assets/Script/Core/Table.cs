@@ -267,12 +267,12 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
                     if (i >= thisRowMaxPlaceNum)
                     {
                         currentChosenWare.transform.localPosition =
-                            new Vector3(_11MarkTrans.localPosition.x - thisColumnFoodSetSpace, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - ((i - thisRowMaxPlaceNum) * thisRowFoodSetSpace));
+                            new Vector3(_11MarkTrans.localPosition.x - ((i - thisRowMaxPlaceNum) * thisRowFoodSetSpace), _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z + thisColumnFoodSetSpace);
                     }
                     else
                     {
                         currentChosenWare.transform.localPosition =
-                            new Vector3(_11MarkTrans.localPosition.x, _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z - (i * thisRowFoodSetSpace));
+                            new Vector3(_11MarkTrans.localPosition.x - (i * thisRowFoodSetSpace), _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z);
                     }
                     wareSet[i] = currentChosenWare;
                     currentChosenWare = null;
@@ -323,9 +323,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             int indexZ = i % rowMaxPlaceNum;
             int indexX = i / rowMaxPlaceNum;
             l[i].transform.localPosition = new Vector3(
-                _11MarkTrans.transform.localPosition.x - indexX * columnFoodSetSpace,
+                _11MarkTrans.transform.localPosition.x - indexZ * rowFoodSetSpace,
                 _11MarkTrans.transform.localPosition.y,
-                _11MarkTrans.transform.localPosition.z - indexZ * rowFoodSetSpace);
+                _11MarkTrans.transform.localPosition.z + indexX * columnFoodSetSpace);
         }
     }
 
