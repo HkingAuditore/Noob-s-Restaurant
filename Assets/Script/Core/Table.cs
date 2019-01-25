@@ -47,8 +47,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         toolSet = new List<Tool>();
         //wareSet = new List<Container>();
         //utensil = new List<Utensil>();
-        outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
-        defaultMs = new Material[2] { new Material(Shader.Find("Standard (Specular setup)")), new Material(Shader.Find("Standard (Specular setup)")) };
+        //outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
+        //defaultMs = new Material[2] { new Material(Shader.Find("Standard (Specular setup)")), new Material(Shader.Find("Standard (Specular setup)")) };
+        outLineMs = new Material[2] { Resources.Load<Material>("Materials/BowlOutline"), Resources.Load<Material>("Materials/BowlOutline") };
+        defaultMs = new Material[2] { Resources.Load<Material>("Materials/Bowl"), Resources.Load<Material>("Materials/Bowl") };
         preelectionFoodSetTrans = transform.Find("PreelectionFoodSetMark");
         wareSetTrans = transform.Find("WareSet");
         _11MarkTrans = transform.Find("11Mark");
