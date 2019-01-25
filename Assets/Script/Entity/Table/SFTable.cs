@@ -16,8 +16,8 @@ public sealed class SFTable : Table, IContainable<Container>
 
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
-        thisColumnFoodSetSpace = 5.85f;
-        thisRowFoodSetSpace = -2.02f;
+        thisColumnFoodSetSpace = 4.37f;
+        thisRowFoodSetSpace = -1.4f;
     }
 
     protected override void Start()
