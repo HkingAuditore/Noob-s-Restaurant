@@ -35,7 +35,14 @@ public sealed class BTable : Table
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null)
             {
+                Debug.Log(currentChosenWare.Contents.Count);
                 currentChosenWare.TakeOutAllTo(pot);
+            }
+
+        if (Input.GetKeyDown(KeyCode.O))
+            if (currentChosenWare != null && pot.Contents.Count > 0)
+            {
+                pot.TakeOutAllTo(currentChosenWare);
             }
     }
 

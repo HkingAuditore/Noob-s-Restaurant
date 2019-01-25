@@ -33,15 +33,15 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
     public void AddRange(List<Ingredient> ingredients, Vector3 posOffset)
     {
         //Transform parent = transform.Find("Contents");
-        Contents.AddRange(ingredients);
-        ingredients.Clear();
-        Array.ForEach(Contents.ToArray(), (ingredient) =>
+        Array.ForEach(ingredients.ToArray(), (ingredient) =>
         {
             //Debug.DrawLine(ingredient.transform.position, ingredient.transform.position + posOffset, Color.red, 10000);
             ingredient.transform.position += posOffset;
             //ingredient.transform.position = DropFoodPos;
             ingredient.transform.SetParent(transform);
         });
+        Contents.AddRange(ingredients);
+        ingredients.Clear();
     }
 
     public Ingredient TakeOneTo(Ingredient ingredient, IContainable<Ingredient> container)
@@ -70,16 +70,16 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 
     public virtual List<Ingredient> TakeOutAllTo(IContainable<Ingredient> container)
     {
-        List<Ingredient> outList = new List<Ingredient>(ingredients);
+        List<Ingredient> outList = new List<Ingredient>(Contents);
         //Debug.Log("utensil:" + container.DropFoodPos + "\tbowl:" + DropFoodPos + "\t" + ingredients.Count + "\t" + outList.Count + "\t" + (ingredients == outList) + "\t" + (ingredients.Equals(outList)));
         container.AddRange(outList, container.DropFoodPos - DropFoodPos);
-        ingredients.Clear();
+        Contents.Clear();
         return outList;
     }
 
     public void Sort()
     {
-        ingredients.Sort((i1, i2) => i1.transform.localPosition.y.CompareTo(i2.transform.localPosition.y));
+        Contents.Sort((i1, i2) => i1.transform.localPosition.y.CompareTo(i2.transform.localPosition.y));
     }
 
 }
