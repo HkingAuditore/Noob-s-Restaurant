@@ -40,6 +40,7 @@ public abstract class Ware : Container, IUsable
     {
         if (other.GetComponent<Ingredient>() != null)
         {
+            Debug.Log("triggerExit");
             RemoveFoodFromFoodsList(other);
         }
     }

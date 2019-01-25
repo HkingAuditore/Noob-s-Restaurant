@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114937107212820870}
   - component: {fileID: 114532214579709650}
   - component: {fileID: 114214262254312772}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33709194692284592}
   - component: {fileID: 23331431403244918}
   - component: {fileID: 135929809441308780}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: "\u679C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 33401420254885856}
   - component: {fileID: 23393000493210428}
   - component: {fileID: 64027134628331254}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: "\u53F6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
