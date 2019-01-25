@@ -18,7 +18,7 @@ public class Pot : Utensil
     {
         base.Awake();
 
-        cover = this.transform.Find("Pot_Cover").gameObject;
+        cover = this.transform.Find("PotModel/Pot_Cover").gameObject;
         rb = cover.GetComponent<Rigidbody>();
         coverOriPos = cover.transform.position;
     }
