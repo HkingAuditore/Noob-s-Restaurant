@@ -87,8 +87,12 @@ public class RecipePanel : IPanel
 
     void InitRecipeList()
     {
-        recipes.AddRange(content.transform.GetComponentsInChildren<Transform>(true));
-        recipes.RemoveAt(0);
+       // recipes.AddRange(content.transform.GetComponentsInChildren<Transform>(true));
+        //recipes.RemoveAt(0);
+        foreach (Transform value in content.transform)
+        {
+            recipes.Add(value);
+        }
     }
 
     void SetCurrentRescipelIndex(bool isPlus)
