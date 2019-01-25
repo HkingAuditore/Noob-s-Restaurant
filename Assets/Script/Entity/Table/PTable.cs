@@ -14,7 +14,7 @@ public sealed class PTable : Table
 
         thisRowMaxPlaceNum = 1;
         thisMaxPlaceNum = 2;
-        thisColumnFoodSetSpace = -5f;
+        thisColumnFoodSetSpace = -4.28f;
         thisRowFoodSetSpace = 0f;
     }
 

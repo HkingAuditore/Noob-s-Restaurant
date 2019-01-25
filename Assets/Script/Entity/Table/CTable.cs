@@ -16,8 +16,8 @@ public sealed class CTable : Table, IContainable<Container>
 
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
-        thisColumnFoodSetSpace = 4.41f;
-        thisRowFoodSetSpace = -1.89f;
+        thisColumnFoodSetSpace = -3.37f;
+        thisRowFoodSetSpace = 1.89f;
     }
 
     protected override void Start()
