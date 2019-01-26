@@ -39,10 +39,10 @@ public sealed class BTable : Table
                 currentChosenWare.TakeOutAllTo(pot);
             }
 
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKey(KeyCode.O))
             if (currentChosenWare != null && pot.Contents.Count > 0)
             {
-                pot.TakeOutAllTo(currentChosenWare);
+                pot.TakeOneTo(pot.Contents[Random.Range(0, pot.Contents.Count)], currentChosenWare);
             }
     }
 
