@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 {
-
+    protected float dropOffset = 0;
     public virtual Vector3 DropFoodPos { get; set; }
 
     protected List<Ingredient> ingredients = new List<Ingredient>();
@@ -26,7 +26,8 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
     public void Add(Ingredient ingredient)
     {
         Contents.Add(ingredient);
-        ingredient.transform.position = DropFoodPos + (Vector3)UnityEngine.Random.insideUnitCircle * 0.1f;
+        Vector3 v = (Vector3)UnityEngine.Random.insideUnitCircle * 0.5f * dropOffset;
+        ingredient.transform.position = DropFoodPos + new Vector3(v.x, 0, v.y);
         ingredient.transform.SetParent(transform);
     }
 

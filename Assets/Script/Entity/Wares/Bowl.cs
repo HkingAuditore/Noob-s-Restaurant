@@ -9,6 +9,8 @@ class Bowl : Ware
     protected override void Start()
     {
         base.Start();
+
+        dropOffset = 0.5f;
     }
 
     protected override void InitIngredientsList()
