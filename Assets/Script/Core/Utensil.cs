@@ -26,7 +26,8 @@ public abstract class Utensil : Container, IUsable
 
     protected virtual void Awake()
     {
-        DropFoodPos = transform.Find("DropFoodPos").transform.position;
+        DropFoodPos = transform.Find("DropFoodPos").position;
+        dropOffset = 1f;
     }
 
     protected virtual void Update()

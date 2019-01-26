@@ -35,6 +35,12 @@ public sealed class SFTable : Table, IContainable<Container>
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null)
                 currentChosenWare.TakeOutAllTo(pan);
+
+        if (Input.GetKey(KeyCode.O))
+            if (currentChosenWare != null && pan.Contents.Count > 0)
+            {
+                pan.TakeOneTo(pan.Contents[Random.Range(0, pan.Contents.Count)], currentChosenWare);
+            }
     }
 
     protected override void GetCamera()

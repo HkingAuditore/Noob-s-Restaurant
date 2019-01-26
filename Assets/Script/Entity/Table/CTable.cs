@@ -35,6 +35,16 @@ public sealed class CTable : Table, IContainable<Container>
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
                 currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], choppingBlock);
+
+        if (Input.GetKey(KeyCode.O))
+            if (currentChosenWare != null && choppingBlock.Contents.Count > 0)
+            {
+                //OPT
+                choppingBlock.Contents.Clear();
+                choppingBlock.Contents.AddRange(choppingBlock.GetComponentsInChildren<Ingredient>());
+
+                choppingBlock.TakeOneTo(choppingBlock.Contents[Random.Range(0, choppingBlock.Contents.Count)], currentChosenWare);
+            }
     }
 
     protected override void GetCamera()
