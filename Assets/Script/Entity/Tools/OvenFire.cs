@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BFire : Tool {
+public class OvenFire : Tool
+{
 
     private bool isFiring = false;
-    private ParticleSystemManager particleSystemManager;
     private Transform fireAnchor;
     private GameObject firePrefab;
+    private ParticleSystemManager particleSystemManager;
 
     private void Start()
     {
@@ -26,6 +27,10 @@ public class BFire : Tool {
             {
                 particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
                 isFiring = true;
+
+                Timer t = transform.parent.parent.GetComponent<Table>().HeatTimer;
+                if (t != null)
+                    t.Start();
             }
             else
             {

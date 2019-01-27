@@ -12,6 +12,8 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     protected List<Container> wareSet;
     protected bool isEnter;
 
+    public Timer HeatTimer { get; protected set; }
+
     //食物选择相关
     protected Ware currentChosenWare;//存储选择完成后被选中的 foodSet
     protected GameObject cBowl;//需要点亮的碗
@@ -67,6 +69,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected virtual void Update()
     {
+        if (HeatTimer != null)
+            HeatTimer.Update(Time.deltaTime);
+
         if (!isEnter)
             return;
     }
