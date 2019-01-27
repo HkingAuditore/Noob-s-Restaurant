@@ -6,6 +6,7 @@ public sealed class PTable : Table
 {
     [SerializeField]
     GameObject pCamera;
+    GameObject crackGo;
     EggBowl eggBowl;
     Animator crackAnimator;
 
