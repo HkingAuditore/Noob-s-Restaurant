@@ -4,26 +4,23 @@ using UnityEngine;
 
 public sealed class CTable : Table, IContainable<Container>
 {
-
     [SerializeField]
     GameObject cCamera;
-
-    private ChoppingBlock choppingBlock;
+    ChoppingBlock choppingBlock;
 
     protected override void Awake()
     {
         base.Awake();
-
-        thisRowMaxPlaceNum = 2;
-        thisMaxPlaceNum = 4;
-        thisColumnFoodSetSpace = -3.37f;
-        thisRowFoodSetSpace = 1.89f;
+        choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
     }
 
     protected override void Start()
     {
         wareSet = new List<Container>(thisMaxPlaceNum);
-        GetUtensil();
+        thisRowMaxPlaceNum = 2;
+        thisMaxPlaceNum = 4;
+        thisColumnFoodSetSpace = -3.37f;
+        thisRowFoodSetSpace = 1.89f;
 
         base.Start();
     }
@@ -42,7 +39,6 @@ public sealed class CTable : Table, IContainable<Container>
                 //OPT
                 choppingBlock.Contents.Clear();
                 choppingBlock.Contents.AddRange(choppingBlock.GetComponentsInChildren<Ingredient>());
-
                 choppingBlock.TakeOneTo(choppingBlock.Contents[Random.Range(0, choppingBlock.Contents.Count)], currentChosenWare);
             }
     }
@@ -50,14 +46,6 @@ public sealed class CTable : Table, IContainable<Container>
     protected override void GetCamera()
     {
         cameraGO = cCamera;
-    }
-
-    private void GetUtensil()
-    {
-        if (transform.Find("UtensilSet") != null)
-        {
-            choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
-        }
     }
 
     protected override void SelectFoodSet()
@@ -112,7 +100,6 @@ public sealed class CTable : Table, IContainable<Container>
     public void ResetWaresPos()
     {
         Awake();
-
         ResetWaresPos(thisRowMaxPlaceNum, thisColumnFoodSetSpace, thisRowFoodSetSpace);
     }
 }

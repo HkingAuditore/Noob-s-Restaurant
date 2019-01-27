@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class EggBowl : Utensil
 {
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 }

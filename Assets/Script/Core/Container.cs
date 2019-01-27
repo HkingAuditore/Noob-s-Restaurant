@@ -23,7 +23,7 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 
     protected virtual void Start() { }
 
-    public void Add(Ingredient ingredient)
+    public void AddToContents(Ingredient ingredient)
     {
         Contents.Add(ingredient);
         Vector3 v = (Vector3)UnityEngine.Random.insideUnitCircle * 0.5f * dropOffset;
@@ -56,7 +56,7 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
             return null;
         }
 
-        container.Add(ingredient);
+        container.AddToContents(ingredient);
         Contents.Remove(ingredient);
         return ingredient;
     }
@@ -64,7 +64,7 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
     {
         Contents.Sort();
         Ingredient ingredient = Contents.Last();
-        container.Add(ingredient);
+        container.AddToContents(ingredient);
         Contents.Remove(ingredient);
         return ingredient;
     }
@@ -82,5 +82,4 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
     {
         Contents.Sort((i1, i2) => i1.transform.localPosition.y.CompareTo(i2.transform.localPosition.y));
     }
-
 }

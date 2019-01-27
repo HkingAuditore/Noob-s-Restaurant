@@ -12,6 +12,8 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     protected List<Container> wareSet;
     protected bool isEnter;
 
+    public Timer HeatTimer { get; protected set; }
+
     //食物选择相关
     protected Ware currentChosenWare;//存储选择完成后被选中的 foodSet
     protected GameObject cBowl;//需要点亮的碗
@@ -23,6 +25,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     protected Transform wareSetTrans;
     protected Transform preelectionFoodSetTrans;
     protected Transform _11MarkTrans;
+
+    GameObject xxGO;
+    Transform xxTrans;
 
     //[SerializeField]
     protected int thisRowMaxPlaceNum = 0;//控制此桌一排的最大放碗数
@@ -67,6 +72,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected virtual void Update()
     {
+        if (HeatTimer != null)
+            HeatTimer.Update(Time.deltaTime);
+
         if (!isEnter)
             return;
     }
@@ -328,7 +336,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     }
 
     //IContainable Implement
-    public void Add(Container ware)
+    public void AddToContents(Container ware)
     {
         Contents.Add(ware);
         ware.transform.position = preelectionFoodSetTrans.position;
@@ -350,7 +358,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         //}
 
         Ware ware = currentChosenWare;
-        container.Add(ware);
+        container.AddToContents(ware);
         Contents.Remove(ware);
         currentChosenWare = null;
         return ware;
