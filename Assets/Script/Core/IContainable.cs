@@ -12,7 +12,7 @@ public interface IContainable<T> //where T : Ingredient
     /// 向此容器加入一项内容，需要实现数据列表(增添)和content位置的的更新
     /// </summary>
     /// <param name="content">加入的内容</param>
-    void Add(T content);
+    void AddToContents(T content);
 
     /// <summary>
     /// 向此容器加入一组内容，需要实现数据列表(增添)和content位置的的更新

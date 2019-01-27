@@ -19,7 +19,7 @@ public enum SceneStateName
 public enum FoodName
 {
     Tomato=0,
-    Egg,
+    Egg
 }
 
 public enum ToolsName
@@ -29,4 +29,11 @@ public enum ToolsName
     Sink,
     Pan,
     Pot
+}
+
+public enum EggState
+{
+    WithShell,
+    NoStir,
+    Stirred
 }

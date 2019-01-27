@@ -6,12 +6,15 @@ public sealed class PTable : Table
 {
     [SerializeField]
     GameObject pCamera;
-    private EggBowl eggBowl;
+    EggBowl eggBowl;
+    Animator crackAnimator;
+
 
     protected override void Awake()
     {
         base.Awake();
         eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
+        crackAnimator = eggBowl.transform.GetComponentInChildren<Animator>();
     }
 
     protected override void Start()
@@ -36,9 +39,20 @@ public sealed class PTable : Table
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
+            if (currentChosenWare != null 
+                && currentChosenWare.Contents.Count > 0 
+                && crackAnimator.GetBool("isCrack")==false 
+                && currentChosenWare.Contents[0].FoodName == FoodName.Egg)
+            {
+                crackAnimator.SetBool("isCrack", true);
                 currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], eggBowl);
+            }
         }
+    }
+
+    private void SetCrackAnim()
+    {
+
     }
 
     protected override void GetCamera()

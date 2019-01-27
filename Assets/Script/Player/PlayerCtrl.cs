@@ -79,7 +79,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
     }
 
     //IContainer Implement
-    public void Add(Container content)
+    public void AddToContents(Container content)
     {
         if (Contents.Count >= 1)
         {
@@ -103,7 +103,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
 
         isHoldFoodSet = false;
         Container movedContainer = Contents[0];
-        container.Add(movedContainer);
+        container.AddToContents(movedContainer);
         Contents.RemoveAt(0);
         return movedContainer;
     }
@@ -121,5 +121,4 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
     {
         throw new System.NotImplementedException();
     }
-
 }
