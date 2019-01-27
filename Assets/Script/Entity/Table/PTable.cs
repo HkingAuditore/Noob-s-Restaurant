@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class PTable : Table
 {
     [SerializeField]
-    GameObject pCamera;
+    GameObject pCameraGo;
     GameObject crackGo;
     EggBowl eggBowl;
     Animator crackAnimator;
@@ -14,18 +14,20 @@ public sealed class PTable : Table
     {
         base.Awake();
         eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
-        crackAnimator = eggBowl.transform.Find("Crack").GetComponent<Animator>();
+        crackGo = eggBowl.transform.Find("Crack").gameObject;
+        crackAnimator = crackGo.GetComponent<Animator>();
     }
 
     protected override void Start()
     {
-        wareSet = new List<Container>(thisMaxPlaceNum);
+        base.Start();
+
         thisRowMaxPlaceNum = 1;
         thisMaxPlaceNum = 2;
         thisColumnFoodSetSpace = -4.28f;
         thisRowFoodSetSpace = 0f;
-
-        base.Start();
+        wares = new List<Container>(thisMaxPlaceNum);
+        crackGo.SetActive(false);
     }
 
     protected override void Update()
@@ -37,27 +39,32 @@ public sealed class PTable : Table
 
     private void PutEggToEggBowl()
     {
+        if (crackGo.activeSelf&& crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0)
+        {
+            crackAnimator.SetBool("isCrack", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (currentChosenWare != null 
-                && currentChosenWare.Contents.Count > 0 
-                && crackAnimator.GetBool("isCrack")==false 
-                && currentChosenWare.Contents[0].FoodName == FoodName.Egg)
+            if (currentChosenWare != null && currentChosenWare.Contents.Count > 0 )
             {
-                crackAnimator.SetBool("isCrack", true);
-                currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], eggBowl);
+                if (crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+                    crackAnimator.SetBool("isCrack", false);                    
+
+                if (crackAnimator.GetBool("isCrack") == false && currentChosenWare.Contents[0].FoodName == FoodName.Egg)
+                {                    
+                    crackGo.SetActive(true);
+                    crackAnimator.SetBool("isCrack", true);
+                    Ingredient chosenEgg = currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)];
+                    currentChosenWare.TakeOneTo(chosenEgg, eggBowl);
+                }
             }
         }
     }
 
-    private void SetCrackAnim()
-    {
-
-    }
-
     protected override void GetCamera()
     {
-        cameraGO = pCamera;
+        cameraGO = pCameraGo;
     }
 
     protected override void SelectFoodSet()
@@ -76,9 +83,9 @@ public sealed class PTable : Table
     {
         base.SelectMethod();
         PutFoodSetBack();
-        wareSet[wareSetIndex].transform.position = preelectionFoodSetTrans.position;
-        currentChosenWare = wareSet[wareSetIndex].gameObject.GetComponent<Ware>();
-        wareSet[wareSetIndex] = null;
+        wares[wareSetIndex].transform.position = preelectionFoodSetTrans.position;
+        currentChosenWare = wares[wareSetIndex].gameObject.GetComponent<Ware>();
+        wares[wareSetIndex] = null;
     }
 
     protected override void OnEnterTable()

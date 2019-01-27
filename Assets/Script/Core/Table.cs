@@ -8,15 +8,15 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected PlayerCtrl playerCtrl;
     protected GameObject cameraGO;
-    protected List<Tool> toolSet;
-    protected List<Container> wareSet;
+    protected List<Tool> tools;
+    protected List<Container> wares;
     protected bool isEnter;
 
     public Timer HeatTimer { get; protected set; }
 
     //食物选择相关
     protected Ware currentChosenWare;//存储选择完成后被选中的 foodSet
-    protected GameObject cBowl;//需要点亮的碗
+    protected GameObject cBowlGo;//需要点亮的碗
     protected Coroutine selectFoodSetCoroutine;
     protected int wareSetIndex;
     protected Material[] outLineMs;
@@ -25,9 +25,6 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     protected Transform wareSetTrans;
     protected Transform preelectionFoodSetTrans;
     protected Transform _11MarkTrans;
-
-    GameObject xxGO;
-    Transform xxTrans;
 
     //[SerializeField]
     protected int thisRowMaxPlaceNum = 0;//控制此桌一排的最大放碗数
@@ -42,14 +39,14 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         get
         {
-            return wareSet;
+            return wares;
         }
     }
 
     protected virtual void Awake()
     {
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
-        toolSet = new List<Tool>();
+        tools = new List<Tool>();
         //wareSet = new List<Container>();
         //utensil = new List<Utensil>();
         //outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
@@ -98,17 +95,17 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected void GetWareSet()
     {
-        if (this.transform.Find("WareSet") != null && wareSet != null)
+        if (this.transform.Find("WareSet") != null && wares != null)
         {
-            wareSet.AddRange(this.transform.Find("WareSet").GetComponentsInChildren<Ware>());
+            wares.AddRange(this.transform.Find("WareSet").GetComponentsInChildren<Ware>());
         }
     }
 
     protected void GetToolSet()
     {
-        if (this.transform.Find("ToolSet") != null && toolSet != null)
+        if (this.transform.Find("ToolSet") != null && tools != null)
         {
-            toolSet.AddRange(this.transform.Find("ToolSet").gameObject.GetComponentsInChildren<Tool>());
+            tools.AddRange(this.transform.Find("ToolSet").gameObject.GetComponentsInChildren<Tool>());
         }
     }
 
@@ -121,9 +118,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected void SetToolGo(bool isBeginCtrl)
     {
-        if (toolSet != null && toolSet.Count > 0)
+        if (tools != null && tools.Count > 0)
         {
-            foreach (Tool temp in toolSet)
+            foreach (Tool temp in tools)
             {
                 if (isBeginCtrl)
                     temp.BeginCtrl();
@@ -156,7 +153,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
         if (selectFoodSetCoroutine != null)
         {
-            cBowl.GetComponent<Renderer>().materials = defaultMs;
+            cBowlGo.GetComponent<Renderer>().materials = defaultMs;
             StopCoroutine("SelectFoodSetCoroutine");
             selectFoodSetCoroutine = null;
         }
@@ -174,9 +171,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected virtual void SelectFoodSet()
     {
-        if (selectFoodSetCoroutine == null && wareSet != null && !playerCtrl.isCanCtrl)
+        if (selectFoodSetCoroutine == null && wares != null && !playerCtrl.isCanCtrl)
         {
-            if (Input.GetMouseButtonDown(2) && wareSet.Count > 0)
+            if (Input.GetMouseButtonDown(2) && wares.Count > 0)
             {
                 selectFoodSetCoroutine = StartCoroutine("SelectFoodSetCoroutine");
             }
@@ -188,27 +185,27 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         yield return null;
 
         wareSetIndex = 0;
-        while (wareSet[wareSetIndex] == null)
+        while (wares[wareSetIndex] == null)
             wareSetIndex++;
 
-        cBowl = wareSet[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
+        cBowlGo = wares[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
 
         while (true)
         {
             if (Input.GetAxisRaw("Mouse ScrollWheel") < 0)
             {
                 wareSetIndex++;
-                if (wareSetIndex >= wareSet.Count)
+                if (wareSetIndex >= wares.Count)
                 {
                     wareSetIndex = 0;
                 }
 
-                if (wareSet[wareSetIndex] == null)
+                if (wares[wareSetIndex] == null)
                 {
                     wareSetIndex++;
                 }
 
-                if (wareSetIndex >= wareSet.Count)
+                if (wareSetIndex >= wares.Count)
                 {
                     wareSetIndex = 0;
                 }
@@ -218,29 +215,29 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
                 wareSetIndex--;
                 if (wareSetIndex <= -1)
                 {
-                    wareSetIndex = wareSet.Count - 1;
+                    wareSetIndex = wares.Count - 1;
                 }
 
-                if (wareSet[wareSetIndex] == null)
+                if (wares[wareSetIndex] == null)
                 {
                     wareSetIndex--;
                 }
 
                 if (wareSetIndex <= -1)
                 {
-                    wareSetIndex = wareSet.Count - 1;
+                    wareSetIndex = wares.Count - 1;
                 }
             }
 
             //设置高亮    
-            cBowl.GetComponent<Renderer>().materials = defaultMs;
-            cBowl = wareSet[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
-            cBowl.GetComponent<Renderer>().materials = outLineMs;
+            cBowlGo.GetComponent<Renderer>().materials = defaultMs;
+            cBowlGo = wares[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
+            cBowlGo.GetComponent<Renderer>().materials = outLineMs;
 
             if (Input.GetMouseButtonDown(2))
             {
                 SelectMethod();//每个桌子选择后处理方式不同可重写此方法
-                cBowl.GetComponent<Renderer>().materials = defaultMs;
+                cBowlGo.GetComponent<Renderer>().materials = defaultMs;
                 StopCoroutine("SelectFoodSetCoroutine");
                 selectFoodSetCoroutine = null;
             }
@@ -248,7 +245,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             {
                 Debug.Log("取消");
                 CancelMethod();//每个桌子选择后处理方式不同可重写此方法
-                cBowl.GetComponent<Renderer>().materials = defaultMs;
+                cBowlGo.GetComponent<Renderer>().materials = defaultMs;
                 StopCoroutine("SelectFoodSetCoroutine");
                 selectFoodSetCoroutine = null;
             }
@@ -264,10 +261,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             int i;
             for (i = 0; i < thisMaxPlaceNum; i++)
             {
-                if ((i >= wareSet.Count && i < wareSet.Capacity))
-                    wareSet.Add(null);
+                if ((i >= wares.Count && i < wares.Capacity))
+                    wares.Add(null);
 
-                if (wareSet[i] == null)
+                if (wares[i] == null)
                 {
                     Debug.Log(i + "号位空缺");
                     Debug.Log((i * thisRowFoodSetSpace));
@@ -282,7 +279,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
                         currentChosenWare.transform.localPosition =
                             new Vector3(_11MarkTrans.localPosition.x - (i * thisRowFoodSetSpace), _11MarkTrans.localPosition.y, _11MarkTrans.localPosition.z);
                     }
-                    wareSet[i] = currentChosenWare;
+                    wares[i] = currentChosenWare;
                     currentChosenWare = null;
                     break;
                 }
