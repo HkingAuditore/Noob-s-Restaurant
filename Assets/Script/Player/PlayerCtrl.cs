@@ -78,8 +78,6 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
         model.SetActive(true);
     }
 
-
-
     //IContainer Implement
     public void Add(Container content)
     {
@@ -94,6 +92,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
         content.transform.position = holdFoodMarkTrans.position;
         content.transform.SetParent(transform.Find("Model/metarig.001").transform);
     }
+
     public Container TakeTheOneTo(IContainable<Container> container)
     {
         if (Contents.Count <= 0)
@@ -108,6 +107,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
         Contents.RemoveAt(0);
         return movedContainer;
     }
+
     public Container TakeOneTo(Container content, IContainable<Container> container)
     {
         throw new System.NotImplementedException();

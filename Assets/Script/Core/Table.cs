@@ -104,8 +104,6 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         }
     }
 
-
-
     protected abstract void GetCamera();
 
     protected void SwitchCamera(bool isActive)
@@ -308,12 +306,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         TakeTheOneTo(playerCtrl);
     }
 
-
     //每个桌子选择后处理方式不同可重写此方法
     protected virtual void SelectMethod() { }
     //每个桌子选择后处理方式不同可重写此方法 
     protected virtual void CancelMethod() { }
-
 
     protected virtual void ResetWaresPos(int rowMaxPlaceNum, float columnFoodSetSpace, float rowFoodSetSpace)
     {
@@ -339,6 +335,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         ware.transform.SetParent(wareSetTrans);
         currentChosenWare = ware as Ware;
     }
+
     public Container TakeTheOneTo(IContainable<Container> container)
     {
         if (currentChosenWare == null)
