@@ -9,12 +9,11 @@ public sealed class PTable : Table
     EggBowl eggBowl;
     Animator crackAnimator;
 
-
     protected override void Awake()
     {
         base.Awake();
         eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
-        crackAnimator = eggBowl.transform.GetComponentInChildren<Animator>();
+        crackAnimator = eggBowl.transform.Find("Crack").GetComponent<Animator>();
     }
 
     protected override void Start()
