@@ -26,6 +26,8 @@ public sealed class SFTable : Table, IContainable<Container>
         GetUtensil();
 
         base.Start();
+
+        HeatTimer = new Timer(new float[] { 30, 60, 90 }, false);
     }
 
     protected override void Update()
@@ -41,6 +43,18 @@ public sealed class SFTable : Table, IContainable<Container>
             {
                 pan.TakeOneTo(pan.Contents[Random.Range(0, pan.Contents.Count)], currentChosenWare);
             }
+    }
+
+    private void OnGUI()
+    {
+        if (!isEnter)
+            return;
+        GUIStyle style = new GUIStyle
+        {
+            fontSize = 40,
+            fontStyle = FontStyle.Bold
+        };
+        GUI.Label(new Rect(20, 20, 200, 100), "Heating : " + HeatTimer.CurTime.ToString("F2") + "s", style);
     }
 
     protected override void GetCamera()
