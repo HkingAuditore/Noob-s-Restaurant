@@ -19,7 +19,7 @@ public sealed class SMTable : Table, IContainable<Container>
 
     protected override void Start()
     {
-        wareSet = new List<Container>(thisMaxPlaceNum);
+        wares = new List<Container>(thisMaxPlaceNum);
 
         base.Start();
     }
@@ -45,9 +45,9 @@ public sealed class SMTable : Table, IContainable<Container>
     {
         base.SelectMethod();
         PutFoodSetBack();
-        wareSet[wareSetIndex].transform.position = preelectionFoodSetTrans.position;
-        currentChosenWare = wareSet[wareSetIndex].gameObject.GetComponent<Ware>();
-        wareSet[wareSetIndex] = null;
+        wares[wareSetIndex].transform.position = preelectionFoodSetTrans.position;
+        currentChosenWare = wares[wareSetIndex].gameObject.GetComponent<Ware>();
+        wares[wareSetIndex] = null;
     }
 
     protected override void OnEnterTable()
