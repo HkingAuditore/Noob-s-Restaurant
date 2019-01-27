@@ -4,25 +4,41 @@ using UnityEngine;
 
 public sealed class PTable : Table
 {
-
     [SerializeField]
     GameObject pCamera;
+    private EggBowl eggBowl;
 
     protected override void Awake()
     {
         base.Awake();
-
-        thisRowMaxPlaceNum = 1;
-        thisMaxPlaceNum = 2;
-        thisColumnFoodSetSpace = -4.28f;
-        thisRowFoodSetSpace = 0f;
+        eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
     }
 
     protected override void Start()
     {
         wareSet = new List<Container>(thisMaxPlaceNum);
+        thisRowMaxPlaceNum = 1;
+        thisMaxPlaceNum = 2;
+        thisColumnFoodSetSpace = -4.28f;
+        thisRowFoodSetSpace = 0f;
 
         base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        PutEggToEggBowl();
+    }
+
+    private void PutEggToEggBowl()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
+                currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], eggBowl);
+        }
     }
 
     protected override void GetCamera()

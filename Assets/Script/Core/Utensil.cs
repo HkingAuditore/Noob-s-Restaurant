@@ -9,7 +9,6 @@ using UnityEngine;
 /// </summary>
 public abstract class Utensil : Container, IUsable
 {
-
     protected bool isCtrlling = false;
     public bool IsCtrlling
     {
@@ -43,6 +42,7 @@ public abstract class Utensil : Container, IUsable
         isCtrlling = true;
         OnBeginCtrl();
     }
+
     public void StopCtrl()
     {
         isCtrlling = false;

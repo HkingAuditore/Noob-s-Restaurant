@@ -19,6 +19,7 @@ public enum SceneStateName
 public enum FoodName
 {
     Tomato=0,
+    Egg,
 }
 
 public enum ToolsName
