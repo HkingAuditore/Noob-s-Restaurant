@@ -16,6 +16,8 @@ public class EggBowl : Utensil
     Vector3 targetPosition;
     Quaternion targetRotation;
     Vector3 bowlOriLocalPosition;
+    Transform rollChopsticksAnchorTrans;
+    Transform preparingChopsticksAnchorTrans;
     Quaternion bowlOriLocalRotation;
     Animator crackAnimator;
 
@@ -26,6 +28,7 @@ public class EggBowl : Utensil
     int maxEggBallCount;
     float eggPlaneRaseDistance;
     float eggPlaneScaleDistance;
+    float chopsticksRollSpeed;
 
     public bool IsBeatingEgg
     {
@@ -60,6 +63,8 @@ public class EggBowl : Utensil
         eggBowlAnchorTrans = this.transform.Find("EggBowlAnchor");
         chopsticksRb = bowlTrans.transform.Find("Chopsticks").GetComponent<Rigidbody>();
         crackAnimator = this.transform.Find("Bowl/Crack").gameObject.GetComponent<Animator>();
+        rollChopsticksAnchorTrans = this.transform.Find("Bowl/RollChopsticksAnchor");
+        preparingChopsticksAnchorTrans = this.transform.Find("Bowl/PreparingChopsticksAnchor");
     }
 
     protected override void Start()
@@ -75,28 +80,49 @@ public class EggBowl : Utensil
         targetRotation = bowlOriLocalRotation;
         currentEggBallCount = 0;
         maxEggBallCount = 7;
-        eggPlaneRaseDistance = 0.1f;
-        eggPlaneScaleDistance = 0.1f;
+        eggPlaneRaseDistance = 0.01f;
+        eggPlaneScaleDistance = 0.01f;
+        chopsticksRollSpeed = 3f;
     }
 
     public override void OnBeginCtrl()
     {
         base.OnBeginCtrl();
-        SetRigidbody(false);
     }
 
     public override void DoCtrl()
     {
         base.DoCtrl();
 
+        MoveToolToTargetPos(
+            bowlTrans.transform, targetPosition, 
+            targetRotation, moveSpeed, ref isInPlace);
+
         SetEggBowlTargetPos();
-        MoveToolToTargetPos(bowlTrans.transform, targetPosition, targetRotation, moveSpeed, ref isInPlace);
         PlusEggEffect();
+        StirEggEffect();
+
+        if (isBeatingEgg)
+        {
+            if (chopsticksRb.useGravity == true)
+            {
+                SetRigidbody(false);
+                PreparingChopsticksPos();
+            }
+        }
+        else
+        {
+            if (chopsticksRb.useGravity == false&&isInPlace)
+                SetRigidbody(true);
+        }
     }
 
     public override void OnStopCtrl()
     {
         base.OnStopCtrl();
+
+        SetRigidbody(true);
+        ResetEggBowlState();
     }
 
 
@@ -136,7 +162,11 @@ public class EggBowl : Utensil
 
     void ResetEggBowlState()
     {
-
+        isBeatingEgg = false;
+        bowlTrans.transform.localPosition = bowlOriLocalPosition;
+        bowlTrans.transform.localRotation = bowlOriLocalRotation;
+        targetPosition = bowlOriLocalPosition;
+        targetRotation = bowlOriLocalRotation;
     }
 
     void PlusEggEffect()
@@ -153,6 +183,51 @@ public class EggBowl : Utensil
             eggBallsTrans[currentEggBallCount - 1].gameObject.SetActive(true);
             containedEggTrans.localPosition += new Vector3(0, eggPlaneRaseDistance, 0);
             eggPlaneTrans.localScale += new Vector3(eggPlaneScaleDistance, 0, eggPlaneScaleDistance);
+        }
+    }
+
+    void StirEggEffect()
+    {
+        if (Input.GetKey(KeyCode.Space)&& isBeatingEgg)
+        {
+            Debug.Log("rolling");
+
+            StopCoroutine("EggRotatoryInertia");
+            chopsticksRb.transform.RotateAround(rollChopsticksAnchorTrans.position, Vector3.up, chopsticksRollSpeed);
+            chopsticksRb.transform.localRotation = preparingChopsticksAnchorTrans.localRotation;
+            containedEggTrans.Rotate(Vector3.up, chopsticksRollSpeed*0.5f);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && isBeatingEgg)
+        {
+            float eggRollSpeed = chopsticksRollSpeed;
+            StartCoroutine("EggRotatoryInertia", eggRollSpeed);
+        }
+    }
+
+    IEnumerator EggRotatoryInertia(float rollSpeed)
+    {    
+        yield return null;
+        while (true)
+        {
+            rollSpeed -= 0.1f;
+            containedEggTrans.Rotate(Vector3.up, rollSpeed);
+
+            if (rollSpeed <= 0)
+            {
+                break;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    void PreparingChopsticksPos()
+    {
+        if (chopsticksRb.transform.localRotation != preparingChopsticksAnchorTrans.localRotation ||
+chopsticksRb.transform.localPosition != preparingChopsticksAnchorTrans.localPosition)
+        {
+            chopsticksRb.transform.localPosition = preparingChopsticksAnchorTrans.localPosition;
+            chopsticksRb.transform.localRotation = preparingChopsticksAnchorTrans.localRotation;
         }
     }
 }

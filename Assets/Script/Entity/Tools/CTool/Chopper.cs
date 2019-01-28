@@ -13,8 +13,9 @@ public class Chopper : Tool
     private float offsetZ = 0.8f;
     private Vector3 lastMousePos;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         oriPos = this.transform.localPosition;
         rb = this.GetComponent<Rigidbody>();
         blazeCollider = transform.Find("Blade").GetComponent<BoxCollider>();
