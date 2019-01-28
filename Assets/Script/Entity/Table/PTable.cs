@@ -14,7 +14,7 @@ public sealed class PTable : Table
     {
         base.Awake();
         eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
-        crackGo = eggBowl.transform.Find("Crack").gameObject;
+        crackGo = eggBowl.transform.Find("Bowl/Crack").gameObject;
         crackAnimator = crackGo.GetComponent<Animator>();
     }
 
@@ -39,18 +39,16 @@ public sealed class PTable : Table
 
     private void PutEggToEggBowl()
     {
-        if (crackGo.activeSelf&& crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0)
+        if (crackGo.activeSelf&& crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
+            crackGo.SetActive(false);
             crackAnimator.SetBool("isCrack", false);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0 )
-            {
-                if (crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-                    crackAnimator.SetBool("isCrack", false);                    
-
+            {          
                 if (crackAnimator.GetBool("isCrack") == false && currentChosenWare.Contents[0].FoodName == FoodName.Egg)
                 {                    
                     crackGo.SetActive(true);

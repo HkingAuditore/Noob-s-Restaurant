@@ -10,6 +10,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     protected GameObject cameraGO;
     protected List<Tool> tools;
     protected List<Container> wares;
+    protected List<Utensil> utensils;
     protected bool isEnter;
 
     public Timer HeatTimer { get; protected set; }
@@ -47,6 +48,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         playerCtrl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCtrl>();
         tools = new List<Tool>();
+        utensils = new List<Utensil>();
         //wareSet = new List<Container>();
         //utensil = new List<Utensil>();
         //outLineMs = new Material[2] { new Material(Shader.Find("Custom/Outline")), new Material(Shader.Find("Custom/Outline")) };
@@ -62,6 +64,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         GetWareSet();
         GetToolSet();
+        GetUtensilSet();
         GetCamera();
 
         SwitchCamera(false);
@@ -109,6 +112,14 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         }
     }
 
+    protected void GetUtensilSet()
+    {
+        if (this.transform.Find("UtensilSet") != null && utensils != null)
+        {
+            utensils.AddRange(this.transform.Find("UtensilSet").gameObject.GetComponentsInChildren<Utensil>());
+        }
+    }
+
     protected abstract void GetCamera();
 
     protected void SwitchCamera(bool isActive)
@@ -121,6 +132,20 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         if (tools != null && tools.Count > 0)
         {
             foreach (Tool temp in tools)
+            {
+                if (isBeginCtrl)
+                    temp.BeginCtrl();
+                else
+                    temp.StopCtrl();
+            }
+        }
+    }
+
+    protected void SetUtensilGo(bool isBeginCtrl)
+    {
+        if (utensils != null && utensils.Count > 0)
+        {
+            foreach (Utensil temp in utensils)
             {
                 if (isBeginCtrl)
                     temp.BeginCtrl();
@@ -149,6 +174,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         //QuitTableInit
         SwitchCamera(false);
         SetToolGo(false);
+        SetUtensilGo(false);
         SetPlayerCtrl(true);
 
         if (selectFoodSetCoroutine != null)
@@ -165,6 +191,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         //EnterTableInit
         SwitchCamera(true);
         SetToolGo(true);
+        SetUtensilGo(true);
         SetPlayerCtrl(false);
         isEnter = true;
     }

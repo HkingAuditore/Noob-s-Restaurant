@@ -54,4 +54,20 @@ public abstract class Utensil : Container, IUsable
     public virtual void OnBeginCtrl() { }
 
     public virtual void OnStopCtrl() { }
+
+    public void MoveToolToTargetPos(Transform toolTrans, Vector3 targetPosition, Quaternion targetRotation, float moveSpeed, ref bool isInPlace)
+    {
+        if (Vector3.Magnitude(toolTrans.localPosition - targetPosition) > 0.1f ||
+    Quaternion.Angle(toolTrans.localRotation, targetRotation) > 0.1f)
+        {
+            Debug.Log("osa");
+            toolTrans.localPosition = Vector3.Lerp(toolTrans.localPosition, targetPosition, Time.deltaTime * moveSpeed);
+            toolTrans.localRotation = Quaternion.Lerp(toolTrans.localRotation, targetRotation, Time.deltaTime * moveSpeed);
+        }
+        else
+        {
+            if (!isInPlace)
+                isInPlace = true;
+        }
+    }
 }
