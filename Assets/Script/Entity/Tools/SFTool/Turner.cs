@@ -25,12 +25,15 @@ public class Turner :Tool {
     private Quaternion targetRotR = Quaternion.Euler(0f, 95.604f, -12.44f);
     private Quaternion oriRotR = Quaternion.Euler(0f, 95.604f, -50.44f);
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         rb = this.GetComponent<Rigidbody>();
     }
 
-    private void Start () {
+    protected override void Start ()
+    {
+        base.Start();
 
         oriPosR = this.transform.position + new Vector3(offsetX, offsetY, offsetZ); ;
         oriPosL = this.transform.position - Vector3.forward * 1.6f + new Vector3(offsetX, offsetY, offsetZ); ;
