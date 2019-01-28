@@ -7,27 +7,29 @@ public sealed class OilPot : Tool {
     Rigidbody potRb;
     Transform potTrans;
     Vector3 potOriLocalPosition;
+    Quaternion potOriLocalRotation;
     Vector3 targetPosition;
     Quaternion targetRotation;
-    Quaternion potOriLocalRotation;
+
     Quaternion pourRot;
-    Transform pourAnchor;
+    Transform pourAnchorTrans;
     Animator pourOilAnimator;
 
     bool isPouring;
     bool isInPlace;
     float moveSpeed;
 
-    private void Awake()
+    protected override void Awake()
     {
         potTrans = this.transform.Find("Pot");
-        pourAnchor = this.transform.Find("PourAnchor");
+        pourAnchorTrans = this.transform.Find("PourAnchor");
         potRb = potTrans.GetComponent<Rigidbody>();
         pourOilAnimator = potTrans.Find("PourOil").GetComponent<Animator>();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         isPouring = false;
         isInPlace = true;
         moveSpeed = 2.5f;
@@ -43,14 +45,15 @@ public sealed class OilPot : Tool {
     {
         base.OnBeginCtrl();
 
-        SetPotRigidbody();
+        SetPotRigidbody(false);
     }
 
     public override void DoCtrl()
     {
         base.DoCtrl();
 
-        PourOil();
+        SetOilPotTargetPos();
+        MoveToolToTargetPos(potTrans,targetPosition,targetRotation,moveSpeed,ref isInPlace);
     }
 
     public override void OnStopCtrl()
@@ -58,13 +61,12 @@ public sealed class OilPot : Tool {
         base.OnStopCtrl();
 
         ResetOilPotState();
-        SetPourOilAnim(false);
-        SetPotRigidbody();
+        SetPotRigidbody(true);
     }
 
-    private void SetPotRigidbody()
+    void SetPotRigidbody(bool isTrue)
     {
-        if (isCtrlling)
+        if (!isTrue)
         {
             potRb.useGravity = false;
             potRb.isKinematic = true;
@@ -76,7 +78,7 @@ public sealed class OilPot : Tool {
         }
     }
 
-    private void PourOil()
+    void SetOilPotTargetPos()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -85,14 +87,15 @@ public sealed class OilPot : Tool {
 
             if (isPouring)
             {
-                targetPosition = pourAnchor.localPosition;
-                targetRotation = pourAnchor.localRotation;
+                targetPosition = pourAnchorTrans.localPosition;
+                targetRotation = pourAnchorTrans.localRotation;
             }
             else
             {
                 targetPosition = potOriLocalPosition;
                 targetRotation = potOriLocalRotation;
-                SetPourOilAnim(false);
+                pourOilAnimator.gameObject.SetActive(false);
+                pourOilAnimator.SetBool("isPouring", false);
             }
         }
 
@@ -100,41 +103,26 @@ public sealed class OilPot : Tool {
         {
             if (isInPlace && isPouring)
             {
-                targetRotation = pourAnchor.localRotation * pourRot;
-                SetPourOilAnim(true);
+                targetRotation = pourAnchorTrans.localRotation * pourRot;
+                pourOilAnimator.gameObject.SetActive(true);
+                pourOilAnimator.SetBool("isPouring", true);
             }
         }
         else if(Input.GetKeyUp(KeyCode.Space))
         {
             if (isInPlace && isPouring)
             {
-                targetRotation = pourAnchor.localRotation;
-                SetPourOilAnim(false);
+                targetRotation = pourAnchorTrans.localRotation;
+                pourOilAnimator.gameObject.SetActive(false);
+                pourOilAnimator.SetBool("isPouring", false);
             }
         }
-
-        if (Vector3.Magnitude(potTrans.localPosition - targetPosition) > 0.1f ||
-            Quaternion.Angle(potTrans.localRotation, targetRotation) > 0.1f)
-        {
-            Debug.Log("osa");
-            potTrans.localPosition = Vector3.Lerp(potTrans.localPosition, targetPosition, Time.deltaTime * moveSpeed);
-            potTrans.localRotation = Quaternion.Lerp(potTrans.localRotation, targetRotation, Time.deltaTime * moveSpeed);
-        }
-        else
-        { 
-            if (!isInPlace)
-                isInPlace = true;
-        }
-    }
-
-    void SetPourOilAnim(bool isStart)
-    {
-            pourOilAnimator.gameObject.SetActive(isStart);
-            pourOilAnimator.SetBool("isPouring", isStart);
     }
 
     void ResetOilPotState()
     {
+        pourOilAnimator.gameObject.SetActive(false);
+        pourOilAnimator.SetBool("isPouring", false);
         targetPosition = potOriLocalPosition;
         targetRotation = potOriLocalRotation;
         potTrans.localPosition = potOriLocalPosition;
