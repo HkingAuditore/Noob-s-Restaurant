@@ -5,23 +5,61 @@ using UnityEngine;
 public class EggBowl : Utensil
 {
     Rigidbody chopsticksRb;
-    Transform EggBowlAnchorTrans;
+    Transform eggBowlAnchorTrans;
+    [SerializeField]
+    Transform[] eggBallsTrans;
+    [SerializeField]
+    Transform eggPlaneTrans;
     Transform bowlTrans;
+    [SerializeField]
+    Transform containedEggTrans;
     Vector3 targetPosition;
     Quaternion targetRotation;
     Vector3 bowlOriLocalPosition;
     Quaternion bowlOriLocalRotation;
+    Animator crackAnimator;
 
     bool isBeatingEgg;
     bool isInPlace;
     float moveSpeed;
+    int currentEggBallCount;
+    int maxEggBallCount;
+    float eggPlaneRaseDistance;
+    float eggPlaneScaleDistance;
+
+    public bool IsBeatingEgg
+    {
+        get
+        {
+            return isBeatingEgg;
+        }
+
+        set
+        {
+            isBeatingEgg = value;
+        }
+    }
+
+    public bool IsInPlace
+    {
+        get
+        {
+            return isInPlace;
+        }
+
+        set
+        {
+            isInPlace = value;
+        }
+    }
 
     protected override void Awake()
     {
         base.Awake();
         bowlTrans = this.transform.Find("Bowl");
-        EggBowlAnchorTrans = this.transform.Find("EggBowlAnchor");
+        eggBowlAnchorTrans = this.transform.Find("EggBowlAnchor");
         chopsticksRb = bowlTrans.transform.Find("Chopsticks").GetComponent<Rigidbody>();
+        crackAnimator = this.transform.Find("Bowl/Crack").gameObject.GetComponent<Animator>();
     }
 
     protected override void Start()
@@ -35,6 +73,10 @@ public class EggBowl : Utensil
         bowlOriLocalRotation = bowlTrans.transform.localRotation;
         targetPosition = bowlOriLocalPosition;
         targetRotation = bowlOriLocalRotation;
+        currentEggBallCount = 0;
+        maxEggBallCount = 7;
+        eggPlaneRaseDistance = 0.1f;
+        eggPlaneScaleDistance = 0.1f;
     }
 
     public override void OnBeginCtrl()
@@ -49,6 +91,7 @@ public class EggBowl : Utensil
 
         SetEggBowlTargetPos();
         MoveToolToTargetPos(bowlTrans.transform, targetPosition, targetRotation, moveSpeed, ref isInPlace);
+        PlusEggEffect();
     }
 
     public override void OnStopCtrl()
@@ -80,14 +123,36 @@ public class EggBowl : Utensil
 
             if (isBeatingEgg)
             {
-                targetPosition = EggBowlAnchorTrans.localPosition;
-                targetRotation = EggBowlAnchorTrans.localRotation;
+                targetPosition = eggBowlAnchorTrans.localPosition;
+                targetRotation = eggBowlAnchorTrans.localRotation;
             }
             else
             {
                 targetPosition = bowlOriLocalPosition;
                 targetRotation = bowlOriLocalRotation;
             }
+        }
+    }
+
+    void ResetEggBowlState()
+    {
+
+    }
+
+    void PlusEggEffect()
+    {
+        if (this.ingredients.Count > currentEggBallCount
+            && currentEggBallCount <= maxEggBallCount
+            && crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
+        {
+            if (currentEggBallCount == 0)
+            {
+                eggPlaneTrans.gameObject.SetActive(true);
+            }
+            currentEggBallCount++;
+            eggBallsTrans[currentEggBallCount - 1].gameObject.SetActive(true);
+            containedEggTrans.localPosition += new Vector3(0, eggPlaneRaseDistance, 0);
+            eggPlaneTrans.localScale += new Vector3(eggPlaneScaleDistance, 0, eggPlaneScaleDistance);
         }
     }
 }
