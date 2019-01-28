@@ -28,6 +28,7 @@ public sealed class SFTable : Table, IContainable<Container>
         base.Start();
 
         HeatTimer = new Timer(new float[] { 30, 60, 90 }, false);
+        HeatTimer.onStop += OnHeatStop;
     }
 
     protected override void Update()
@@ -35,14 +36,10 @@ public sealed class SFTable : Table, IContainable<Container>
         base.Update();
 
         if (Input.GetKeyDown(KeyCode.P))
-            if (currentChosenWare != null)
-                currentChosenWare.TakeOutAllTo(pan);
+            PutIngredientsFromCurChosenWareToPan();
 
         if (Input.GetKey(KeyCode.O))
-            if (currentChosenWare != null && pan.Contents.Count > 0)
-            {
-                pan.TakeOneTo(pan.Contents[Random.Range(0, pan.Contents.Count)], currentChosenWare);
-            }
+            PutIngredientsFromPanToCurChosenWare();
     }
 
     private void OnGUI()
@@ -54,7 +51,35 @@ public sealed class SFTable : Table, IContainable<Container>
             fontSize = 40,
             fontStyle = FontStyle.Bold
         };
-        GUI.Label(new Rect(20, 20, 200, 100), "Heating : " + HeatTimer.CurTime.ToString("F2") + "s", style);
+        GUI.Label(new Rect(20, 20, 200, 100), "Heating : " + HeatTimer.SumTime.ToString("F2") + "s", style);
+    }
+
+    private void OnDestroy()
+    {
+        HeatTimer.onStop -= OnHeatStop;
+    }
+
+    private void PutIngredientsFromCurChosenWareToPan()
+    {
+        if (currentChosenWare != null)
+        {
+            currentChosenWare.TakeOutAllTo(pan);
+        }
+    }
+
+    private void PutIngredientsFromPanToCurChosenWare()
+    {
+        if (currentChosenWare != null && pan.Contents.Count > 0)
+        {
+            Ingredient ingredient = pan.Contents[Random.Range(0, pan.Contents.Count)];
+            pan.TakeOneTo(ingredient, currentChosenWare);
+            Debug.Log(ingredient.HeatTime);
+        }
+    }
+
+    private void OnHeatStop(float onceTime, float sumTime)
+    {
+        pan.Contents.ForEach((Ingredient) => Ingredient.UpdateHeatTime(onceTime));
     }
 
     protected override void GetCamera()
