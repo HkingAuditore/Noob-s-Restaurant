@@ -49,7 +49,10 @@ public sealed class PTable : Table
         {
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0 )
             {          
-                if (crackAnimator.GetBool("isCrack") == false && currentChosenWare.Contents[0].FoodName == FoodName.Egg)
+                if (crackAnimator.GetBool("isCrack") == false 
+                    && currentChosenWare.Contents[0].FoodName == FoodName.Egg
+                    &&eggBowl.IsBeatingEgg
+                    &&eggBowl.IsInPlace)
                 {                    
                     crackGo.SetActive(true);
                     crackAnimator.SetBool("isCrack", true);
