@@ -28,6 +28,7 @@ public sealed class BTable : Table
         base.Start();
 
         HeatTimer = new Timer(new float[] { 30, 60, 90 }, false);
+        HeatTimer.onStop += OnHeatStop;
     }
 
     protected override void Update()
@@ -35,17 +36,10 @@ public sealed class BTable : Table
         base.Update();
 
         if (Input.GetKeyDown(KeyCode.P))
-            if (currentChosenWare != null)
-            {
-                Debug.Log(currentChosenWare.Contents.Count);
-                currentChosenWare.TakeOutAllTo(pot);
-            }
+            PutIngredientsFromCurChosenWareToPot();
 
         if (Input.GetKey(KeyCode.O))
-            if (currentChosenWare != null && pot.Contents.Count > 0)
-            {
-                pot.TakeOneTo(pot.Contents[Random.Range(0, pot.Contents.Count)], currentChosenWare);
-            }
+            PutIngredientsFromPotToCurChosenWare();
     }
 
     private void OnGUI()
@@ -57,7 +51,35 @@ public sealed class BTable : Table
             fontSize = 40,
             fontStyle = FontStyle.Bold
         };
-        GUI.Label(new Rect(20, 20, 200, 100), "Heating : " + HeatTimer.CurTime.ToString("F2") + "s", style);
+        GUI.Label(new Rect(20, 20, 200, 100), "Heating : " + HeatTimer.SumTime.ToString("F2") + "s", style);
+    }
+
+    private void OnDestroy()
+    {
+        HeatTimer.onStop -= OnHeatStop;
+    }
+
+    private void PutIngredientsFromCurChosenWareToPot()
+    {
+        if (currentChosenWare != null)
+        {
+            currentChosenWare.TakeOutAllTo(pot);
+        }
+    }
+
+    private void PutIngredientsFromPotToCurChosenWare()
+    {
+        if (currentChosenWare != null && pot.Contents.Count > 0)
+        {
+            Ingredient ingredient = pot.Contents[Random.Range(0, pot.Contents.Count)];
+            pot.TakeOneTo(ingredient, currentChosenWare);
+            Debug.Log(ingredient.HeatTime);
+        }
+    }
+
+    private void OnHeatStop(float onceTime, float sumTime)
+    {
+        pot.Contents.ForEach((Ingredient) => Ingredient.UpdateHeatTime(onceTime));
     }
 
     protected override void GetCamera()

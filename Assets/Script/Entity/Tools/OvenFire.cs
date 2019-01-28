@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,10 @@ public class OvenFire : Tool
     private GameObject firePrefab;
     private ParticleSystemManager particleSystemManager;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         particleSystemManager = GameManager.Instance.particleSystemManager;
         firePrefab = Resources.Load<GameObject>("Prefabs/CampFire");
         fireAnchor = this.transform.Find("FireAnchor");
@@ -22,20 +25,31 @@ public class OvenFire : Tool
         base.DoCtrl();
 
         if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (!isFiring)
-            {
-                particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
-                isFiring = true;
+            SwitchFire();
+    }
 
-                Timer t = transform.parent.parent.GetComponent<Table>().HeatTimer;
-                if (t != null)
-                    t.Start();
-            }
-            else
+    private void SwitchFire()
+    {
+        if (!isFiring)
+        {
+            particleSystemManager.AddFXPrefab(firePrefab, fireAnchor);
+            isFiring = true;
+
+            Timer t = transform.parent.parent.GetComponent<Table>().HeatTimer;
+            if (t != null)
             {
-                particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
-                isFiring = false;
+                t.Start();
+            }
+        }
+        else
+        {
+            particleSystemManager.StopFXAndRemove(fireAnchor.GetChild(0).gameObject);
+            isFiring = false;
+
+            Timer t = transform.parent.parent.GetComponent<Table>().HeatTimer;
+            if (t != null)
+            {
+                t.Stop();
             }
         }
     }
