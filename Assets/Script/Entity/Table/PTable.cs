@@ -35,7 +35,10 @@ public sealed class PTable : Table
         base.Update();
 
         PutEggToEggBowl();
+        PutCrackedEggToCurrentChosenWare();
     }
+
+
 
     private void PutEggToEggBowl()
     {
@@ -58,7 +61,30 @@ public sealed class PTable : Table
                     crackAnimator.SetBool("isCrack", true);
                     Ingredient chosenEgg = currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)];
                     currentChosenWare.TakeOneTo(chosenEgg, eggBowl);
+                    chosenEgg.GetComponent<Egg>().EggState = EggState.NoStir;
                 }
+            }
+        }
+    }
+
+    //table 实现的 IContainable 的一些方法不太适用于破壳后的鸡蛋，这里暂时另写单独的方法控制取出
+    void PutCrackedEggToCurrentChosenWare()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            if (currentChosenWare.Contents.Count ==0 && eggBowl.Contents.Count > 0)
+            {
+                currentChosenWare.Contents.AddRange(eggBowl.Contents);
+                GameObject containedEgg = eggBowl.transform.Find("Bowl/ContainedEgg").gameObject;
+                GameObject wareContainedEgg = GameObject.Instantiate(containedEgg, currentChosenWare.transform);
+                foreach (Ingredient temp in eggBowl.Contents)
+                {
+                    temp.gameObject.SetActive(false);
+                    temp.transform.localPosition = Vector3.zero;
+                    temp.transform.parent = currentChosenWare.transform;
+                }
+                
+                eggBowl.ResetEggBowl();
             }
         }
     }
