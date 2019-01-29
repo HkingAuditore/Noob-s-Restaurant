@@ -72,9 +72,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     protected virtual void Update()
     {
+
         if (HeatTimer != null)
             HeatTimer.Update(Time.deltaTime);
-
         if (!isEnter)
             return;
     }

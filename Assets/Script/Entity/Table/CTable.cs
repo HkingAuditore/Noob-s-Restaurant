@@ -29,6 +29,9 @@ public sealed class CTable : Table
     {
         base.Update();
 
+        if (!isEnter)
+            return;
+
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
                 currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], choppingBlock);

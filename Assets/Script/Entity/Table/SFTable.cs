@@ -35,6 +35,9 @@ public sealed class SFTable : Table
     {
         base.Update();
 
+        if (!isEnter)
+            return;
+
         if (Input.GetKeyDown(KeyCode.P))
             PutIngredientsFromCurChosenWareToPan();
 
@@ -46,6 +49,7 @@ public sealed class SFTable : Table
     {
         if (!isEnter)
             return;
+
         GUIStyle style = new GUIStyle
         {
             fontSize = 40,

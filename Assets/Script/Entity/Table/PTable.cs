@@ -34,6 +34,9 @@ public sealed class PTable : Table
     {
         base.Update();
 
+        if (!isEnter)
+            return;
+
         PutEggToEggBowl();
         PutCrackedEggToCurrentChosenWare();
     }
@@ -72,7 +75,7 @@ public sealed class PTable : Table
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-            if (currentChosenWare.Contents.Count ==0 && eggBowl.Contents.Count > 0)
+            if (currentChosenWare.Contents.Count == 0 && eggBowl.Contents.Count > 0)
             {
                 currentChosenWare.Contents.AddRange(eggBowl.Contents);
                 GameObject containedEgg = eggBowl.transform.Find("Bowl/ContainedEgg").gameObject;
@@ -83,7 +86,6 @@ public sealed class PTable : Table
                     temp.transform.localPosition = Vector3.zero;
                     temp.transform.parent = currentChosenWare.transform;
                 }
-                
                 eggBowl.ResetEggBowl();
             }
         }

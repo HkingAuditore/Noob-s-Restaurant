@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class SMTable : Table, IContainable<Container>
+public sealed class SMTable : Table
 {
     [SerializeField]
     private GameObject smCamera;
@@ -22,6 +22,14 @@ public sealed class SMTable : Table, IContainable<Container>
         wares = new List<Container>(thisMaxPlaceNum);
 
         base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (!isEnter)
+            return;
     }
 
     protected override void GetCamera()

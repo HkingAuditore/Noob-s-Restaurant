@@ -35,6 +35,9 @@ public sealed class BTable : Table
     {
         base.Update();
 
+        if (!isEnter)
+            return;
+
         if (Input.GetKeyDown(KeyCode.P))
             PutIngredientsFromCurChosenWareToPot();
 
