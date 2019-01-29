@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class CTable : Table, IContainable<Container>
+public sealed class CTable : Table
 {
     [SerializeField]
     GameObject cCamera;
@@ -33,7 +33,7 @@ public sealed class CTable : Table, IContainable<Container>
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
                 currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], choppingBlock);
 
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
             if (currentChosenWare != null && choppingBlock.Contents.Count > 0)
             {
                 //OPT

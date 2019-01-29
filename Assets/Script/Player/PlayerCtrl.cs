@@ -113,7 +113,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
         throw new System.NotImplementedException();
     }
 
-    public void AddRange(List<Container> contents, Vector3 posOffset)
+    public void AddRangeToContents(List<Container> contents, Vector3 posOffset)
     {
         throw new System.NotImplementedException();
     }

@@ -23,6 +23,7 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
 
     protected virtual void Start() { }
 
+    #region IContainable Implement
     public void AddToContents(Ingredient ingredient)
     {
         Contents.Add(ingredient);
@@ -31,7 +32,7 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
         ingredient.transform.SetParent(transform);
     }
 
-    public void AddRange(List<Ingredient> ingredients, Vector3 posOffset)
+    public void AddRangeToContents(List<Ingredient> ingredients, Vector3 posOffset)
     {
         //Transform parent = transform.Find("Contents");
         Array.ForEach(ingredients.ToArray(), (ingredient) =>
@@ -73,10 +74,11 @@ public abstract class Container : MonoBehaviour, IContainable<Ingredient>
     {
         List<Ingredient> outList = new List<Ingredient>(Contents);
         //Debug.Log("utensil:" + container.DropFoodPos + "\tbowl:" + DropFoodPos + "\t" + ingredients.Count + "\t" + outList.Count + "\t" + (ingredients == outList) + "\t" + (ingredients.Equals(outList)));
-        container.AddRange(outList, container.DropFoodPos - DropFoodPos);
+        container.AddRangeToContents(outList, container.DropFoodPos - DropFoodPos);
         Contents.Clear();
         return outList;
     }
+    #endregion
 
     public void Sort()
     {

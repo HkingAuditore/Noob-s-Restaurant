@@ -15,6 +15,7 @@ public class EggBowl : Utensil
     Vector3 targetPosition;
     Quaternion targetRotation;
     Vector3 bowlOriLocalPosition;
+    Vector3 oriEggPlaneScale;
     Transform rollChopsticksAnchorTrans;
     Transform preparingChopsticksAnchorTrans;
     Quaternion bowlOriLocalRotation;
@@ -72,6 +73,7 @@ public class EggBowl : Utensil
         yolkMat = eggBallsTrans[0].GetComponent<Renderer>().material;
         albumenMat = eggPlaneTrans.GetComponent<Renderer>().material;
         oriAlbumenMat = Resources.Load<Material>("Materials/OriAlbumen");
+        oriEggPlaneScale = eggPlaneTrans.localScale;
     }
 
     protected override void Start()
@@ -89,7 +91,7 @@ public class EggBowl : Utensil
         maxEggBallCount = 7;
         eggPlaneRaseDistance = 0.02f;
         eggPlaneScaleDistance = 0.04f; 
-        chopsticksRollSpeed = 30f;
+        chopsticksRollSpeed = 20f;
         stirTimer = 0f;
     }
 
@@ -191,7 +193,7 @@ public class EggBowl : Utensil
             }
             else if (currentEggBallCount > 1)
             {
-                albumenMat.color = Color.Lerp(albumenMat.color, oriAlbumenMat.color,1/ currentEggBallCount);
+                albumenMat.color = Color.Lerp(albumenMat.color, oriAlbumenMat.color,1f/ currentEggBallCount);
             }
             eggBallsTrans[currentEggBallCount - 1].gameObject.SetActive(true);
             containedEggTrans.localPosition += new Vector3(0, eggPlaneRaseDistance, 0);
@@ -220,6 +222,7 @@ public class EggBowl : Utensil
                     for (int i = 0; i< currentEggBallCount; i++)
                     {
                         eggBallsTrans[i].gameObject.SetActive(false);
+                        ingredients[i].GetComponent<Egg>().EggState = EggState.Stirred;
                     }
                 }
             }
@@ -237,7 +240,7 @@ public class EggBowl : Utensil
         yield return null;
         while (true)
         {
-            rollSpeed -= rollSpeed*0.05f;
+            rollSpeed -= rollSpeed*0.2f;
             containedEggTrans.Rotate(Vector3.up, rollSpeed);
 
             if (rollSpeed <= 0)
@@ -267,5 +270,19 @@ chopsticksRb.transform.localPosition != preparingChopsticksAnchorTrans.localPosi
             transforms.Add(temp);
         }
         return transforms;
+    }
+
+    public void ResetEggBowl()
+    {
+        foreach (Transform temp in eggBallsTrans)
+        {
+            temp.gameObject.SetActive(false); 
+        }
+        eggPlaneTrans.localScale = oriEggPlaneScale;
+        //albumenMat.color = oriAlbumenMat.color;
+        eggPlaneTrans.gameObject.SetActive(false);
+        stirTimer = 0f;
+        currentEggBallCount = 0;
+        this.Contents.Clear();
     }
 }

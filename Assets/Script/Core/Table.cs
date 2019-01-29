@@ -359,7 +359,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         }
     }
 
-    //IContainable Implement
+    #region IContainable Implement
     public void AddToContents(Container ware)
     {
         Contents.Add(ware);
@@ -392,7 +392,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         throw new System.NotImplementedException();
     }
-    public void AddRange(List<Container> ingredient, Vector3 posOffset)
+    public void AddRangeToContents(List<Container> ingredient, Vector3 posOffset)
     {
         throw new System.NotImplementedException();
     }
@@ -400,4 +400,5 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         throw new System.NotImplementedException();
     }
+    #endregion
 }
