@@ -48,10 +48,10 @@ public class OneKeyOption : Editor
     private static void EnablePostProcessing()
     {
         GameObject camera = GameObject.Find("Camera/Main Camera");
-        PostProcessingBehaviour pp = camera.GetComponent<PostProcessingBehaviour>();
+        //PostProcessingBehaviour pp = camera.GetComponent<PostProcessingBehaviour>();
         AntiAliasing aa = camera.GetComponent<AntiAliasing>();
         MotionBlur mb = camera.GetComponent<MotionBlur>();
-        pp.enabled = true;
+        //pp.enabled = true;
         aa.enabled = true;
         mb.enabled = true;
 

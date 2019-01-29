@@ -6,8 +6,7 @@ public class EggBowl : Utensil
 {
     Rigidbody chopsticksRb;
     Transform eggBowlAnchorTrans;
-    [SerializeField]
-    Transform[] eggBallsTrans;
+    List<Transform> eggBallsTrans;
     [SerializeField]
     Transform eggPlaneTrans;
     Transform bowlTrans;
@@ -20,6 +19,9 @@ public class EggBowl : Utensil
     Transform preparingChopsticksAnchorTrans;
     Quaternion bowlOriLocalRotation;
     Animator crackAnimator;
+    Material yolkMat;
+    Material albumenMat;
+    Material oriAlbumenMat;
 
     bool isBeatingEgg;
     bool isInPlace;
@@ -29,6 +31,7 @@ public class EggBowl : Utensil
     float eggPlaneRaseDistance;
     float eggPlaneScaleDistance;
     float chopsticksRollSpeed;
+    float stirTimer;
 
     public bool IsBeatingEgg
     {
@@ -65,6 +68,10 @@ public class EggBowl : Utensil
         crackAnimator = this.transform.Find("Bowl/Crack").gameObject.GetComponent<Animator>();
         rollChopsticksAnchorTrans = this.transform.Find("Bowl/RollChopsticksAnchor");
         preparingChopsticksAnchorTrans = this.transform.Find("Bowl/PreparingChopsticksAnchor");
+        eggBallsTrans = GetTransListInChildren(bowlTrans,"ContainedEgg/EggBall");
+        yolkMat = eggBallsTrans[0].GetComponent<Renderer>().material;
+        albumenMat = eggPlaneTrans.GetComponent<Renderer>().material;
+        oriAlbumenMat = Resources.Load<Material>("Materials/OriAlbumen");
     }
 
     protected override void Start()
@@ -80,9 +87,10 @@ public class EggBowl : Utensil
         targetRotation = bowlOriLocalRotation;
         currentEggBallCount = 0;
         maxEggBallCount = 7;
-        eggPlaneRaseDistance = 0.01f;
-        eggPlaneScaleDistance = 0.01f;
-        chopsticksRollSpeed = 3f;
+        eggPlaneRaseDistance = 0.02f;
+        eggPlaneScaleDistance = 0.04f; 
+        chopsticksRollSpeed = 30f;
+        stirTimer = 0f;
     }
 
     public override void OnBeginCtrl()
@@ -175,11 +183,16 @@ public class EggBowl : Utensil
             && currentEggBallCount <= maxEggBallCount
             && crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f)
         {
-            if (currentEggBallCount == 0)
+            currentEggBallCount++;
+            stirTimer = 0f; 
+            if (currentEggBallCount == 1)
             {
                 eggPlaneTrans.gameObject.SetActive(true);
             }
-            currentEggBallCount++;
+            else if (currentEggBallCount > 1)
+            {
+                albumenMat.color = Color.Lerp(albumenMat.color, oriAlbumenMat.color,1/ currentEggBallCount);
+            }
             eggBallsTrans[currentEggBallCount - 1].gameObject.SetActive(true);
             containedEggTrans.localPosition += new Vector3(0, eggPlaneRaseDistance, 0);
             eggPlaneTrans.localScale += new Vector3(eggPlaneScaleDistance, 0, eggPlaneScaleDistance);
@@ -196,11 +209,25 @@ public class EggBowl : Utensil
             chopsticksRb.transform.RotateAround(rollChopsticksAnchorTrans.position, Vector3.up, chopsticksRollSpeed);
             chopsticksRb.transform.localRotation = preparingChopsticksAnchorTrans.localRotation;
             containedEggTrans.Rotate(Vector3.up, chopsticksRollSpeed*0.5f);
+
+            if (currentEggBallCount > 0)
+            {
+                stirTimer += Time.deltaTime;
+                if (stirTimer >= 3f)
+                {
+                    albumenMat.color = Color.Lerp(albumenMat.color, yolkMat.color, Time.deltaTime);
+
+                    for (int i = 0; i< currentEggBallCount; i++)
+                    {
+                        eggBallsTrans[i].gameObject.SetActive(false);
+                    }
+                }
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && isBeatingEgg)
         {
-            float eggRollSpeed = chopsticksRollSpeed;
+            float eggRollSpeed = chopsticksRollSpeed*0.5f;
             StartCoroutine("EggRotatoryInertia", eggRollSpeed);
         }
     }
@@ -210,7 +237,7 @@ public class EggBowl : Utensil
         yield return null;
         while (true)
         {
-            rollSpeed -= 0.1f;
+            rollSpeed -= rollSpeed*0.05f;
             containedEggTrans.Rotate(Vector3.up, rollSpeed);
 
             if (rollSpeed <= 0)
@@ -229,5 +256,16 @@ chopsticksRb.transform.localPosition != preparingChopsticksAnchorTrans.localPosi
             chopsticksRb.transform.localPosition = preparingChopsticksAnchorTrans.localPosition;
             chopsticksRb.transform.localRotation = preparingChopsticksAnchorTrans.localRotation;
         }
+    }
+
+    List<Transform> GetTransListInChildren(Transform parent, string childrenPath)
+    {
+        List<Transform> transforms = new List<Transform>();
+        Transform transform = parent.Find(childrenPath).GetComponent<Transform>();
+        foreach (Transform temp in transform)
+        {
+            transforms.Add(temp);
+        }
+        return transforms;
     }
 }
