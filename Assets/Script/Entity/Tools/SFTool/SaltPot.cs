@@ -11,6 +11,8 @@ public class SaltPot : Tool {
     Vector3 potOriLocalPosition;
     Quaternion potOriLocalRotation;
     Quaternion sprinkleRot;
+    GameObject salt_particle;
+
 
     bool isSprinkling;
     bool isInPlace;
@@ -21,13 +23,13 @@ public class SaltPot : Tool {
         base.Awake();
 
         sprinkleAnchorTrans = this.transform.Find("SprinkleAnchor");
+        salt_particle = sprinkleAnchorTrans.Find("salt_particle").gameObject;
         potTrans = this.transform.Find("Pot");
     }
 
     protected override void Start()
     {
         base.Start();
-
         isSprinkling = false;
         isInPlace = true;
         moveSpeed = 2.5f;
@@ -83,16 +85,21 @@ public class SaltPot : Tool {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            
             if (isInPlace && isSprinkling)
             {
+                salt_particle.SetActive(true);
                 targetRotation = sprinkleAnchorTrans.localRotation * sprinkleRot;
+                   
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             if (isInPlace && isSprinkling)
             {
+                salt_particle.SetActive(false);
                 targetRotation = sprinkleAnchorTrans.localRotation;
+                
             }
         }
     }
