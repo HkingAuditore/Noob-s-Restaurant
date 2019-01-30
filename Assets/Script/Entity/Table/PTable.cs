@@ -121,12 +121,14 @@ public sealed class PTable : Table
     {
         base.OnEnterTable();
         PutWareOnTablePreelectionPos();
+        GameManager.Instance.uiManager.PushPanel(new PTableHintPanel());
     }
 
     protected override void OnQuitTable()
     {
         base.OnQuitTable();
         GivePlayerSelectedWare();
+        GameManager.Instance.uiManager.PopPanel();
     }
 
     [ContextMenu("ResetWaresPos")]
