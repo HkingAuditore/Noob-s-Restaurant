@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Tool : MonoBehaviour, IUsable
 {
-    protected bool isCtrlling = false;
+    protected bool isCtrlling = false;    
 
     public bool IsCtrlling
     {
@@ -58,7 +58,9 @@ public abstract class Tool : MonoBehaviour, IUsable
 
     public virtual void DoCtrl() { }
 
-    public void MoveToolToTargetPos(Transform toolTrans,Vector3 targetPosition,Quaternion targetRotation,float moveSpeed,ref bool isInPlace)
+    protected virtual void SwitchTool() { }
+
+    protected void MoveToolToTargetPos(Transform toolTrans,Vector3 targetPosition,Quaternion targetRotation,float moveSpeed,ref bool isInPlace)
     {
         if (Vector3.Magnitude(toolTrans.localPosition - targetPosition) > 0.1f ||
     Quaternion.Angle(toolTrans.localRotation, targetRotation) > 0.1f)
