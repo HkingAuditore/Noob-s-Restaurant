@@ -99,6 +99,16 @@ public sealed class OilPot : Tool {
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            isPouring = false;
+            isInPlace = false;
+            targetPosition = potOriLocalPosition;
+            targetRotation = potOriLocalRotation;
+            pourOilAnimator.gameObject.SetActive(false);
+            pourOilAnimator.SetBool("isPouring", false);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isInPlace && isPouring)
@@ -130,4 +140,5 @@ public sealed class OilPot : Tool {
         isPouring = false;
         isInPlace = true;
     }
+
 }
