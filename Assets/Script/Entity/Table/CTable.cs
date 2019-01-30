@@ -78,6 +78,7 @@ public sealed class CTable : Table
 
         SetUtensilState(true);
         PutWareOnTablePreelectionPos();
+        GameManager.Instance.uiManager.PushPanel(new CTableHintPanel());
     }
 
     protected override void OnQuitTable()
@@ -86,6 +87,7 @@ public sealed class CTable : Table
 
         SetUtensilState(false);
         GivePlayerSelectedWare();
+        GameManager.Instance.uiManager.PopPanel();
     }
 
     private void SetUtensilState(bool isBeginCtrl)

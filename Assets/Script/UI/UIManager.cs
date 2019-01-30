@@ -98,4 +98,23 @@ public class UIManager {
             }
         }
     }
+
+    public void PopSpecifiedQuantityOfPanel(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            //出栈
+            GPObject gp = panelStack.Pop();
+            mdUpdateAction -= gp.panelScript.OnUpdate;
+            gp.panelScript.OnExit();
+
+            //调用前一个panel的OnEnter()
+            if (panelStack.Count > 0)
+            {
+                gp = panelStack.Peek();
+                gp.panelScript.OnEnter();
+                mdUpdateAction += gp.panelScript.OnUpdate;
+            }
+        }
+    }
 }

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public sealed class SFTable : Table
 {
-
     [SerializeField]
     GameObject sfCamera;
-
-    private Pan pan;
+    Pan pan;
 
     protected override void Awake()
     {
@@ -126,6 +124,8 @@ public sealed class SFTable : Table
 
         SetUtensilState(true);
         PutWareOnTablePreelectionPos();
+        GameManager.Instance.uiManager.PushPanel(new SFTableHintPanel());
+        GameManager.Instance.uiManager.PushPanel(new CookStatePanel());
     }
 
     protected override void OnQuitTable()
@@ -134,6 +134,7 @@ public sealed class SFTable : Table
 
         SetUtensilState(false);
         GivePlayerSelectedWare();
+        GameManager.Instance.uiManager.PopSpecifiedQuantityOfPanel(2);
     }
 
     private void SetUtensilState(bool isBeginCtrl)
