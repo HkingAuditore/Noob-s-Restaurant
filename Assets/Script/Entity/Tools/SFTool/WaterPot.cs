@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class OilPot : Tool {
+public class WaterPot : Tool {
 
     Rigidbody potRb;
     Transform potTrans;
@@ -13,24 +13,24 @@ public sealed class OilPot : Tool {
 
     Quaternion pourRot;
     Transform pourAnchorTrans;
-    Animator pourOilAnimator;
-    GameObject oilplane;
-    GameObject oilpouringanimation;
+    Animator pourWaterAnimator;
+    GameObject waterplane;
+    GameObject waterpouringanimation;
 
     bool isPouring;
-    bool isoilplacerising;
+    bool iswaterplacerising;
     bool isInPlace;
 
     float moveSpeed;
 
     protected override void Awake()
     {
-        oilplane = this.transform.Find("OilPlane").gameObject;
+        waterplane = this.transform.Find("waterPlane").gameObject;
         potTrans = this.transform.Find("Pot");
         pourAnchorTrans = this.transform.Find("PourAnchor");
         potRb = potTrans.GetComponent<Rigidbody>();
-        pourOilAnimator = potTrans.Find("PourOil").GetComponent<Animator>();
-        oilpouringanimation = potTrans.Find("PourOil").gameObject;
+        pourWaterAnimator = potTrans.Find("PourWater").GetComponent<Animator>();
+        waterpouringanimation = potTrans.Find("PourWater").gameObject;
     }
 
     protected override void Start()
@@ -43,7 +43,7 @@ public sealed class OilPot : Tool {
         potOriLocalRotation = potTrans.localRotation;
         targetPosition = potOriLocalPosition;
         targetRotation = potOriLocalRotation;
-        pourOilAnimator.gameObject.SetActive(false);
+        pourWaterAnimator.gameObject.SetActive(false);
         pourRot = Quaternion.AngleAxis(-45f, Vector3.up);
     }
 
@@ -59,7 +59,7 @@ public sealed class OilPot : Tool {
         base.DoCtrl();
 
         SetOilPotTargetPos();
-        MoveToolToTargetPos(potTrans,targetPosition,targetRotation,moveSpeed,ref isInPlace);
+        MoveToolToTargetPos(potTrans, targetPosition, targetRotation, moveSpeed, ref isInPlace);
     }
 
     public override void OnStopCtrl()
@@ -86,7 +86,7 @@ public sealed class OilPot : Tool {
 
     void SetOilPotTargetPos()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             isPouring = !isPouring;
             isInPlace = false;
@@ -100,8 +100,8 @@ public sealed class OilPot : Tool {
             {
                 targetPosition = potOriLocalPosition;
                 targetRotation = potOriLocalRotation;
-                pourOilAnimator.gameObject.SetActive(false);
-                pourOilAnimator.SetBool("isPouring", false);
+                pourWaterAnimator.gameObject.SetActive(false);
+                pourWaterAnimator.SetBool("isPouring", false);
             }
         }
 
@@ -111,18 +111,18 @@ public sealed class OilPot : Tool {
             isInPlace = false;
             targetPosition = potOriLocalPosition;
             targetRotation = potOriLocalRotation;
-            pourOilAnimator.gameObject.SetActive(false);
-            pourOilAnimator.SetBool("isPouring", false);
+            pourWaterAnimator.gameObject.SetActive(false);
+            pourWaterAnimator.SetBool("isPouring", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isPouring = false;
             isInPlace = false;
             targetPosition = potOriLocalPosition;
             targetRotation = potOriLocalRotation;
-            pourOilAnimator.gameObject.SetActive(false);
-            pourOilAnimator.SetBool("isPouring", false);
+            pourWaterAnimator.gameObject.SetActive(false);
+            pourWaterAnimator.SetBool("isPouring", false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -130,38 +130,38 @@ public sealed class OilPot : Tool {
             if (isInPlace && isPouring)
             {
                 //oilplane.transform.position = new Vector3(oilplane.transform.position.x, oilplane.transform.position.y+(Time.deltaTime), oilplane.transform.position.z);
-                if (oilplane.transform.localScale.x < 0.9f)
+                if (waterplane.transform.localScale.x < 0.9f)
                 {
-                    
-                    isoilplacerising = true;
+
+                    iswaterplacerising = true;
                 }
                 else
                 {
-                    isoilplacerising = false;
+                    iswaterplacerising = false;
                 }
-                
+
                 targetRotation = pourAnchorTrans.localRotation * pourRot;
-                pourOilAnimator.gameObject.SetActive(true);
-                pourOilAnimator.SetBool("isPouring", true);
+                pourWaterAnimator.gameObject.SetActive(true);
+                pourWaterAnimator.SetBool("isPouring", true);
             }
         }
-        else if(Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             if (isInPlace && isPouring)
             {
-                oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-                isoilplacerising = false;
+                waterplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                iswaterplacerising = false;
                 targetRotation = pourAnchorTrans.localRotation;
-                pourOilAnimator.gameObject.SetActive(false);
-                pourOilAnimator.SetBool("isPouring", false);
+                pourWaterAnimator.gameObject.SetActive(false);
+                pourWaterAnimator.SetBool("isPouring", false);
             }
         }
     }
 
     void ResetOilPotState()
     {
-        pourOilAnimator.gameObject.SetActive(false);
-        pourOilAnimator.SetBool("isPouring", false);
+        pourWaterAnimator.gameObject.SetActive(false);
+        pourWaterAnimator.SetBool("isPouring", false);
         targetPosition = potOriLocalPosition;
         targetRotation = potOriLocalRotation;
         potTrans.localPosition = potOriLocalPosition;
@@ -172,14 +172,14 @@ public sealed class OilPot : Tool {
 
     private void FixedUpdate()
     {
-        if (isoilplacerising && oilplane.transform.localScale.x < 0.9f)
+        if (iswaterplacerising && waterplane.transform.localScale.x < 0.9f)
         {
-            oilplane.transform.localScale = new Vector3(oilplane.transform.localScale.x+0.01f*Time.deltaTime, oilplane.transform.localScale.y, oilplane.transform.localScale.z + 0.01f * Time.deltaTime);
-            oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.01f, 0);
+            waterplane.transform.localScale = new Vector3(waterplane.transform.localScale.x + 0.01f * Time.deltaTime, waterplane.transform.localScale.y, waterplane.transform.localScale.z + 0.01f * Time.deltaTime);
+            waterplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.01f, 0);
         }
         else
         {
-            oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            waterplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }
 }

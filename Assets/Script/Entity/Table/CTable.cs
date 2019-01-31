@@ -124,7 +124,7 @@ public sealed class CTable : Table
         }
         for(int k = 1; k <= childnum; k++)
         {
-           //从1开始放
+           //从1开始拿
         }
     }
 

@@ -12,6 +12,7 @@ public class SaltPot : Tool {
     Quaternion potOriLocalRotation;
     Quaternion sprinkleRot;
     GameObject salt_particle;
+    public KeyCode kc = KeyCode.Space;
 
 
     bool isSprinkling;
@@ -83,7 +84,15 @@ public class SaltPot : Tool {
             targetRotation = potOriLocalRotation;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            isSprinkling = false;
+            isInPlace = false;
+            targetPosition = potOriLocalPosition;
+            targetRotation = potOriLocalRotation;
+        }
+
+        if (Input.GetKeyDown(kc))
         {
             
             if (isInPlace && isSprinkling)
@@ -93,7 +102,7 @@ public class SaltPot : Tool {
                    
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(kc))
         {
             if (isInPlace && isSprinkling)
             {
