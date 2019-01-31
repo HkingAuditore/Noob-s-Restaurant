@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     protected List<Container> wares;
     protected List<Utensil> utensils;
     protected bool isEnter;
+
+    public event Action<AttentionType, object> QuitTableEvent;
 
     public Timer HeatTimer { get; protected set; }
 
@@ -68,6 +71,8 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         GetCamera();
 
         SwitchCamera(false);
+
+        QuitTableEvent += GameManager.Instance.sequenceManager.StepTriggerHandler;
     }
 
     protected virtual void Update()
@@ -93,7 +98,8 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             OnQuitTable();
         }
 
-        SelectFoodSet();
+        if (isEnter)
+            SelectFoodSet();
     }
 
     protected void GetWareSet()
@@ -184,6 +190,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             selectFoodSetCoroutine = null;
         }
         isEnter = false;
+
+        if (currentChosenWare != null)
+            if (QuitTableEvent != null)
+                QuitTableEvent(AttentionType.QuitTable, null);
     }
 
     protected virtual void OnEnterTable()
@@ -194,6 +204,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         SetUtensilGo(true);
         SetPlayerCtrl(false);
         isEnter = true;
+        Debug.Log(Contents.Count);
     }
 
     protected virtual void SelectFoodSet()
@@ -286,11 +297,13 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         if (currentChosenWare != null)
         {
             int i;
+            Debug.Log("C" + wares.Capacity);
             for (i = 0; i < thisMaxPlaceNum; i++)
             {
+                Debug.Log("A" + wares.Count);
                 if ((i >= wares.Count && i < wares.Capacity))
                     wares.Add(null);
-
+                Debug.Log("B" + wares.Count);
                 if (wares[i] == null)
                 {
                     Debug.Log(i + "号位空缺");
@@ -362,7 +375,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     #region IContainable Implement
     public void AddToContents(Container ware)
     {
-        Contents.Add(ware);
+        //Contents.Add(ware);
         ware.transform.position = preelectionFoodSetTrans.position;
         ware.transform.SetParent(wareSetTrans);
         currentChosenWare = ware as Ware;

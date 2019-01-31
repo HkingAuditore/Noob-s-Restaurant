@@ -21,11 +21,11 @@ public sealed class CTable : Table
 
     protected override void Start()
     {
-        wares = new List<Container>(thisMaxPlaceNum);
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = -3.37f;
         thisRowFoodSetSpace = 1.89f;
+        wares = new List<Container>(thisMaxPlaceNum);
 
         base.Start();
     }
