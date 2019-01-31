@@ -19,6 +19,12 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
 
     public Vector3 DropFoodPos { get; set; }
 
+    public GameObject BIndicator;
+    public GameObject CIndicator;
+    public GameObject PIndicator;
+    public GameObject SFIndicator;
+    public GameObject SMIndicator;
+
     private List<Container> container = new List<Container>(1);
     public List<Container> Contents
     {
@@ -33,6 +39,40 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
         model = transform.Find("Model").gameObject;
         holdFoodMarkTrans = transform.Find("Model/metarig.001/HoldFoodMark").transform;
         matchTargetWeightMask = new MatchTargetWeightMask(new Vector3(1, 1, 1), 0);
+    }
+
+    private void Update()
+    {
+        GameObject curIndicator = null;
+        switch (GameManager.Instance.sequenceManager.CurStep.Utensil)
+        {
+            case "Selecttable":
+                curIndicator = SMIndicator;
+                break;
+            case "EggBowl":
+                curIndicator = PIndicator;
+                break;
+            case "ChoppingBLock":
+                curIndicator = CIndicator;
+                break;
+            case "Pan":
+                curIndicator = SFIndicator;
+                break;
+            case "Pot":
+                curIndicator = BIndicator;
+                break;
+            default:
+                break;
+        }
+
+        if (isCanCtrl)
+        {
+            curIndicator.SetActive(true);
+        }
+        else
+        {
+            curIndicator.SetActive(false);
+        }
     }
 
     void FixedUpdate()
