@@ -8,6 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     public SceneStateManager sceneStateManager;
     public UIManager uiManager;
     public ParticleSystemManager particleSystemManager;
+    public SequenceManager sequenceManager;
 
     protected override void Awake()
     {
@@ -16,6 +17,7 @@ public class GameManager : MonoSingleton<GameManager>
         sceneStateManager = new SceneStateManager();
         uiManager = new UIManager();
         particleSystemManager = new ParticleSystemManager();
+        sequenceManager = new SequenceManager();
     }
 
     private void Start()
@@ -23,6 +25,8 @@ public class GameManager : MonoSingleton<GameManager>
         sceneStateManager.Init();
         uiManager.Init();
         particleSystemManager.Init();
+
+        sequenceManager.LoadSequence("StiredEggAndTomato");
     }
 
     void Update()

@@ -1,0 +1,510 @@
+[
+  {
+    "Order": 0,
+    "Ingredients": [
+      "Egg"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Conveyance",
+    "Utensil": "Selecttable",
+    "Act2": "Pick",
+    "AttentionType": "QuitTable",
+    "Param": 0,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the eggs\n2-Press MIDDLE MOUSE BUTTON AGAIN to pick the eggs.\n3-Press the RIGHT MOUSE BUTTON to leave and go to the target.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 1,
+    "Ingredients": [
+      "None"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Conveyance",
+    "Utensil": "EggBowl",
+    "Act2": "Leave",
+    "AttentionType": "ClickButton",
+    "Param": 324,
+    "Desc": "1-Go to the target.\n2-Press the RIGHT MOUSH BUTTON to leave it.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 2,
+    "Ingredients": [
+      "Egg"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Selecttool",
+    "Utensil": "EggBowl",
+    "Act2": "Crack",
+    "AttentionType": "ClickButton",
+    "Param": 112,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the eggs\n2-Press 1 to use the empty bowl and chopsticks\n3-Press P to crack the eggs",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 3,
+    "Ingredients": [
+      "Salt"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Selecttool",
+    "Utensil": "EggBowl",
+    "Act2": "Sprinkle",
+    "AttentionType": "ClickButton",
+    "Param": 122,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON to select the salt\n2-Press Z to sprinkle some salt",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 4,
+    "Ingredients": [
+      "None"
+    ],
+    "MatterState": "None",
+    "Act1": "Whisk",
+    "Utensil": "EggBowl",
+    "Act2": "Whisk",
+    "AttentionType": "QuitTable",
+    "Param": 10,
+    "Desc": "1-Press SPACE to whisk the eggs\n2-Press  RIGHT MOUSE BUTTON to finish.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 5,
+    "Ingredients": [
+      "Garlic",
+      "Scallion",
+      "Tomato"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Conveyance",
+    "Utensil": "Selecttable",
+    "Act2": "Pick",
+    "AttentionType": "QuitTable",
+    "Param": 0,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the vegetables on the table\n2-Press MIDDLE MOUSE BUTTON AGAIN to pick it.\n3-Press the RIGHT MOUSE BUTTON to leave and go to the target.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 6,
+    "Ingredients": [
+      "Garlic",
+      "Scallion",
+      "Tomato"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Conveyance",
+    "Utensil": "ChoppingBLock",
+    "Act2": "Leave",
+    "AttentionType": "ClickButton",
+    "Param": 324,
+    "Desc": "1-Go to the target.\n2-Press the RIGHT MOUSH BUTTON to leave it.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 7,
+    "Ingredients": [
+      "Garlic"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Put",
+    "Utensil": "ChoppingBLock",
+    "Act2": "Slice",
+    "AttentionType": "ClickButton",
+    "Param": 102,
+    "Desc": "1-Press P to put the garlic on the choppingblock.\n2-Move  MOUSE to slice the garlic\n3-Press F to finish",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 8,
+    "Ingredients": [
+      "Scallion"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Put",
+    "Utensil": "ChoppingBLock",
+    "Act2": "Slice",
+    "AttentionType": "ClickButton",
+    "Param": 102,
+    "Desc": "1-Press P to put the scallionon the choppingblock. \n2-Move  MOUSE to slice the scallionon\n3-Press F to finish",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 9,
+    "Ingredients": [
+      "Tomato"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Put",
+    "Utensil": "ChoppingBLock",
+    "Act2": "Slice",
+    "AttentionType": "QuitTable",
+    "Param": 102,
+    "Desc": "1-Press P to put the tomato on the choppingblock.\n2-Move  MOUSE to slice the tomato\n3-Press F to finish",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 10,
+    "Ingredients": [
+      "BeatenEgg"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Conveyance",
+    "Utensil": "EggBowl",
+    "Act2": "Pick",
+    "AttentionType": "QuitTable",
+    "Param": 0,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the eggs\n2-Press MIDDLE MOUSE BUTTON AGAIN to pick it.\n3-Press the RIGHT MOUSE BUTTON to leave and go to the target.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 11,
+    "Ingredients": [
+      "BeatenEgg"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Conveyance",
+    "Utensil": "Pan",
+    "Act2": "Leave",
+    "AttentionType": "ClickButton",
+    "Param": 324,
+    "Desc": "1-Go to the target.\n2-Press the RIGHT MOUSH BUTTON to leave it.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 12,
+    "Ingredients": [
+      "Garlic",
+      "Scallion",
+      "Tomato"
+    ],
+    "MatterState": "Sliced",
+    "Act1": "Conveyance",
+    "Utensil": "ChoppingBLock",
+    "Act2": "Pick",
+    "AttentionType": "QuitTable",
+    "Param": 0,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the thing you sliced\n2-Press MIDDLE MOUSE BUTTON AGAIN to pick it.\n3-Press the RIGHT MOUSE BUTTON to leave and go to the target.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 13,
+    "Ingredients": [
+      "Garlic",
+      "Scallion",
+      "Tomato"
+    ],
+    "MatterState": "Sliced",
+    "Act1": "Conveyance",
+    "Utensil": "Pan",
+    "Act2": "Leave",
+    "AttentionType": "ClickButton",
+    "Param": 324,
+    "Desc": "1-Go to the target.\n2-Press the RIGHT MOUSH BUTTON to leave it.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 14,
+    "Ingredients": [
+      "Oil"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Pour",
+    "Utensil": "Pan",
+    "Act2": "Heat",
+    "AttentionType": "ClickButton",
+    "Param": 32,
+    "Desc": "1-Press F to turn on the gas stove\n2-Press 1 to select the oil\n3-Press SPACE to pour the oil",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 15,
+    "Ingredients": [
+      "BeatenEgg"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Pour",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 32,
+    "Desc": "1-Press 2 to select the egg\n2-Press SPACE to pour the egg",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 16,
+    "Ingredients": [
+      "None"
+    ],
+    "MatterState": "None",
+    "Act1": "None",
+    "Utensil": "Pan",
+    "Act2": "TakeOut",
+    "AttentionType": "ClickButton",
+    "Param": 116,
+    "Desc": "1-Move MOUSE to move the spatula\n2 -Press F to turn off  the gas stove\n3-Press T to finish.",
+    "Column9": " ",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 17,
+    "Ingredients": [
+      "Oil"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Pour",
+    "Utensil": "Pan",
+    "Act2": "Heat",
+    "AttentionType": "ClickButton",
+    "Param": 32,
+    "Desc": "1-Press F to turn on the gas stove\n2-Press 1 to select the oil\n3-Press SPACE to pour the oil",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 18,
+    "Ingredients": [
+      "Garlic"
+    ],
+    "MatterState": "Sliced",
+    "Act1": "Put",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 112,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the garlic\n2-Press P to put the garlic in",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 19,
+    "Ingredients": [
+      "Salt"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Sprinkle",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 32,
+    "Desc": "1-Press 2 to celect the salt\n2-Press SPACE to sprinkle some salt",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 20,
+    "Ingredients": [
+      "Tomato"
+    ],
+    "MatterState": "Sliced",
+    "Act1": "Put",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 112,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the tomatoes\n2-Press P to put the tomatoes in",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 21,
+    "Ingredients": [
+      "Water"
+    ],
+    "MatterState": "Origin",
+    "Act1": "Pour",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 32,
+    "Desc": "1-Press 3 to select the water\n2-Press SPACE to pour the water",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 22,
+    "Ingredients": [
+      "Friedeggs"
+    ],
+    "MatterState": "Stir-fried",
+    "Act1": "Put",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 112,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON  and ROLL it to select the Fried eggs\n2-Press P to put the Fried eggs in",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 23,
+    "Ingredients": [
+      "Scallion"
+    ],
+    "MatterState": "Sliced",
+    "Act1": "Put",
+    "Utensil": "Pan",
+    "Act2": "Stir-fry",
+    "AttentionType": "ClickButton",
+    "Param": 112,
+    "Desc": "1-Press MIDDLE MOUSE BUTTON and ROLL it to select the scallion\n2-Press P to put the scallion in",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 24,
+    "Ingredients": [
+      "None"
+    ],
+    "MatterState": "None",
+    "Act1": "None",
+    "Utensil": "Pan",
+    "Act2": "TakeOut",
+    "AttentionType": "ClickButton",
+    "Param": 116,
+    "Desc": "1 -Press F to turn off  the gas stove\n2-Press T to finish.",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 0.0,
+    "Ingredients": "",
+    "MatterState": "",
+    "Act1": "",
+    "Utensil": "",
+    "Act2": "",
+    "AttentionType": "",
+    "Param": 0.0,
+    "Desc": "",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 0.0,
+    "Ingredients": "",
+    "MatterState": "",
+    "Act1": "",
+    "Utensil": "",
+    "Act2": "",
+    "AttentionType": "",
+    "Param": 0.0,
+    "Desc": "",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 0.0,
+    "Ingredients": "",
+    "MatterState": "",
+    "Act1": "",
+    "Utensil": "",
+    "Act2": "",
+    "AttentionType": "",
+    "Param": 0.0,
+    "Desc": "//Conveyance的开始标识是玩家处于走路模式。其余的开始标识都是玩家按下第一个操作按键",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 0.0,
+    "Ingredients": "",
+    "MatterState": "",
+    "Act1": "",
+    "Utensil": "",
+    "Act2": "",
+    "AttentionType": "",
+    "Param": 0.0,
+    "Desc": "//指引文本自上一个操作的计时结束后开始显示，若计时为0，则在ACT2结束标识后开始显示。",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  },
+  {
+    "Order": 0.0,
+    "Ingredients": "",
+    "MatterState": "",
+    "Act1": "",
+    "Utensil": "",
+    "Act2": "",
+    "AttentionType": "",
+    "Param": 0.0,
+    "Desc": "//当玩家触发ACT1的进入标识，视为玩家开始进行这一动作。若ACT1为null，则当玩家触发上一动作的ACT2的结束标识即算玩家开始这一动作。当玩家触发ACT2的结束标识，视为玩家 结束这一动作；若ACT2为null，则直到玩家触发下一动作的ACT1的进入标识才算玩家结束这一动作。",
+    "Column9": "",
+    "Column10": "",
+    "Column11": "",
+    "Column12": ""
+  }
+]
