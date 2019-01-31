@@ -7,11 +7,16 @@ public sealed class CTable : Table
     [SerializeField]
     GameObject cCamera;
     ChoppingBlock choppingBlock;
+    GameObject[] sliced = new  GameObject[1000] ;
+    Transform choppingBlockTR;
+    Transform bowl;
 
     protected override void Awake()
     {
         base.Awake();
         choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
+        choppingBlockTR = transform.Find("UtensilSet").Find("Choppingblock");
+        bowl = transform.Find("UtensilSet").Find("Bowl");
     }
 
     protected override void Start()
@@ -31,6 +36,13 @@ public sealed class CTable : Table
 
         if (!isEnter)
             return;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("find begin");
+            GetSliced();
+            Debug.Log("find done");
+        }
 
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
@@ -98,6 +110,21 @@ public sealed class CTable : Table
                 choppingBlock.BeginCtrl();
             else
                 choppingBlock.StopCtrl();
+        }
+    }
+
+    private void GetSliced()
+    {
+        int childnum = 0;
+        foreach(Transform slicedmaterials in choppingBlockTR)
+        {
+          //  Debug.Log(slicedmaterials.gameObject.name);
+            sliced[childnum] = slicedmaterials.gameObject;
+            Debug.Log(sliced[childnum].name);
+        }
+        for(int k = 1; k <= childnum; k++)
+        {
+           //从1开始放
         }
     }
 

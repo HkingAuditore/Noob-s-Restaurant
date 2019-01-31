@@ -120,10 +120,14 @@ public sealed class OilPot : Tool {
             if (isInPlace && isPouring)
             {
                 //oilplane.transform.position = new Vector3(oilplane.transform.position.x, oilplane.transform.position.y+(Time.deltaTime), oilplane.transform.position.z);
-                if (oilplane.transform.localScale.x < 1.1f)
+                if (oilplane.transform.localScale.x < 0.9f)
                 {
-                    oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.01f, 0);
+                    
                     isoilplacerising = true;
+                }
+                else
+                {
+                    isoilplacerising = false;
                 }
                 
                 targetRotation = pourAnchorTrans.localRotation * pourRot;
@@ -158,9 +162,14 @@ public sealed class OilPot : Tool {
 
     private void FixedUpdate()
     {
-        if (isoilplacerising)
+        if (isoilplacerising && oilplane.transform.localScale.x < 0.9f)
         {
             oilplane.transform.localScale = new Vector3(oilplane.transform.localScale.x+0.01f*Time.deltaTime, oilplane.transform.localScale.y, oilplane.transform.localScale.z + 0.01f * Time.deltaTime);
+            oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.01f, 0);
+        }
+        else
+        {
+            oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
     }
 }
