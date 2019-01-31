@@ -24,6 +24,8 @@ public class Ingredient : MonoBehaviour
     public GameObject solidPrefab;
     public GameObject liquidPrefab;
     public GameObject gasPrefab;
+    public Material heatedMaterial;
+    public float targetTime;
 
 
     protected virtual void Start()
@@ -33,9 +35,22 @@ public class Ingredient : MonoBehaviour
         prefabs[(int)MatterState.Gas] = gasPrefab;
     }
 
+    private void Update()
+    {
+        //HeatedMaterial();
+    }
+
+    void HeatedMaterial()
+    {
+        if (HeatTime > targetTime)
+        {
+            this.GetComponent<Renderer>().material = heatedMaterial;
+        }
+    }
+
     public void UpdateHeatTime(float deltaTime)
     {
-        HeatTime += deltaTime;
+        HeatTime += Time.deltaTime;   
         Debug.Log(deltaTime);
     }
 }
