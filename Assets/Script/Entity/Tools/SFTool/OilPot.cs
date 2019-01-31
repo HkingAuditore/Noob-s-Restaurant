@@ -14,17 +14,23 @@ public sealed class OilPot : Tool {
     Quaternion pourRot;
     Transform pourAnchorTrans;
     Animator pourOilAnimator;
+    GameObject oilplane;
+    GameObject oilpouringanimation;
 
     bool isPouring;
+    bool isoilplacerising;
     bool isInPlace;
+
     float moveSpeed;
 
     protected override void Awake()
     {
+        oilplane = this.transform.Find("OilPlane").gameObject;
         potTrans = this.transform.Find("Pot");
         pourAnchorTrans = this.transform.Find("PourAnchor");
         potRb = potTrans.GetComponent<Rigidbody>();
         pourOilAnimator = potTrans.Find("PourOil").GetComponent<Animator>();
+        oilpouringanimation = potTrans.Find("PourOil").gameObject;
     }
 
     protected override void Start()
@@ -113,6 +119,13 @@ public sealed class OilPot : Tool {
         {
             if (isInPlace && isPouring)
             {
+                //oilplane.transform.position = new Vector3(oilplane.transform.position.x, oilplane.transform.position.y+(Time.deltaTime), oilplane.transform.position.z);
+                if (oilplane.transform.localScale.x < 1.1f)
+                {
+                    oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0.01f, 0);
+                    isoilplacerising = true;
+                }
+                
                 targetRotation = pourAnchorTrans.localRotation * pourRot;
                 pourOilAnimator.gameObject.SetActive(true);
                 pourOilAnimator.SetBool("isPouring", true);
@@ -122,6 +135,8 @@ public sealed class OilPot : Tool {
         {
             if (isInPlace && isPouring)
             {
+                oilplane.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                isoilplacerising = false;
                 targetRotation = pourAnchorTrans.localRotation;
                 pourOilAnimator.gameObject.SetActive(false);
                 pourOilAnimator.SetBool("isPouring", false);
@@ -141,4 +156,11 @@ public sealed class OilPot : Tool {
         isInPlace = true;
     }
 
+    private void FixedUpdate()
+    {
+        if (isoilplacerising)
+        {
+            oilplane.transform.localScale = new Vector3(oilplane.transform.localScale.x+0.01f*Time.deltaTime, oilplane.transform.localScale.y, oilplane.transform.localScale.z + 0.01f * Time.deltaTime);
+        }
+    }
 }
