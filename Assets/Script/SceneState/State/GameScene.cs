@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScene : IState {
+public class GameScene : IState
+{
 
     public string GetStateName()
     {
@@ -26,6 +27,8 @@ public class GameScene : IState {
         Debug.Log("Scene:GameSceneStart");
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+        
+        GameManager.Instance.sequenceManager.StartSequence("StiredEggAndTomato");
     }
 
     public void OnStateUpdate()

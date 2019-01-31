@@ -297,17 +297,14 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         if (currentChosenWare != null)
         {
             int i;
-            Debug.Log("C" + wares.Capacity);
             for (i = 0; i < thisMaxPlaceNum; i++)
             {
-                Debug.Log("A" + wares.Count);
                 if ((i >= wares.Count && i < wares.Capacity))
                     wares.Add(null);
-                Debug.Log("B" + wares.Count);
                 if (wares[i] == null)
                 {
-                    Debug.Log(i + "号位空缺");
-                    Debug.Log((i * thisRowFoodSetSpace));
+                    //Debug.Log(i + "号位空缺");
+                    //Debug.Log((i * thisRowFoodSetSpace));
 
                     if (i >= thisRowMaxPlaceNum)
                     {
