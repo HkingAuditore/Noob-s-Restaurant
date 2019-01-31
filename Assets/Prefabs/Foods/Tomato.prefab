@@ -235,6 +235,10 @@ MonoBehaviour:
   solidPrefab: {fileID: 0}
   liquidPrefab: {fileID: 0}
   gasPrefab: {fileID: 0}
+  heatedMaterial: {fileID: 2100000, guid: 6dccacadda74e5b48b27f3646ee68e7c, type: 2}
+  targetTime: 2
+  leafHeatedMat: {fileID: 2100000, guid: 5e261a03aea290343a35ba6c638851dc, type: 2}
+  ballHeatedMat: {fileID: 2100000, guid: 6dccacadda74e5b48b27f3646ee68e7c, type: 2}
 --- !u!114 &114214262254312772
 MonoBehaviour:
   m_ObjectHideFlags: 1
