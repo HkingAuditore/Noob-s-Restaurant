@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,10 @@ public class SequenceManager
     public AttentionType Attention { get; private set; }
     public object AttentionParam { get; private set; }
     public TableName TargetTable { get; private set; }
+    public bool IsCurSeqOver { get; private set; }
     int step = -1;
+
+    public event Action StepChangeEvent;
 
     public void LoadSequence(string sequenceName)
     {
@@ -33,8 +37,8 @@ public class SequenceManager
             Debug.LogError("Try to Start an Unload Sequence");
             return;
         }
-
         CurSequence = sequenceName;
+        Debug.Log(sequenceDict[CurSequence].Count);
 
         BeginStep(++step);
     }
@@ -85,6 +89,8 @@ public class SequenceManager
             default:
                 break;
         }
+        if (StepChangeEvent != null)
+            StepChangeEvent();
     }
 
     public void StepTriggerHandler(AttentionType attention, object param)
@@ -111,7 +117,7 @@ public class SequenceManager
             if (isMatch)
             {
                 Debug.Log("Step " + step + " Over");
-                if (step < sequenceDict[CurSequence].Count - 1)
+                if (step < 25 - 1)//sequenceDict[CurSequence].Count
                     BeginStep(++step);
                 else
                     OverSequence();
@@ -121,6 +127,6 @@ public class SequenceManager
 
     private void OverSequence()
     {
-
+        IsCurSeqOver = true;
     }
 }

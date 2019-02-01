@@ -231,7 +231,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         while (wares[wareSetIndex] == null)
             wareSetIndex++;
 
-        cBowlGo = wares[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
+        Transform t = wares[wareSetIndex].transform.Find("BowlModel/球体");
+        if (t == null)
+            t = wares[wareSetIndex].transform.Find("DishModel/球体");
+        cBowlGo = t.gameObject;
 
         while (true)
         {
@@ -274,7 +277,10 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
             //设置高亮    
             cBowlGo.GetComponent<Renderer>().materials = defaultMs;
-            cBowlGo = wares[wareSetIndex].transform.Find("BowlModel/球体").gameObject;
+            t = wares[wareSetIndex].transform.Find("BowlModel/球体");
+            if (t == null)
+                t = wares[wareSetIndex].transform.Find("DishModel/球体");
+            cBowlGo = t.gameObject;
             cBowlGo.GetComponent<Renderer>().materials = outLineMs;
 
             if (Input.GetMouseButtonDown(2))

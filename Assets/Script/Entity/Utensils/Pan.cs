@@ -20,7 +20,7 @@ class Pan : Utensil
 
     protected override void Start()
     {
-        SetRigidbody();
+        //SetRigidbody();
     }
 
     public override void OnBeginCtrl()
@@ -28,7 +28,7 @@ class Pan : Utensil
         base.OnBeginCtrl();
 
         SetCoverOriPos();
-        SetRigidbody();
+        //SetRigidbody();
     }
 
     public override void DoCtrl()
