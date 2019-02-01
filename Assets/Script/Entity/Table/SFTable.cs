@@ -89,21 +89,21 @@ public sealed class SFTable : Table
 
     private void PutIngredientsFromPanToCurChosenWare()
     {
-        //if (GameManager.Instance.sequenceManager.IsCurSeqOver)
+        if (GameManager.Instance.sequenceManager.IsCurSeqOver)
         {
             if (currentChosenWare is Dish)
             {
                 currentChosenWare.Contents.ForEach((ingredient) => Destroy(ingredient));
                 currentChosenWare.gameObject.SetActive(false);
                 GameObject dish = Instantiate(Resources.Load<GameObject>("Prefabs/StiredEggAndTomato"));
-                dish.transform.position = currentChosenWare.transform.position; 
+                dish.transform.position = currentChosenWare.transform.position;
 
                 endCamera.SetActive(true);
 
                 Invoke("PushEndPanel", 5);
             }
         }
-        //else
+        else
         if (currentChosenWare != null && pan.Contents.Count > 0)
         {
             Ingredient ingredient = pan.Contents[Random.Range(0, pan.Contents.Count)];
