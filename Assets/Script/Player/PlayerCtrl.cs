@@ -66,14 +66,15 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
                 break;
         }
 
-        if (isCanCtrl)
-        {
-            curIndicator.SetActive(true);
-        }
-        else
-        {
-            curIndicator.SetActive(false);
-        }
+        if (curIndicator != null)
+            if (isCanCtrl)
+            {
+                curIndicator.SetActive(true);
+            }
+            else
+            {
+                curIndicator.SetActive(false);
+            }
     }
 
     void FixedUpdate()

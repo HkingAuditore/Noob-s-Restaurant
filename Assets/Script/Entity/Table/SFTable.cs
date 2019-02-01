@@ -40,7 +40,7 @@ public sealed class SFTable : Table
         if (Input.GetKeyDown(KeyCode.P))
             PutIngredientsFromCurChosenWareToPan();
 
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O))
             PutIngredientsFromPanToCurChosenWare();
     }
 
@@ -71,12 +71,24 @@ public sealed class SFTable : Table
             if (currentChosenWare.transform.Find("ContainedEgg") != null)
             {
                 currentChosenWare.transform.Find("ContainedEgg").position = pan.DropFoodPos - Vector3.up * 0.2f;
+                currentChosenWare.transform.Find("ContainedEgg").SetParent(pan.transform);
             }
         }
     }
 
     private void PutIngredientsFromPanToCurChosenWare()
     {
+        if (GameManager.Instance.sequenceManager.IsCurSeqOver)
+        {
+            if (currentChosenWare is Dish)
+            {
+                currentChosenWare.Contents.ForEach((ingredient) => Destroy(ingredient));
+                currentChosenWare.gameObject.SetActive(false);
+                GameObject dish = Instantiate(Resources.Load<GameObject>("Prefabs/StiredEggAndTomato"));
+                dish.transform.position = currentChosenWare.transform.position;
+            }
+        }
+        else
         if (currentChosenWare != null && pan.Contents.Count > 0)
         {
             Ingredient ingredient = pan.Contents[Random.Range(0, pan.Contents.Count)];
