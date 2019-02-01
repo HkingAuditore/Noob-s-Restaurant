@@ -16,6 +16,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
 
     public event Action<AttentionType, object> QuitTableEvent;
 
+    public TableName Name { get; protected set; }
     public Timer HeatTimer { get; protected set; }
 
     //食物选择相关
@@ -167,11 +168,13 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         {
             playerCtrl.Show();
             playerCtrl.isCanCtrl = true;
+            playerCtrl.AtTable = TableName.None;
         }
         else
         {
             playerCtrl.Hide();
             playerCtrl.isCanCtrl = false;
+            playerCtrl.AtTable = Name;
         }
     }
 
@@ -190,6 +193,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
             selectFoodSetCoroutine = null;
         }
         isEnter = false;
+        GameManager.Instance.uiManager.PopPanel();
 
         if (currentChosenWare != null)
             if (QuitTableEvent != null)
@@ -204,6 +208,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         SetUtensilGo(true);
         SetPlayerCtrl(false);
         isEnter = true;
+        GameManager.Instance.uiManager.PushPanel(new StepHintPanel());
         Debug.Log(Contents.Count);
     }
 

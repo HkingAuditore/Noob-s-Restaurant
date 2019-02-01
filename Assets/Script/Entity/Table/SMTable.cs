@@ -15,6 +15,7 @@ public sealed class SMTable : Table
         thisMaxPlaceNum = 10;
         thisColumnFoodSetSpace = 1.25f;
         thisRowFoodSetSpace = 1.2f;
+        Name = TableName.SM;
     }
 
     protected override void Start()

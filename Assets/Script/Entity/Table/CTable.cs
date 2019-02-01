@@ -17,6 +17,7 @@ public sealed class CTable : Table
         choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
         choppingBlockTR = transform.Find("UtensilSet").Find("Choppingblock");
         bowl = transform.Find("UtensilSet").Find("Bowl");
+        Name = TableName.C;
     }
 
     protected override void Start()

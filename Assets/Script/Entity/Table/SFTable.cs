@@ -16,6 +16,7 @@ public sealed class SFTable : Table
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = 4.37f;
         thisRowFoodSetSpace = -1.4f;
+        Name = TableName.SF;
     }
 
     protected override void Start()

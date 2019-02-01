@@ -24,6 +24,7 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
     public GameObject PIndicator;
     public GameObject SFIndicator;
     public GameObject SMIndicator;
+    public TableName AtTable;
 
     private List<Container> container = new List<Container>(1);
     public List<Container> Contents

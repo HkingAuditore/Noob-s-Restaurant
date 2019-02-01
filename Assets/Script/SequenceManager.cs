@@ -17,6 +17,7 @@ public class SequenceManager
     public SequenceData CurStep { get; private set; }
     public AttentionType Attention { get; private set; }
     public object AttentionParam { get; private set; }
+    public TableName TargetTable { get; private set; }
     int step = -1;
 
     public void LoadSequence(string sequenceName)
@@ -62,6 +63,28 @@ public class SequenceManager
         }
 
         Debug.Log("Step " + step + " Begin:\n" + CurStep.Desc);
+
+        //Set TargetTable
+        switch (CurStep.Utensil)
+        {
+            case "Selecttable":
+                TargetTable = TableName.SM;
+                break;
+            case "EggBowl":
+                TargetTable = TableName.P;
+                break;
+            case "ChoppingBLock":
+                TargetTable = TableName.C;
+                break;
+            case "Pan":
+                TargetTable = TableName.SF;
+                break;
+            case "Pot":
+                TargetTable = TableName.B;
+                break;
+            default:
+                break;
+        }
     }
 
     public void StepTriggerHandler(AttentionType attention, object param)
