@@ -20,14 +20,14 @@ public sealed class PTable : Table
 
     protected override void Start()
     {
-        base.Start();
-
+        Name = TableName.P;
         thisRowMaxPlaceNum = 1;
         thisMaxPlaceNum = 2;
         thisColumnFoodSetSpace = -4.28f;
         thisRowFoodSetSpace = 0f;
         wares = new List<Container>(thisMaxPlaceNum);
         crackGo.SetActive(false);
+        base.Start();
     }
 
     protected override void Update()

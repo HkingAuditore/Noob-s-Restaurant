@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Const{
+public class Const
+{
 
 
 }
@@ -18,7 +19,7 @@ public enum SceneStateName
 
 public enum FoodName
 {
-    Tomato=0,
+    Tomato = 0,
     Garlic,
     Scallion,
     Egg
@@ -38,4 +39,14 @@ public enum EggState
     WithShell,
     NoStir,
     Stirred
+}
+
+public enum TableName
+{
+    None,
+    B,
+    C,
+    P,
+    SF,
+    SM
 }

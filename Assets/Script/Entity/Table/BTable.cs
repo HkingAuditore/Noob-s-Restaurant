@@ -14,6 +14,7 @@ public sealed class BTable : Table
     {
         base.Awake();
 
+        Name = TableName.B;
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = 4.37f;
