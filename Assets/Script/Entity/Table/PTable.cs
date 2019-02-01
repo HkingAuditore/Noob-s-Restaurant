@@ -45,7 +45,7 @@ public sealed class PTable : Table
 
     private void PutEggToEggBowl()
     {
-        if (crackGo.activeSelf&& crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+        if (crackGo.activeSelf && crackAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             crackGo.SetActive(false);
             crackAnimator.SetBool("isCrack", false);
@@ -53,13 +53,13 @@ public sealed class PTable : Table
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (currentChosenWare != null && currentChosenWare.Contents.Count > 0 )
-            {          
-                if (crackAnimator.GetBool("isCrack") == false 
+            if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
+            {
+                if (crackAnimator.GetBool("isCrack") == false
                     && currentChosenWare.Contents[0].FoodName == FoodName.Egg
-                    &&eggBowl.IsBeatingEgg
-                    &&eggBowl.IsInPlace)
-                {                    
+                    && eggBowl.IsBeatingEgg
+                    && eggBowl.IsInPlace)
+                {
                     crackGo.SetActive(true);
                     crackAnimator.SetBool("isCrack", true);
                     Ingredient chosenEgg = currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)];
@@ -80,6 +80,7 @@ public sealed class PTable : Table
                 currentChosenWare.Contents.AddRange(eggBowl.Contents);
                 GameObject containedEgg = eggBowl.transform.Find("Bowl/ContainedEgg").gameObject;
                 GameObject wareContainedEgg = GameObject.Instantiate(containedEgg, currentChosenWare.transform);
+                wareContainedEgg.name = "ContainedEgg";
                 foreach (Ingredient temp in eggBowl.Contents)
                 {
                     temp.gameObject.SetActive(false);

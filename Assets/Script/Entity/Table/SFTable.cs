@@ -67,6 +67,11 @@ public sealed class SFTable : Table
         if (currentChosenWare != null)
         {
             currentChosenWare.TakeOutAllTo(pan);
+
+            if (currentChosenWare.transform.Find("ContainedEgg") != null)
+            {
+                currentChosenWare.transform.Find("ContainedEgg").position = pan.DropFoodPos - Vector3.up * 0.2f;
+            }
         }
     }
 
