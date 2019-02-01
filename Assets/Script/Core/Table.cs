@@ -195,9 +195,9 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
         isEnter = false;
         GameManager.Instance.uiManager.PopPanel();
 
-        if (currentChosenWare != null)
-            if (QuitTableEvent != null)
-                QuitTableEvent(AttentionType.QuitTable, null);
+        //if (currentChosenWare != null)
+        if (QuitTableEvent != null)
+            QuitTableEvent(AttentionType.QuitTable, null);
     }
 
     protected virtual void OnEnterTable()
