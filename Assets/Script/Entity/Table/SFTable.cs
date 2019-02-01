@@ -27,7 +27,7 @@ public sealed class SFTable : Table
         base.Start();
 
         HeatTimer = new Timer(new float[] { 30, 60, 90 }, false);
-        HeatTimer.onStop += OnHeatStop;
+        HeatTimer.onUpdate += OnHeatUpdate;
     }
 
     protected override void Update()
@@ -59,7 +59,7 @@ public sealed class SFTable : Table
 
     private void OnDestroy()
     {
-        HeatTimer.onStop -= OnHeatStop;
+        HeatTimer.onUpdate -= OnHeatUpdate;
     }
 
     private void PutIngredientsFromCurChosenWareToPan()
@@ -80,10 +80,14 @@ public sealed class SFTable : Table
         }
     }
 
-    private void OnHeatStop(float onceTime, float sumTime)
+    private void OnHeatUpdate(float deltaTime)
     {
-        pan.Contents.ForEach((Ingredient) => Ingredient.UpdateHeatTime(onceTime));
+        pan.Contents.ForEach((ingredient) => ingredient.UpdateHeatTime(deltaTime));
     }
+    //private void OnHeatStop(float onceTime, float sumTime)
+    //{
+    //    pan.Contents.ForEach((Ingredient) => Ingredient.UpdateHeatTime(onceTime));
+    //}
 
     protected override void GetCamera()
     {

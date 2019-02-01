@@ -21,7 +21,7 @@ public class Tomato : Ingredient
     private void Update()
     {
         ChangeMat();
-       // Debug.Log(HeatTime);
+        //Debug.Log(HeatTime);
     }
 
 
@@ -29,8 +29,8 @@ public class Tomato : Ingredient
     {
         if (HeatTime > targetTime)
         {
-            transform.Find("叶").gameObject.GetComponent<MeshRenderer>().sharedMaterial = leafHeatedMat;
-            transform.Find("果").gameObject.GetComponent<MeshRenderer>().sharedMaterial = ballHeatedMat;
+            transform.Find("叶").gameObject.GetComponent<MeshRenderer>().material = leafHeatedMat;
+            transform.Find("果").gameObject.GetComponent<MeshRenderer>().material = ballHeatedMat;
         }
     }
 

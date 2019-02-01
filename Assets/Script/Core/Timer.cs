@@ -19,6 +19,7 @@ public class Timer
 
     public Action onStart;
     public Action<float, float> onStop;
+    public Action<float> onUpdate;
     public event Action<int> Tick;
 
     public Timer(float[] triggerTimes, bool stopOnTrigger)
@@ -55,6 +56,8 @@ public class Timer
         {
             sumTime += deltaTime;
             onceTime += deltaTime;
+            if (onUpdate != null)
+                onUpdate(deltaTime);
 
             if (sumTime > triggerTimes[Level])
             {
