@@ -50,7 +50,7 @@ public class Ingredient : MonoBehaviour
 
     public void UpdateHeatTime(float deltaTime)
     {
-        HeatTime += deltaTime;   
-        Debug.Log(deltaTime);
+        HeatTime += deltaTime;
+        //Debug.Log(deltaTime);
     }
 }
