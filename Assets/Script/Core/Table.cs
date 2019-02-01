@@ -379,6 +379,7 @@ public abstract class Table : MonoBehaviour, IContainable<Container>
     {
         //Contents.Add(ware);
         ware.transform.position = preelectionFoodSetTrans.position;
+        ware.transform.rotation = Quaternion.identity;
         ware.transform.SetParent(wareSetTrans);
         currentChosenWare = ware as Ware;
     }
