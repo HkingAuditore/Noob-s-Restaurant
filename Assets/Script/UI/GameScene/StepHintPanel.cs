@@ -12,7 +12,7 @@ public class StepHintPanel : IPanel
 
     public string GetPanelName()
     {
-        return "SFTableHintPanel";
+        return "StepHintPanel";
     }
 
     public void OnEnter()
@@ -28,7 +28,8 @@ public class StepHintPanel : IPanel
         else
             txtHint.text = "You may be at a wrong table";
 
-        panel.SetActive(true);
+        if (!GameManager.Instance.sequenceManager.IsCurSeqOver)
+            panel.SetActive(true);
     }
 
     public void OnExit()
@@ -53,5 +54,8 @@ public class StepHintPanel : IPanel
             txtHint.text = GameManager.Instance.sequenceManager.CurStep.Desc;
         else
             txtHint.text = "You may be at a wrong table";
+
+        if (GameManager.Instance.sequenceManager.IsCurSeqOver)
+            panel.SetActive(false);
     }
 }
