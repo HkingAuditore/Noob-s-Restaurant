@@ -128,5 +128,8 @@ public class SequenceManager
     private void OverSequence()
     {
         IsCurSeqOver = true;
+
+        if (StepChangeEvent != null)
+            StepChangeEvent();
     }
 }

@@ -6,6 +6,8 @@ public sealed class SFTable : Table
 {
     [SerializeField]
     GameObject sfCamera;
+    [SerializeField]
+    GameObject endCamera;
     Pan pan;
 
     protected override void Awake()
@@ -42,6 +44,9 @@ public sealed class SFTable : Table
 
         if (Input.GetKeyDown(KeyCode.O))
             PutIngredientsFromPanToCurChosenWare();
+
+        if (endCamera.activeInHierarchy)
+            endCamera.transform.localEulerAngles = new Vector3(endCamera.transform.localEulerAngles.x, endCamera.transform.localEulerAngles.y, endCamera.transform.localEulerAngles.z + 2f);
     }
 
     private void OnGUI()
@@ -76,19 +81,29 @@ public sealed class SFTable : Table
         }
     }
 
+    public void PushEndPanel()
+    {
+        GameManager.Instance.uiManager.PushPanel(new EndPanel());
+        Cursor.visible = true;
+    }
+
     private void PutIngredientsFromPanToCurChosenWare()
     {
-        if (GameManager.Instance.sequenceManager.IsCurSeqOver)
+        //if (GameManager.Instance.sequenceManager.IsCurSeqOver)
         {
             if (currentChosenWare is Dish)
             {
                 currentChosenWare.Contents.ForEach((ingredient) => Destroy(ingredient));
                 currentChosenWare.gameObject.SetActive(false);
                 GameObject dish = Instantiate(Resources.Load<GameObject>("Prefabs/StiredEggAndTomato"));
-                dish.transform.position = currentChosenWare.transform.position;
+                dish.transform.position = currentChosenWare.transform.position; 
+
+                endCamera.SetActive(true);
+
+                Invoke("PushEndPanel", 5);
             }
         }
-        else
+        //else
         if (currentChosenWare != null && pan.Contents.Count > 0)
         {
             Ingredient ingredient = pan.Contents[Random.Range(0, pan.Contents.Count)];
