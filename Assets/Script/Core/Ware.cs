@@ -39,7 +39,12 @@ public abstract class Ware : Container, IUsable
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("triggerExit");
-        if (other.transform.parent.GetComponent<Ingredient>() != null)
+
+        if (other.GetComponent<Ingredient>() != null)
+        {
+            RemoveFoodFromFoodsList(other.transform);
+        }
+        else if (other.transform.parent.GetComponent<Ingredient>() != null)
         {
             RemoveFoodFromFoodsList(other.transform.parent);
         }
