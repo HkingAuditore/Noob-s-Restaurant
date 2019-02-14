@@ -38,10 +38,10 @@ public abstract class Ware : Container, IUsable
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Ingredient>() != null)
+        Debug.Log("triggerExit");
+        if (other.transform.parent.GetComponent<Ingredient>() != null)
         {
-            Debug.Log("triggerExit");
-            RemoveFoodFromFoodsList(other);
+            RemoveFoodFromFoodsList(other.transform.parent);
         }
     }
 
@@ -62,13 +62,13 @@ public abstract class Ware : Container, IUsable
         }
     }
 
-    void RemoveFoodFromFoodsList(Collider other)
+    void RemoveFoodFromFoodsList(Transform food)
     {
-        Ingredient ingredient = other.GetComponent<Ingredient>();
+        Ingredient ingredient = food.GetComponent<Ingredient>();
         if (Contents.Contains(ingredient))
         {
             Contents.Remove(ingredient);
-            other.transform.SetParent(FallingFoodsTrans);
+            food.SetParent(FallingFoodsTrans);
         }
     }
 
