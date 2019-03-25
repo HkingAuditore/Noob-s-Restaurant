@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.PostProcessing;
+using UnityEngine.Rendering.PostProcessing;
 using UnityStandardAssets.CinematicEffects;
 
 public class OneKeyOption : Editor
@@ -48,12 +48,10 @@ public class OneKeyOption : Editor
     private static void EnablePostProcessing()
     {
         GameObject camera = GameObject.Find("Camera/Main Camera");
-        //PostProcessingBehaviour pp = camera.GetComponent<PostProcessingBehaviour>();
+        PostProcessVolume pp = camera.GetComponent<PostProcessVolume>();
         AntiAliasing aa = camera.GetComponent<AntiAliasing>();
-        MotionBlur mb = camera.GetComponent<MotionBlur>();
-        //pp.enabled = true;
+        pp.enabled = true;
         aa.enabled = true;
-        mb.enabled = true;
 
         Debug.Log("Post Processings were enabled");
     }
@@ -62,12 +60,10 @@ public class OneKeyOption : Editor
     private static void DisablePostProcessing()
     {
         GameObject camera = GameObject.Find("Camera/Main Camera");
-        PostProcessingBehaviour pp = camera.GetComponent<PostProcessingBehaviour>();
+        PostProcessVolume pp = camera.GetComponent<PostProcessVolume>();
         AntiAliasing aa = camera.GetComponent<AntiAliasing>();
-        MotionBlur mb = camera.GetComponent<MotionBlur>();
         pp.enabled = false;
         aa.enabled = false;
-        mb.enabled = false;
 
         Debug.Log("Post Processings were disabled");
     }
