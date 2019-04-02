@@ -12,7 +12,7 @@ public class OriginalsDataScriptTable : ScriptableObject
     public MainType mainType;
     public OriginalType originalType;
     //特性标签
-    public Characteristic[] characteristic;
+    public List<Characteristic> characteristic = new List<Characteristic>();
     //酸度
     public float acidity_A;
     public float acidity_B;

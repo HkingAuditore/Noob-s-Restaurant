@@ -28,8 +28,8 @@ namespace Original
         //融合/入味
         public float fuse;
         //标签
-        public MainOriginalTag MainTag;
-        public ViceOriginalTag viceTag;
+        public List<MainOriginalTag> MainTag = new List<MainOriginalTag>();
+        public List<ViceOriginalTag> viceTag = new List<ViceOriginalTag>();
 
         internal void Init() { Init(data); }
 
