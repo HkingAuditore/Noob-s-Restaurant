@@ -10,7 +10,7 @@ using UnityEditor;
 namespace Original
 {
     public enum MainType { 主料, 配料 };
-    public enum OriginalType { Tomato = 0 };
+    public enum OriginalType { Tomato = 0 , Potato  = 1, Egg = 2, Beef = 3 };
     public enum Characteristic { 蔬菜, 水果, 肉类, 豆制品, 爽脆, 绵软, 油腻, 浓郁香味, 清甜, 粘稠, 营养, 鲜嫩 ,特殊香味, 麻辣 };
     public enum MainOriginalTag { 初态, 腌制过的, 丁状的, 块状的, 条状的, 打过的 }
     public enum ViceOriginalTag { 液态, 固态 }

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Original
 {
     [System.Serializable]
-    public class OriginalItemBaseClass : MonoBehaviour
+    public class OriginalItemBaseClass
     {
         [SerializeField]
         public OriginalsDataScriptTable data;
@@ -44,7 +44,7 @@ namespace Original
         internal void Init(OriginalsDataScriptTable data, int _ID)
         {
             iD = _ID;
-            if (data == null) this.data = data;
+            this.data = data;
         }
         
         /// <summary>

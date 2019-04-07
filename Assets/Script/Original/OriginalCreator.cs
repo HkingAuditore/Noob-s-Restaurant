@@ -23,6 +23,7 @@ namespace Original
             }
             OriginalItemBaseClass original = new OriginalItemBaseClass();
             original.Init(OriginalManager.Instance.Datas[type], _IDCreator.GetID());
+            original.data = OriginalManager.Instance.Datas[type];
             return original;
         }
 
@@ -39,7 +40,7 @@ namespace Original
         /// <returns></returns>
         public bool DeleteOriginal(OriginalItemBaseClass item)
         {
-            Destroy(item);
+            item = null;
             return true;
         }
     }

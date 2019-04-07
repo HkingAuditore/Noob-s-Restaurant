@@ -17,7 +17,9 @@ namespace Original
             for (int i = 0; i < 10; i++)
             {
                 var temp = Add(OriginalType.Tomato);
-                //Debug.Log(temp.ID);
+                Add(OriginalType.Potato);
+                Add(OriginalType.Egg);
+                Add(OriginalType.Beef);
             }
         }
 
@@ -53,6 +55,18 @@ namespace Original
         {
             OriginalCreator.Instance.DeleteOriginal(originalItem);
             return items.Remove(originalItem);
+        }
+
+        public bool TakeOut(OriginalItemBaseClass[] originalItems)
+        {
+            for (int i = 0; i < originalItems.Length; i++)
+            {
+                if (!items.Remove(originalItems[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
