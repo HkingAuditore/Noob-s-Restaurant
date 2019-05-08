@@ -8,8 +8,6 @@ namespace Original
     {
         Dictionary<OriginalType, OriginalsDataScriptTable> Datas;
 
-        OriginalIDCreator _IDCreator = new OriginalIDCreator();
-
         /// <summary>
         /// 新创建食材
         /// </summary>
@@ -22,7 +20,7 @@ namespace Original
                 return null;
             }
             OriginalItemBaseClass original = new OriginalItemBaseClass();
-            original.Init(OriginalManager.Instance.Datas[type], _IDCreator.GetID());
+            original.Init(OriginalManager.Instance.Datas[type], OriginalIDCreator.GetID());
             original.data = OriginalManager.Instance.Datas[type];
             return original;
         }
@@ -45,17 +43,17 @@ namespace Original
         }
     }
 
-    public class OriginalIDCreator
+    public static class OriginalIDCreator
     {
-        private int index = -1;
+        private static int index = -1;
 
-        public int GetID()
+        public static int GetID()
         {
             index++;
             return index;
         }
 
-        public void SetIndex(int maxID)
+        public static void SetIndex(int maxID)
         {
             index = maxID;
         }
