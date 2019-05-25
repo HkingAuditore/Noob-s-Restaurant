@@ -7,8 +7,6 @@ namespace WorkTask
 {
     public class BaseWorkflow : MonoBehaviour
     {
-        public Queue<WorkflowNode> NodeQueue = new Queue<WorkflowNode>();
-
         public WorkflowNode CurrentNode;
 
         public virtual void Init() { }

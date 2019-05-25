@@ -5,6 +5,8 @@ namespace WorkTask
 {
     public class ProcessWorkflowSystem : BaseWorkflow
     {
+        public Queue<WorkflowNode> NodeQueue = new Queue<WorkflowNode>();
+
         public override void Init()
         {
             CurrentNode = NodeQueue.Dequeue();
