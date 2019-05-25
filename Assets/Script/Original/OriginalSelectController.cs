@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,12 @@ namespace Original
 {
     public class OriginalSelectController : MonoBehaviour
     {
-        public delegate void SelectDoneDelegate(OriginalItemBaseClass[] items);
-        public event SelectDoneDelegate SelectDoneEvent;
+        public delegate void SelectDoneDelegate(OriginalItemBaseClass[] target);
+        public event SelectDoneDelegate SelectDoneEventHandler;
 
         private void Start()
         {
-            SelectDoneEvent += delegate { };
+            SelectDoneEventHandler += delegate { };
         }
 
         public OriginalLibrary library;
@@ -19,6 +20,8 @@ namespace Original
         public GameObject selectedItemPrefab;
         public Transform itemPanelContent;
         public Transform selectedItemPanelContent;
+
+        public bool IsSelectOneTypeOriginal = true;
 
         public List<OriginalSelectPanelItems> panelItems = new List<OriginalSelectPanelItems>();
         public List<OriginalSelectedPanelItems> selectedPanelItems = new List<OriginalSelectedPanelItems>();
@@ -42,6 +45,20 @@ namespace Original
 
         public void AddToSelected(OriginalType type)
         {
+            if (IsSelectOneTypeOriginal)
+            {
+                for(int i = 0;i< selectedTable.Length; i++)
+                {
+                    if (i == (int)type) continue;
+                    Debug.Log(i + "/" + selectedTable[i]);
+                    for (int j = selectedTable[i]; j > 0; j--)
+                    {
+                        Debug.Log("subcount");
+                        SubFromSelected((OriginalType)i);
+                    }
+                }
+            }
+
             selectedTable[(int)type]++;
 
             AddToSelectedPanel(type);
@@ -125,9 +142,10 @@ namespace Original
                     }
                 }
             }
+
             var temp = selectedItems.ToArray();
             library.TakeOut(temp);
-            SelectDoneEvent(temp);
+            SelectDoneEventHandler(temp);
             Quit();
         }
 

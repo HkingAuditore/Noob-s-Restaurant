@@ -33,6 +33,7 @@ namespace Original
         {
             Init();
             GetComponent<OriginalLibrary>().Test();//test
+
         }
 
         public void Init()
