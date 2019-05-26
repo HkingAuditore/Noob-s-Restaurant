@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace WorkTask
 {
+    /// <summary>
+    /// 线性流
+    /// </summary>
     public class ProcessWorkflowSystem : BaseWorkflow
     {
         public Queue<WorkflowNode> NodeQueue = new Queue<WorkflowNode>();

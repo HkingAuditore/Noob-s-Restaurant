@@ -20,12 +20,10 @@ public class SelectProcessMethodNode : WorkflowNode
 
     public override void Quit()
     {
-
         for (int i = 0; i < Toggles.Length; i++)
         {
-            if (Toggles[i].isOn) taskMgr.ProcessMethod = (ProcessMethodType)i;
+            if (Toggles[i].isOn) { taskMgr.ProcessMethod = (ProcessMethodType)i; }
         }
-
         Debug.Log("MethodProcess");
         this.gameObject.SetActive(false);
         SelectProcessMethodUICanvas.SetActive(false);

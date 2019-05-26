@@ -9,7 +9,6 @@ namespace WorkTask
 
     public class ProcessOriginalTaskMgr : MonoBehaviour
     {
-
         ProcessWorkflowSystem _workflowSystem = new ProcessWorkflowSystem();
         public List<WorkflowNode> NodeList = new List<WorkflowNode>();
         public OriginalItemBaseClass[] SelectOriginal;

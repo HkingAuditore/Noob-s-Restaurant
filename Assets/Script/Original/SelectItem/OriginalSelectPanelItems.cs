@@ -34,7 +34,7 @@ namespace Original
             numText.text = num.ToString();
             if (num == 0)
             {
-                controller.panelItems.Remove(this);
+                controller.PanelItemsList.Remove(this);
                 Destroy(this.gameObject);
             }
         }

@@ -15,29 +15,29 @@ namespace Original
             SelectDoneEventHandler += delegate { };
         }
 
-        public OriginalLibrary library;
-        public GameObject itemPrefab;
+        public OriginalLibrary Library;
+        public GameObject ItemPrefab;
         public GameObject selectedItemPrefab;
         public Transform itemPanelContent;
         public Transform selectedItemPanelContent;
 
         public bool IsSelectOneTypeOriginal = true;
 
-        public List<OriginalSelectPanelItems> panelItems = new List<OriginalSelectPanelItems>();
+        public List<OriginalSelectPanelItems> PanelItemsList = new List<OriginalSelectPanelItems>();
         public List<OriginalSelectedPanelItems> selectedPanelItems = new List<OriginalSelectedPanelItems>();
 
-        int[] selectedTable = new int[0];
+        int[] _selectedTable = new int[0];
 
         public void OpenSelectPanel()
         {
             this.gameObject.SetActive(true);
-            Debug.Log(library.items.Count);
-            for (int i = 0; i < library.items.Count; i++)
+            Debug.Log(Library.items.Count);
+            for (int i = 0; i < Library.items.Count; i++)
             {
                 //通过枚举类型建立选择表
-                var item = library.items[i];
-                if (selectedTable.Length < (int)item.data.originalType + 1)
-                    selectedTable = new int[(int)item.data.originalType + 1];
+                var item = Library.items[i];
+                if (_selectedTable.Length < (int)item.data.originalType + 1)
+                    _selectedTable = new int[(int)item.data.originalType + 1];
 
                 AddToItemPanel(item.data.originalType);
             }
@@ -47,11 +47,11 @@ namespace Original
         {
             if (IsSelectOneTypeOriginal)
             {
-                for(int i = 0;i< selectedTable.Length; i++)
+                for(int i = 0;i< _selectedTable.Length; i++)
                 {
                     if (i == (int)type) continue;
-                    Debug.Log(i + "/" + selectedTable[i]);
-                    for (int j = selectedTable[i]; j > 0; j--)
+                    Debug.Log(i + "/" + _selectedTable[i]);
+                    for (int j = _selectedTable[i]; j > 0; j--)
                     {
                         Debug.Log("subcount");
                         SubFromSelected((OriginalType)i);
@@ -59,18 +59,18 @@ namespace Original
                 }
             }
 
-            selectedTable[(int)type]++;
+            _selectedTable[(int)type]++;
 
             AddToSelectedPanel(type);
             
             //待选栏中对应项减少
-            var item = panelItems.Find(x => x.originalType == type);
+            var item = PanelItemsList.Find(x => x.originalType == type);
             item.AddToSelected();
         }
 
         public void SubFromSelected(OriginalType type)
         {
-            selectedTable[(int)type]--;
+            _selectedTable[(int)type]--;
 
             AddToItemPanel(type);
 
@@ -85,16 +85,16 @@ namespace Original
         /// <param name="type"></param>
         void AddToItemPanel(OriginalType type)
         {
-            var tempPanelItems = panelItems.Find(x => x.originalType == type);
+            var tempPanelItems = PanelItemsList.Find(x => x.originalType == type);
             if (tempPanelItems != null)
             {
                 tempPanelItems.Add();
             }
             else
             {
-                OriginalSelectPanelItems go = Instantiate(itemPrefab, itemPanelContent).GetComponent<OriginalSelectPanelItems>();
+                OriginalSelectPanelItems go = Instantiate(ItemPrefab, itemPanelContent).GetComponent<OriginalSelectPanelItems>();
                 go.Init(this, type);
-                panelItems.Add(go);
+                PanelItemsList.Add(go);
             }
         }
 
@@ -128,15 +128,15 @@ namespace Original
         public void SelectDone()
         {
             List<OriginalItemBaseClass> selectedItems = new List<OriginalItemBaseClass>();
-            for (int j = 0; j < selectedTable.Length; j++)
+            for (int j = 0; j < _selectedTable.Length; j++)
             {
-                if (selectedTable[j] == 0) continue;
-                for (int i = 0; i < library.items.Count; i++)
+                if (_selectedTable[j] == 0) continue;
+                for (int i = 0; i < Library.items.Count; i++)
                 {
-                    var item = library.items[i];
-                    if ((int)item.data.originalType == j && selectedTable[j] > 0)
+                    var item = Library.items[i];
+                    if ((int)item.data.originalType == j && _selectedTable[j] > 0)
                     {
-                        selectedTable[j]--;
+                        _selectedTable[j]--;
                         selectedItems.Add(item);
                         Debug.Log(item.data.originalType);
                     }
@@ -144,23 +144,23 @@ namespace Original
             }
 
             var temp = selectedItems.ToArray();
-            library.TakeOut(temp);
+            Library.TakeOut(temp);
             SelectDoneEventHandler(temp);
             Quit();
         }
 
         public void Quit()
         {
-            for (int i = panelItems.Count - 1; i >= 0; i--)
+            for (int i = PanelItemsList.Count - 1; i >= 0; i--)
             {
-                Destroy(panelItems[i].gameObject);
+                Destroy(PanelItemsList[i].gameObject);
             }
             for (int i = selectedPanelItems.Count - 1; i >= 0; i--)
             {
                 Destroy(selectedPanelItems[i].gameObject);
             }
-            selectedTable = new int[0];
-            panelItems.Clear();
+            _selectedTable = new int[0];
+            PanelItemsList.Clear();
             selectedPanelItems.Clear();
             this.gameObject.SetActive(false);
         }
