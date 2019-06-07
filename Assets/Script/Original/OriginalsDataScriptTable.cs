@@ -28,4 +28,5 @@ public class OriginalsDataScriptTable : ScriptableObject
     //Freshness鲜
     public float Freshness_A;
     public float Freshness_B;
+
 }
