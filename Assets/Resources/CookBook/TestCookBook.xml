@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<NodeCanvas type="NodeEditorFramework.Standard.CookBookCanvasType">
+	<EditorStates>
+		<EditorState selected="-489602" pan="286.8,-90" zoom="0.8" />
+	</EditorStates>
+	<Groups />
+	<Nodes>
+		<Node name="Root" ID="-373582" type="rootCookBookNode" pos="45,-14.6">
+			<Port ID="-373584" name="InPort" dynamic="False" />
+			<int name="tempID">0</int>
+			<Variable name="CookBookName" refID="774124179" />
+			<Variable name="Description" refID="1005258741" />
+		</Node>
+		<Node name="Assemble" ID="-373590" type="assembleCookBookNode" pos="-179.9,-6.6">
+			<Port ID="-373592" name="Input_1" dynamic="False" />
+			<Port ID="-373594" name="Input_2" dynamic="False" />
+			<Port ID="-373596" name="Output" dynamic="False" />
+			<int name="tempID">0</int>
+		</Node>
+		<Node name="Original" ID="-373586" type="originalCookBookNode" pos="-1021.9,-106">
+			<Port ID="-373588" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeOriginalType name="OriginalType">Tomato</NodeOriginalType>
+		</Node>
+		<Node name="Original" ID="-373598" type="originalCookBookNode" pos="-746.5,58.4">
+			<Port ID="-373600" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeOriginalType name="OriginalType">Potato</NodeOriginalType>
+		</Node>
+		<Node name="Process" ID="-489602" type="processCookBookNode" pos="-626.8,-90.00001">
+			<Port ID="-489604" name="InputLast" dynamic="False" />
+			<Port ID="-489606" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeProcessTag name="ProcessTag">切丁</NodeProcessTag>
+		</Node>
+	</Nodes>
+	<Connections>
+		<Connection port1ID="-373584" port2ID="-373596" />
+		<Connection port1ID="-373592" port2ID="-489606" />
+		<Connection port1ID="-373594" port2ID="-373600" />
+		<Connection port1ID="-373588" port2ID="-489604" />
+	</Connections>
+	<Objects>
+		<Object refID="774124179" type="System.String">
+			<string>我是菜谱</string>
+		</Object>
+		<Object refID="1005258741" type="System.String">
+			<string>这是一个菜谱</string>
+		</Object>
+	</Objects>
+</NodeCanvas>
