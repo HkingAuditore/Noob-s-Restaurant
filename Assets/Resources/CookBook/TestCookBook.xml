@@ -1,44 +1,64 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <NodeCanvas type="NodeEditorFramework.Standard.CookBookCanvasType">
 	<EditorStates>
-		<EditorState selected="-489602" pan="286.8,-90" zoom="0.8" />
+		<EditorState selected="" pan="381.8,-89" zoom="1" />
 	</EditorStates>
 	<Groups />
 	<Nodes>
-		<Node name="Root" ID="-373582" type="rootCookBookNode" pos="45,-14.6">
-			<Port ID="-373584" name="InPort" dynamic="False" />
+		<Node name="Original" ID="-16104" type="originalCookBookNode" pos="-1021.9,-106">
+			<Port ID="-16106" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeOriginalType name="OriginalType">Tomato</NodeOriginalType>
+		</Node>
+		<Node name="Original" ID="-16108" type="originalCookBookNode" pos="-746.5,58.4">
+			<Port ID="-16110" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeOriginalType name="OriginalType">Potato</NodeOriginalType>
+		</Node>
+		<Node name="Original" ID="-17360" type="originalCookBookNode" pos="-988.3,279.5">
+			<Port ID="-17362" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeOriginalType name="OriginalType">Beef</NodeOriginalType>
+		</Node>
+		<Node name="Process" ID="-17776" type="processCookBookNode" pos="-675.3,260.5">
+			<Port ID="-17778" name="InputLast" dynamic="False" />
+			<Port ID="-17780" name="OutputNext" dynamic="False" />
+			<int name="tempID">0</int>
+			<NodeProcessTag name="ProcessTag">切丁</NodeProcessTag>
+		</Node>
+		<Node name="Assemble" ID="-16096" type="assembleCookBookNode" pos="-317.9,21.4">
+			<Port ID="-16098" name="Input_1" dynamic="False" />
+			<Port ID="-16100" name="Input_2" dynamic="False" />
+			<Port ID="-16102" name="Output" dynamic="False" />
+			<int name="tempID">0</int>
+		</Node>
+		<Node name="Root" ID="-16092" type="rootCookBookNode" pos="120,176.4">
+			<Port ID="-16094" name="InPort" dynamic="False" />
 			<int name="tempID">0</int>
 			<Variable name="CookBookName" refID="774124179" />
 			<Variable name="Description" refID="1005258741" />
 		</Node>
-		<Node name="Assemble" ID="-373590" type="assembleCookBookNode" pos="-179.9,-6.6">
-			<Port ID="-373592" name="Input_1" dynamic="False" />
-			<Port ID="-373594" name="Input_2" dynamic="False" />
-			<Port ID="-373596" name="Output" dynamic="False" />
+		<Node name="Assemble" ID="-18742" type="assembleCookBookNode" pos="-69.29999,111.5">
+			<Port ID="-18744" name="Input_1" dynamic="False" />
+			<Port ID="-18746" name="Input_2" dynamic="False" />
+			<Port ID="-18748" name="Output" dynamic="False" />
 			<int name="tempID">0</int>
 		</Node>
-		<Node name="Original" ID="-373586" type="originalCookBookNode" pos="-1021.9,-106">
-			<Port ID="-373588" name="OutputNext" dynamic="False" />
-			<int name="tempID">0</int>
-			<NodeOriginalType name="OriginalType">Tomato</NodeOriginalType>
-		</Node>
-		<Node name="Original" ID="-373598" type="originalCookBookNode" pos="-746.5,58.4">
-			<Port ID="-373600" name="OutputNext" dynamic="False" />
-			<int name="tempID">0</int>
-			<NodeOriginalType name="OriginalType">Potato</NodeOriginalType>
-		</Node>
-		<Node name="Process" ID="-489602" type="processCookBookNode" pos="-626.8,-90.00001">
-			<Port ID="-489604" name="InputLast" dynamic="False" />
-			<Port ID="-489606" name="OutputNext" dynamic="False" />
+		<Node name="Process" ID="-16112" type="processCookBookNode" pos="-696.8,-98.00001">
+			<Port ID="-16114" name="InputLast" dynamic="False" />
+			<Port ID="-16116" name="OutputNext" dynamic="False" />
 			<int name="tempID">0</int>
 			<NodeProcessTag name="ProcessTag">切丁</NodeProcessTag>
 		</Node>
 	</Nodes>
 	<Connections>
-		<Connection port1ID="-373584" port2ID="-373596" />
-		<Connection port1ID="-373592" port2ID="-489606" />
-		<Connection port1ID="-373594" port2ID="-373600" />
-		<Connection port1ID="-373588" port2ID="-489604" />
+		<Connection port1ID="-16106" port2ID="-16114" />
+		<Connection port1ID="-16110" port2ID="-16100" />
+		<Connection port1ID="-17362" port2ID="-17778" />
+		<Connection port1ID="-17780" port2ID="-18746" />
+		<Connection port1ID="-16098" port2ID="-16116" />
+		<Connection port1ID="-16102" port2ID="-18744" />
+		<Connection port1ID="-16094" port2ID="-18748" />
 	</Connections>
 	<Objects>
 		<Object refID="774124179" type="System.String">

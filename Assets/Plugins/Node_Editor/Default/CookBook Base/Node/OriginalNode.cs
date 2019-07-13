@@ -22,8 +22,12 @@ namespace NodeEditorFramework.Standard
 
         public override void NodeGUI()
         {
+            GUILayout.BeginHorizontal();
+            GUILayout.BeginVertical();
             OutputNext.DisplayLayout();
             OriginalType = (NodeOriginalType)RTEditorGUI.EnumPopup(new GUIContent("Original Type", "The type of Original"), OriginalType);
+            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
         }
 
         public Node GetOutPortNode()

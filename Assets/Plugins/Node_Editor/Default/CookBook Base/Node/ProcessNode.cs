@@ -25,12 +25,16 @@ namespace NodeEditorFramework.Standard
 
         public override void NodeGUI()
         {
+            GUILayout.BeginHorizontal();
+            GUILayout.BeginVertical();
 
             InputLast.DisplayLayout();
 
             ProcessTag = (NodeProcessTag)RTEditorGUI.EnumPopup(new GUIContent("Process Type", "The type of Process"), ProcessTag);
             
             OutputNext.DisplayLayout();
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();
         }
 
         public Node GetInPortNode()
