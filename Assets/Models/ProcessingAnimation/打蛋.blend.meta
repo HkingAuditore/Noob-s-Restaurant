@@ -1,23 +1,65 @@
 fileFormatVersion: 2
 guid: f4426e6adafbbd849ab21221aa13baec
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: "\u7403\u4F53_000"
-    100004: "\u7403\u4F53_002"
-    400000: //RootNode
-    400002: "\u7403\u4F53_000"
-    400004: "\u7403\u4F53_002"
-    2100000: "\u6750\u8D28_008"
-    2300000: "\u7403\u4F53_000"
-    2300002: "\u7403\u4F53_002"
-    3300000: "\u7403\u4F53_000"
-    3300002: "\u7403\u4F53_002"
-    4300000: "\u7403\u4F53_000"
-    4300002: "\u7403\u4F53_002"
-    7400000: Default Take
-    9500000: //RootNode
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: "\u7403\u4F53_000"
+  - first:
+      1: 100004
+    second: "\u7403\u4F53_002"
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: "\u7403\u4F53_000"
+  - first:
+      4: 400004
+    second: "\u7403\u4F53_002"
+  - first:
+      21: 2100000
+    second: "\u6750\u8D28_008"
+  - first:
+      23: 2300000
+    second: "\u7403\u4F53_000"
+  - first:
+      23: 2300002
+    second: "\u7403\u4F53_002"
+  - first:
+      33: 3300000
+    second: "\u7403\u4F53_000"
+  - first:
+      33: 3300002
+    second: "\u7403\u4F53_002"
+  - first:
+      43: 4300000
+    second: "\u7403\u4F53_000"
+  - first:
+      43: 4300002
+    second: "\u7403\u4F53_002"
+  - first:
+      74: 7400000
+    second: Default Take
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      74: 1873683343205800058
+    second: "\u7403\u4F53.000|\u7403\u4F53.000Action"
+  - first:
+      74: 203969010984004570
+    second: "\u7403\u4F53.000|\u7403\u4F53.002Action"
+  - first:
+      74: 8177914762978990057
+    second: "\u7403\u4F53.002|\u7403\u4F53.000Action"
+  - first:
+      74: -9070539214406528480
+    second: "\u7403\u4F53.002|\u7403\u4F53.002Action"
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -52,6 +94,8 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -59,10 +103,13 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
@@ -74,10 +121,14 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -87,8 +138,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
