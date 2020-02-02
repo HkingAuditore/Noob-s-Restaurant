@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 315cc901cafd14c4887450a160c2ec3f
+timeCreated: 1455530095
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - postEffectShader: {fileID: 4800000, guid: 591bcfb596f3c0b45877be2dae7d5425, type: 3}
+  - volumeLightShader: {fileID: 4800000, guid: aface9889da643e4e9c581d463a53cd0, type: 3}
+  - _downScaleDepthShader: {fileID: 4800000, guid: 0d3008434efc14e968d55bd7784df9e2,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

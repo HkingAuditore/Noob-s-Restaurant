@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: VLights Default Light
+  m_Shader: {fileID: 4800000, guid: 6aac0894b3c1e44529fc89af12517e0f, type: 3}
+  m_ShaderKeywords:
+  - _VLIGHTSETTINGS_SHADOWEDCURVE
+  - _VLIGHTSETTINGS_CURVE_SHADOW
+  - VLIGHTSETTING_CURVE
+  - SHADOW_ENABLED
+  - VLIGHT_USE_CURVE
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _ShadowTexture
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Dither
+        second: 0
+      data:
+        first:
+          name: _Shadow
+        second: 0
+      data:
+        first:
+          name: _Curve
+        second: 0
+    m_Colors: {}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

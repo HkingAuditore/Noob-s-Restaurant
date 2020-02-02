@@ -1,0 +1,36 @@
+fileFormatVersion: 2
+guid: b1e5529f2795e6344b38c49382e29006
+labels:
+- light
+- volumetric
+- shadow
+- realtime
+- effect
+- fx
+- volume
+- lighting
+timeCreated: 1463140884
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - spotEmission: {instanceID: 0}
+  - spotNoise: {instanceID: 0}
+  - spotShadow: {instanceID: 0}
+  - pointEmission: {instanceID: 0}
+  - pointNoise: {instanceID: 0}
+  - pointShadow: {instanceID: 0}
+  - areaVolume: {instanceID: 0}
+  - _fallOffTexture: {instanceID: 0}
+  - _ditherTexture: {instanceID: 0}
+  - spotMaterial: {fileID: 2100000, guid: 0ae03080a8dadc6448d3d12b54ed4f3c, type: 2}
+  - pointMaterial: {fileID: 2100000, guid: dd36a29b2d153244ba3d06d8217c876c, type: 2}
+  - areaMaterial: {fileID: 2100000, guid: 3d9186b180a5843f8810c59a305735cf, type: 2}
+  - orthoMaterial: {fileID: 2100000, guid: 5c70705a1fd5647609ad8326ef5e2024, type: 2}
+  - renderDepthShader: {fileID: 4800000, guid: 26c171c785261784f8909aae5f3697e4, type: 3}
+  - meshContainer: {instanceID: 0}
+  executionOrder: 200
+  icon: {fileID: 808945810, guid: 0000000000000000d000000000000000, type: 2}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

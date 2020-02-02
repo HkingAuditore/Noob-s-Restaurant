@@ -292,6 +292,22 @@
             <e p="VolumetricTextureWrapModeEnum.cs" t="Include" />
             <e p="VolumeTypeEnum.cs" t="Include" />
           </e>
+          <e p="Examples" t="Include">
+            <e p="Sponza" t="Include">
+              <e p="Fireball" t="Include">
+                <e p="Fireball.cs" t="Include" />
+                <e p="FireballBlendAdd.shader" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="AuraFreeCamera.cs" t="Include" />
+                <e p="AutoMoveAndRotate.cs" t="Include" />
+                <e p="DebugFps.cs" t="Include" />
+                <e p="LightFlicker.cs" t="Include" />
+                <e p="MoveSinCos.cs" t="Include" />
+                <e p="SinRotationOffset.cs" t="Include" />
+              </e>
+            </e>
+          </e>
           <e p="Extensions" t="Include">
             <e p="CameraExtensions.cs" t="Include" />
             <e p="FloatExtensions.cs" t="Include" />
@@ -697,8 +713,10 @@
           <e p="Shaders" t="Include">
             <e p="Food.shader" t="Include" />
             <e p="Outline.shader" t="Include" />
+            <e p="Pour.shader" t="Include" />
             <e p="Texture Splatting with First Light PBS.shader" t="Include" />
             <e p="UIBlur.shader" t="Include" />
+            <e p="VolumeLight.shader" t="Include" />
           </e>
         </e>
         <e p="Script" t="Include">
@@ -774,6 +792,10 @@
             </e>
           </e>
           <e p="GameManager.cs" t="Include" />
+          <e p="Liquid" t="Include">
+            <e p="PourDetector.cs" t="Include" />
+            <e p="Stream.cs" t="Include" />
+          </e>
           <e p="MeshSplit" t="Include">
             <e p="MeshInfo.cs" t="Include" />
             <e p="SplitManager.cs" t="Include" />
@@ -852,6 +874,59 @@
               <e p="StartPanel.cs" t="Include" />
             </e>
             <e p="UIManager.cs" t="Include" />
+          </e>
+        </e>
+        <e p="VLights" t="Include">
+          <e p="Editor" t="Include">
+            <e p="VolumeLightAbout.cs" t="Include" />
+            <e p="VolumeLightCreator.cs" t="Include" />
+            <e p="VolumeLightManagerEditor.cs" t="Include" />
+            <e p="VolumeLightSlicedBasedEditor.cs" t="Include" />
+          </e>
+          <e p="Readme.txt" t="Include" />
+          <e p="Scripts" t="Include">
+            <e p="Demo" t="Include">
+              <e p="MouseOrbitDemo.cs" t="Include" />
+            </e>
+            <e p="PostProcess" t="Include">
+              <e p="VLightInterleavedSampling.cs" t="Include" />
+            </e>
+            <e p="Util" t="Include">
+              <e p="GenerateNoiseTexture.cs" t="Include" />
+              <e p="ShaderLibrary.cs" t="Include" />
+              <e p="VLightGeometryUtil.cs" t="Include" />
+              <e p="VLightShaderUtil.cs" t="Include" />
+            </e>
+            <e p="VLight" t="Include">
+              <e p="VLight.cs" t="Include" />
+              <e p="VLightHelper.cs" t="Include" />
+              <e p="VLightManager.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="Common" t="Include">
+              <e p="Camera-DepthNormalTexture.shader" t="Include" />
+              <e p="DownscaleDepth.shader" t="Include" />
+              <e p="RenderDepth.shader" t="Include" />
+            </e>
+            <e p="Light" t="Include">
+              <e p="Legacy" t="Include">
+                <e p="VolumeLight.shader" t="Include" />
+                <e p="VolumeLightArea.shader" t="Include" />
+                <e p="VolumeLightOrthographic.shader" t="Include" />
+                <e p="VolumeLightPoint.shader" t="Include" />
+              </e>
+              <e p="VLightHelper.cginc" t="Include" />
+              <e p="VLightHelperArea.cginc" t="Include" />
+              <e p="VLightHelperOrthographic.cginc" t="Include" />
+              <e p="VLightHelperPoint.cginc" t="Include" />
+              <e p="VolumeLightDepth.shader" t="Include" />
+            </e>
+            <e p="PostProcess" t="Include">
+              <e p="Blur.shader" t="Include" />
+              <e p="SimpleComposite.shader" t="Include" />
+              <e p="VolumeLightInterleavedComposite.shader" t="Include" />
+            </e>
           </e>
         </e>
       </e>

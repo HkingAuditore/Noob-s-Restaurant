@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: VLights Default Area
+  m_Shader: {fileID: 4800000, guid: 31813853d68d3484491c0955535404e8, type: 3}
+  m_ShaderKeywords:
+  - VLIGHT_USE_CURVE_OFF
+  - _SHAPE_CUBE
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs: {}
+    m_Floats:
+      data:
+        first:
+          name: _Shape
+        second: 0
+      data:
+        first:
+          name: _VolumeParams
+        second: .5
+    m_Colors:
+      data:
+        first:
+          name: _VolumeOffset
+        second: {r: 0, g: 0, b: 0, a: .5}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6
