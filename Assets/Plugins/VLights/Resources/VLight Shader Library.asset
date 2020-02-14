@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4e8ef830ce004097be4377a328c8778, type: 3}
+  m_Name: VLight Shader Library
+  m_EditorClassIdentifier: 
+  _shaders:
+  - {fileID: 4800000, guid: 6aac0894b3c1e44529fc89af12517e0f, type: 3}
+  - {fileID: 4800000, guid: 31813853d68d3484491c0955535404e8, type: 3}
+  - {fileID: 4800000, guid: a580fe83e417a4fc282ecdb374837af8, type: 3}
+  - {fileID: 4800000, guid: fba27a6fca09246dab46cfb730cd71b2, type: 3}

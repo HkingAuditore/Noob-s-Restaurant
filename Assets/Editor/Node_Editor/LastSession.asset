@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 383e821a506bf5c4cbb509dea2ba4123, type: 3}
+  m_Name: LastSession
+  m_EditorClassIdentifier: 
+  editorStates:
+  - {fileID: 114850389172960088}
+  saveName: TestCookBook
+  savePath: 
+  livesInScene: 0
+  nodes:
+  - {fileID: 114981406643589026}
+  - {fileID: 114862533085568554}
+  - {fileID: 114369690495247770}
+  - {fileID: 114124567900849284}
+  - {fileID: 114527296326988426}
+  - {fileID: 114758494374678554}
+  groups: []
+  rootNode: {fileID: 114681187389802474, guid: 6df9daae89e8ee04f9f642cfecec11de, type: 2}
+--- !u!114 &114124567900849284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b426a33c564704abeb2e741420a844, type: 3}
+  m_Name: Original
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  position: {x: -939.50006, y: 271.6}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  tempID: 0
+  OutputNext: {fileID: 0}
+  OriginalType: 2
+  OriginalModel: {fileID: 0}
+  OriginalMaterial: {fileID: 0}
+--- !u!114 &114369690495247770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20c49d9a446fb74db4bcd43a2ee86f0, type: 3}
+  m_Name: Root
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  position: {x: 65.4, y: 31.599998}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  tempID: 0
+  InPort: {fileID: 0}
+  CookBookName: "\u6211\u662F\u83DC\u8C31"
+  Description: "\u8FD9\u662F\u4E00\u4E2A\u83DC\u8C31"
+--- !u!114 &114527296326988426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b426a33c564704abeb2e741420a844, type: 3}
+  m_Name: Original
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  position: {x: -894.50006, y: -248.40002}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  tempID: 0
+  OutputNext: {fileID: 0}
+  OriginalType: 0
+  OriginalModel: {fileID: 0}
+  OriginalMaterial: {fileID: 0}
+--- !u!114 &114758494374678554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b426a33c564704abeb2e741420a844, type: 3}
+  m_Name: Original
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  position: {x: -1295.7001, y: 5.1000175}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  tempID: 0
+  OutputNext: {fileID: 0}
+  OriginalType: 3
+  OriginalModel: {fileID: 0}
+  OriginalMaterial: {fileID: 0}
+--- !u!114 &114850389172960088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ab6487237ff124ea4c2aa5de9ce3fb, type: 3}
+  m_Name: MainEditorState
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  parentEditor: {fileID: 0}
+  selectedNode: {fileID: 0}
+  panOffset: {x: 934.40015, y: -29.599997}
+  zoom: 1
+--- !u!114 &114862533085568554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ab36c2b1ee8f34ea30cfce7d72f561, type: 3}
+  m_Name: Process
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  position: {x: -560.4, y: -161.20001}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  tempID: 0
+  InputLast: {fileID: 0}
+  OutputNext: {fileID: 0}
+  ProcessTag: 1
+--- !u!114 &114981406643589026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df071847a7b3be42b6b3e0627dfb325, type: 3}
+  m_Name: Assemble
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  position: {x: -147.09999, y: -6.6000004}
+  dynamicConnectionPorts: []
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  tempID: 0
+  Input_1: {fileID: 0}
+  Input_2: {fileID: 0}
+  Output: {fileID: 0}

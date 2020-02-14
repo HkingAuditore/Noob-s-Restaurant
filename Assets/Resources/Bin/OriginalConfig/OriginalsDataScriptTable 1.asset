@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b984364be5e8364db8b4b0eea967a06, type: 3}
+  m_Name: OriginalsDataScriptTable 1
+  m_EditorClassIdentifier: 
+  mainType: 0
+  originalType: 0
+  characteristic: 
+  acidity_A: 0
+  acidity_B: 0
+  sweetness_A: 0
+  sweetness_B: 0
+  spicy_A: 0
+  spicy_B: 0
+  salinity_A: 0
+  salinity_B: 0
+  Freshness_A: 0
+  Freshness_B: 0
