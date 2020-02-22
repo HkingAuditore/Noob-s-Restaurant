@@ -228,177 +228,6 @@
             </e>
           </e>
         </e>
-        <e p="Aura" t="Include">
-          <e p="Attributes" t="Include">
-            <e p="ColorCircularPickerAttribute.cs" t="Include" />
-            <e p="Texture3DPreviewAttribute.cs" t="Include" />
-          </e>
-          <e p="Classes" t="Include">
-            <e p="Aura.cs" t="Include" />
-            <e p="AuraLight.cs" t="Include" />
-            <e p="AuraVolume.cs" t="Include" />
-            <e p="Buffers.cs" t="Include" />
-            <e p="CullableObject.cs" t="Include" />
-            <e p="DirectionalLightsManager.cs" t="Include" />
-            <e p="DirectionalShadowDataCollector.cs" t="Include" />
-            <e p="Frustum.cs" t="Include" />
-            <e p="FrustumSettings.cs" t="Include" />
-            <e p="LightsManager.cs" t="Include" />
-            <e p="ObjectsCuller.cs" t="Include" />
-            <e p="PointLightsManager.cs" t="Include" />
-            <e p="ShadowmapsCollector.cs" t="Include" />
-            <e p="SpotLightsManager.cs" t="Include" />
-            <e p="SwappableRenderTexture.cs" t="Include" />
-            <e p="Texture2DArrayComposer.cs" t="Include" />
-            <e p="VolumesManager.cs" t="Include" />
-            <e p="VolumetricTexture.cs" t="Include" />
-            <e p="VolumetricTextureArrayComposer.cs" t="Include" />
-          </e>
-          <e p="Editor" t="Include">
-            <e p="Drawers" t="Include">
-              <e p="ColorCircularPickerDrawer.cs" t="Include" />
-              <e p="Texture3DPreviewDrawer.cs" t="Include" />
-            </e>
-            <e p="Editors" t="Include">
-              <e p="AuraEditor.cs" t="Include" />
-              <e p="AuraLightEditor.cs" t="Include" />
-              <e p="AuraVolumeEditor.cs" t="Include" />
-              <e p="CreateTexture3DAssetTool.cs" t="Include" />
-              <e p="Texture3DEditor.cs" t="Include" />
-            </e>
-            <e p="Enums" t="Include">
-              <e p="Texture3DReadingOrderEnum.cs" t="Include" />
-            </e>
-            <e p="Extensions" t="Include">
-              <e p="Texture3DExtensions.cs" t="Include" />
-            </e>
-            <e p="Helpers" t="Include">
-              <e p="GuiHelpers.cs" t="Include" />
-              <e p="MeshHelpers.cs" t="Include" />
-              <e p="PreviewRenderUtilityHelpers.cs" t="Include" />
-            </e>
-            <e p="Shaders" t="Include">
-              <e p="ColorFieldDrawerShader.shader" t="Include" />
-              <e p="Texture3DPreviewShader.shader" t="Include" />
-            </e>
-            <e p="Statics" t="Include">
-              <e p="GuiStyles.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Enums" t="Include">
-            <e p="FrustumParametersEnum.cs" t="Include" />
-            <e p="OcclusionCullingAccuracyEnum.cs" t="Include" />
-            <e p="VolumetricTextureFilterModeEnum.cs" t="Include" />
-            <e p="VolumetricTextureWrapModeEnum.cs" t="Include" />
-            <e p="VolumeTypeEnum.cs" t="Include" />
-          </e>
-          <e p="Examples" t="Include">
-            <e p="Sponza" t="Include">
-              <e p="Fireball" t="Include">
-                <e p="Fireball.cs" t="Include" />
-                <e p="FireballBlendAdd.shader" t="Include" />
-              </e>
-              <e p="Scripts" t="Include">
-                <e p="AuraFreeCamera.cs" t="Include" />
-                <e p="AutoMoveAndRotate.cs" t="Include" />
-                <e p="DebugFps.cs" t="Include" />
-                <e p="LightFlicker.cs" t="Include" />
-                <e p="MoveSinCos.cs" t="Include" />
-                <e p="SinRotationOffset.cs" t="Include" />
-              </e>
-            </e>
-          </e>
-          <e p="Extensions" t="Include">
-            <e p="CameraExtensions.cs" t="Include" />
-            <e p="FloatExtensions.cs" t="Include" />
-            <e p="FrustumParametersEnumExtensions.cs" t="Include" />
-            <e p="Gaia" t="Include">
-              <e p="GaiaExtension.cs" t="Include" />
-            </e>
-            <e p="GenericExtensions.cs" t="Include" />
-            <e p="IntExtensions.cs" t="Include" />
-            <e p="Matrix4x4Extensions.cs" t="Include" />
-            <e p="RenderTextureExtensions.cs" t="Include" />
-            <e p="StringExtensions.cs" t="Include" />
-            <e p="Vector3Extensions.cs" t="Include" />
-            <e p="Vector4Extensions.cs" t="Include" />
-          </e>
-          <e p="License" t="Include">
-            <e p="license.txt" t="Include" />
-          </e>
-          <e p="Scripts" t="Include">
-            <e p="GenerateComputeShaderKernelVariants.cs" t="Include" />
-          </e>
-          <e p="Shaders" t="Include">
-            <e p="Aura.cginc" t="Include" />
-            <e p="ComputeShaders" t="Include">
-              <e p="ComputeAccumulationComputeShader.compute" t="Include" />
-              <e p="ComputeDataComputeShader.compute" t="Include" />
-              <e p="ComputeMaximumDepthComputeShader.compute" t="Include" />
-              <e p="Includes" t="Include">
-                <e p="DirectionalLightInjection.cginc" t="Include" />
-                <e p="OcclusionCulling.cginc" t="Include" />
-                <e p="PointLightInjection.cginc" t="Include" />
-                <e p="SpotLightInjection.cginc" t="Include" />
-                <e p="TemporalReprojection.cginc" t="Include" />
-                <e p="VolumeInjection.cginc" t="Include" />
-              </e>
-            </e>
-            <e p="Includes" t="Include">
-              <e p="AuraParticlesBase.cginc" t="Include" />
-              <e p="AuraParticlesUsage.cginc" t="Include" />
-              <e p="AuraUsage.cginc" t="Include" />
-              <e p="BlueNoise.cginc" t="Include" />
-              <e p="Common.cginc" t="Include" />
-              <e p="CommonFunctions.cginc" t="Include" />
-              <e p="CommonVariables.cginc" t="Include" />
-              <e p="Noise.cginc" t="Include" />
-              <e p="Structs.cginc" t="Include" />
-            </e>
-            <e p="Shaders" t="Include">
-              <e p="BuiltinReplacement" t="Include">
-                <e p="BillboardTree.shader" t="Include" />
-              </e>
-              <e p="Particles" t="Include">
-                <e p="AuraParticlesAdditive.shader" t="Include" />
-                <e p="AuraParticlesAlphaBlend.shader" t="Include" />
-                <e p="AuraParticlesBlendAdd.shader" t="Include" />
-              </e>
-              <e p="PostProcessShader.shader" t="Include" />
-              <e p="ProcessOcclusionTextureShader.shader" t="Include" />
-              <e p="StoreDirectionalSpotLightCookieMap.shader" t="Include" />
-              <e p="StorePointLightCookieMap.shader" t="Include" />
-              <e p="StorePointLightShadowMap.shader" t="Include" />
-              <e p="StoreShadowDataShader.shader" t="Include" />
-              <e p="Surface" t="Include">
-                <e p="AuraStandardAlphaBlended.shader" t="Include" />
-              </e>
-            </e>
-          </e>
-          <e p="Statics" t="Include">
-            <e p="CustomGizmo.cs" t="Include" />
-            <e p="FrustumCorners.cs" t="Include" />
-          </e>
-          <e p="Structs" t="Include">
-            <e p="DirectionalLightParameters.cs" t="Include" />
-            <e p="DynamicNoiseParameters.cs" t="Include" />
-            <e p="FrustumSettingsParameters.cs" t="Include" />
-            <e p="LevelsParameters.cs" t="Include" />
-            <e p="MatrixFloats.cs" t="Include" />
-            <e p="PointLightParameters.cs" t="Include" />
-            <e p="SpotLightParameters.cs" t="Include" />
-            <e p="TransformParameters.cs" t="Include" />
-            <e p="VolumeData.cs" t="Include" />
-            <e p="VolumeDynamicNoiseData.cs" t="Include" />
-            <e p="VolumeGradient.cs" t="Include" />
-            <e p="VolumeInjectionColorParameters.cs" t="Include" />
-            <e p="VolumeInjectionCommonParameters.cs" t="Include" />
-            <e p="VolumeInjectionParameters.cs" t="Include" />
-            <e p="VolumeInjectionShape.cs" t="Include" />
-            <e p="VolumeLevelsData.cs" t="Include" />
-            <e p="VolumeTextureData.cs" t="Include" />
-          </e>
-        </e>
         <e p="Editor" t="Include">
           <e p="DishesRendererGUI.cs" t="Include" />
           <e p="Node_Editor" t="Include">
@@ -424,6 +253,177 @@
           </e>
         </e>
         <e p="Plugins" t="Include">
+          <e p="Aura" t="Include">
+            <e p="Attributes" t="Include">
+              <e p="ColorCircularPickerAttribute.cs" t="Include" />
+              <e p="Texture3DPreviewAttribute.cs" t="Include" />
+            </e>
+            <e p="Classes" t="Include">
+              <e p="Aura.cs" t="Include" />
+              <e p="AuraLight.cs" t="Include" />
+              <e p="AuraVolume.cs" t="Include" />
+              <e p="Buffers.cs" t="Include" />
+              <e p="CullableObject.cs" t="Include" />
+              <e p="DirectionalLightsManager.cs" t="Include" />
+              <e p="DirectionalShadowDataCollector.cs" t="Include" />
+              <e p="Frustum.cs" t="Include" />
+              <e p="FrustumSettings.cs" t="Include" />
+              <e p="LightsManager.cs" t="Include" />
+              <e p="ObjectsCuller.cs" t="Include" />
+              <e p="PointLightsManager.cs" t="Include" />
+              <e p="ShadowmapsCollector.cs" t="Include" />
+              <e p="SpotLightsManager.cs" t="Include" />
+              <e p="SwappableRenderTexture.cs" t="Include" />
+              <e p="Texture2DArrayComposer.cs" t="Include" />
+              <e p="VolumesManager.cs" t="Include" />
+              <e p="VolumetricTexture.cs" t="Include" />
+              <e p="VolumetricTextureArrayComposer.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="Drawers" t="Include">
+                <e p="ColorCircularPickerDrawer.cs" t="Include" />
+                <e p="Texture3DPreviewDrawer.cs" t="Include" />
+              </e>
+              <e p="Editors" t="Include">
+                <e p="AuraEditor.cs" t="Include" />
+                <e p="AuraLightEditor.cs" t="Include" />
+                <e p="AuraVolumeEditor.cs" t="Include" />
+                <e p="CreateTexture3DAssetTool.cs" t="Include" />
+                <e p="Texture3DEditor.cs" t="Include" />
+              </e>
+              <e p="Enums" t="Include">
+                <e p="Texture3DReadingOrderEnum.cs" t="Include" />
+              </e>
+              <e p="Extensions" t="Include">
+                <e p="Texture3DExtensions.cs" t="Include" />
+              </e>
+              <e p="Helpers" t="Include">
+                <e p="GuiHelpers.cs" t="Include" />
+                <e p="MeshHelpers.cs" t="Include" />
+                <e p="PreviewRenderUtilityHelpers.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="ColorFieldDrawerShader.shader" t="Include" />
+                <e p="Texture3DPreviewShader.shader" t="Include" />
+              </e>
+              <e p="Statics" t="Include">
+                <e p="GuiStyles.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Enums" t="Include">
+              <e p="FrustumParametersEnum.cs" t="Include" />
+              <e p="OcclusionCullingAccuracyEnum.cs" t="Include" />
+              <e p="VolumetricTextureFilterModeEnum.cs" t="Include" />
+              <e p="VolumetricTextureWrapModeEnum.cs" t="Include" />
+              <e p="VolumeTypeEnum.cs" t="Include" />
+            </e>
+            <e p="Examples" t="Include">
+              <e p="Sponza" t="Include">
+                <e p="Fireball" t="Include">
+                  <e p="Fireball.cs" t="Include" />
+                  <e p="FireballBlendAdd.shader" t="Include" />
+                </e>
+                <e p="Scripts" t="Include">
+                  <e p="AuraFreeCamera.cs" t="Include" />
+                  <e p="AutoMoveAndRotate.cs" t="Include" />
+                  <e p="DebugFps.cs" t="Include" />
+                  <e p="LightFlicker.cs" t="Include" />
+                  <e p="MoveSinCos.cs" t="Include" />
+                  <e p="SinRotationOffset.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Extensions" t="Include">
+              <e p="CameraExtensions.cs" t="Include" />
+              <e p="FloatExtensions.cs" t="Include" />
+              <e p="FrustumParametersEnumExtensions.cs" t="Include" />
+              <e p="Gaia" t="Include">
+                <e p="GaiaExtension.cs" t="Include" />
+              </e>
+              <e p="GenericExtensions.cs" t="Include" />
+              <e p="IntExtensions.cs" t="Include" />
+              <e p="Matrix4x4Extensions.cs" t="Include" />
+              <e p="RenderTextureExtensions.cs" t="Include" />
+              <e p="StringExtensions.cs" t="Include" />
+              <e p="Vector3Extensions.cs" t="Include" />
+              <e p="Vector4Extensions.cs" t="Include" />
+            </e>
+            <e p="License" t="Include">
+              <e p="license.txt" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="GenerateComputeShaderKernelVariants.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="Aura.cginc" t="Include" />
+              <e p="ComputeShaders" t="Include">
+                <e p="ComputeAccumulationComputeShader.compute" t="Include" />
+                <e p="ComputeDataComputeShader.compute" t="Include" />
+                <e p="ComputeMaximumDepthComputeShader.compute" t="Include" />
+                <e p="Includes" t="Include">
+                  <e p="DirectionalLightInjection.cginc" t="Include" />
+                  <e p="OcclusionCulling.cginc" t="Include" />
+                  <e p="PointLightInjection.cginc" t="Include" />
+                  <e p="SpotLightInjection.cginc" t="Include" />
+                  <e p="TemporalReprojection.cginc" t="Include" />
+                  <e p="VolumeInjection.cginc" t="Include" />
+                </e>
+              </e>
+              <e p="Includes" t="Include">
+                <e p="AuraParticlesBase.cginc" t="Include" />
+                <e p="AuraParticlesUsage.cginc" t="Include" />
+                <e p="AuraUsage.cginc" t="Include" />
+                <e p="BlueNoise.cginc" t="Include" />
+                <e p="Common.cginc" t="Include" />
+                <e p="CommonFunctions.cginc" t="Include" />
+                <e p="CommonVariables.cginc" t="Include" />
+                <e p="Noise.cginc" t="Include" />
+                <e p="Structs.cginc" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="BuiltinReplacement" t="Include">
+                  <e p="BillboardTree.shader" t="Include" />
+                </e>
+                <e p="Particles" t="Include">
+                  <e p="AuraParticlesAdditive.shader" t="Include" />
+                  <e p="AuraParticlesAlphaBlend.shader" t="Include" />
+                  <e p="AuraParticlesBlendAdd.shader" t="Include" />
+                </e>
+                <e p="PostProcessShader.shader" t="Include" />
+                <e p="ProcessOcclusionTextureShader.shader" t="Include" />
+                <e p="StoreDirectionalSpotLightCookieMap.shader" t="Include" />
+                <e p="StorePointLightCookieMap.shader" t="Include" />
+                <e p="StorePointLightShadowMap.shader" t="Include" />
+                <e p="StoreShadowDataShader.shader" t="Include" />
+                <e p="Surface" t="Include">
+                  <e p="AuraStandardAlphaBlended.shader" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Statics" t="Include">
+              <e p="CustomGizmo.cs" t="Include" />
+              <e p="FrustumCorners.cs" t="Include" />
+            </e>
+            <e p="Structs" t="Include">
+              <e p="DirectionalLightParameters.cs" t="Include" />
+              <e p="DynamicNoiseParameters.cs" t="Include" />
+              <e p="FrustumSettingsParameters.cs" t="Include" />
+              <e p="LevelsParameters.cs" t="Include" />
+              <e p="MatrixFloats.cs" t="Include" />
+              <e p="PointLightParameters.cs" t="Include" />
+              <e p="SpotLightParameters.cs" t="Include" />
+              <e p="TransformParameters.cs" t="Include" />
+              <e p="VolumeData.cs" t="Include" />
+              <e p="VolumeDynamicNoiseData.cs" t="Include" />
+              <e p="VolumeGradient.cs" t="Include" />
+              <e p="VolumeInjectionColorParameters.cs" t="Include" />
+              <e p="VolumeInjectionCommonParameters.cs" t="Include" />
+              <e p="VolumeInjectionParameters.cs" t="Include" />
+              <e p="VolumeInjectionShape.cs" t="Include" />
+              <e p="VolumeLevelsData.cs" t="Include" />
+              <e p="VolumeTextureData.cs" t="Include" />
+            </e>
+          </e>
           <e p="BzKovSoft" t="Include">
             <e p="ObjectSlicerSamples" t="Include">
               <e p="AdderSliceableAsync.cs" t="Include" />
@@ -530,92 +530,6 @@
               <e p="ResourceManager.cs" t="Include" />
             </e>
           </e>
-          <e p="NVIDIA" t="Include">
-            <e p="Flex" t="Include">
-              <e p="Actors" t="Include">
-                <e p="FlexActor.cs" t="Include" />
-                <e p="FlexArrayActor.cs" t="Include" />
-                <e p="FlexClothActor.cs" t="Include" />
-                <e p="FlexSoftActor.cs" t="Include" />
-                <e p="FlexSolidActor.cs" t="Include" />
-                <e p="FlexSourceActor.cs" t="Include" />
-              </e>
-              <e p="Assets" t="Include">
-                <e p="FlexArrayAsset.cs" t="Include" />
-                <e p="FlexAsset.cs" t="Include" />
-                <e p="FlexClothAsset.cs" t="Include" />
-                <e p="FlexContainer.cs" t="Include" />
-                <e p="FlexSoftAsset.cs" t="Include" />
-                <e p="FlexSolidAsset.cs" t="Include" />
-                <e p="FlexSourceAsset.cs" t="Include" />
-              </e>
-              <e p="Auxiliary" t="Include">
-                <e p="_auxFlexDetectShapes.cs" t="Include" />
-                <e p="_auxFlexDrawFluid.cs" t="Include" />
-                <e p="_auxFlexDrawParticles.cs" t="Include" />
-              </e>
-              <e p="Editor" t="Include">
-                <e p="Editors" t="Include">
-                  <e p="FlexActorEditor.cs" t="Include" />
-                  <e p="FlexArrayActorEditor.cs" t="Include" />
-                  <e p="FlexArrayAssetEditor.cs" t="Include" />
-                  <e p="FlexAssetEditor.cs" t="Include" />
-                  <e p="FlexClothActorEditor.cs" t="Include" />
-                  <e p="FlexClothAssetEditor.cs" t="Include" />
-                  <e p="FlexClothDeformationEditor.cs" t="Include" />
-                  <e p="FlexContainerEditor.cs" t="Include" />
-                  <e p="FlexEditor.cs" t="Include" />
-                  <e p="FlexFluidMaterialEditor.cs" t="Include" />
-                  <e p="FlexFluidRendererEditor.cs" t="Include" />
-                  <e p="FlexSoftActorEditor.cs" t="Include" />
-                  <e p="FlexSoftAssetEditor.cs" t="Include" />
-                  <e p="FlexSoftSkinningEditor.cs" t="Include" />
-                  <e p="FlexSolidActorEditor.cs" t="Include" />
-                  <e p="FlexSolidAssetEditor.cs" t="Include" />
-                  <e p="FlexSourceActorEditor.cs" t="Include" />
-                  <e p="FlexSourceAssetEditor.cs" t="Include" />
-                </e>
-                <e p="Tests" t="Include">
-                  <e p="FlexActorTests.cs" t="Include" />
-                  <e p="FlexAssetTests.cs" t="Include" />
-                  <e p="FlexExtTests.cs" t="Include" />
-                  <e p="FlexTests.cs" t="Include" />
-                  <e p="FlexUtilsTests.cs" t="Include" />
-                </e>
-              </e>
-              <e p="Helpers" t="Include">
-                <e p="FlexBuffer.cs" t="Include" />
-                <e p="FlexClothDeformation.cs" t="Include" />
-                <e p="FlexFluidRenderer.cs" t="Include" />
-                <e p="FlexParticleController.cs" t="Include" />
-                <e p="FlexScene.cs" t="Include" />
-                <e p="FlexSoftSkinning.cs" t="Include" />
-              </e>
-              <e p="Native" t="Include">
-                <e p="Flex.cs" t="Include" />
-                <e p="FlexExt.cs" t="Include" />
-                <e p="FlexUtils.cs" t="Include" />
-              </e>
-              <e p="Resources" t="Include">
-                <e p="Shaders" t="Include">
-                  <e p="DebugPoints.shader" t="Include" />
-                  <e p="FlexDrawFluid.cginc" t="Include" />
-                  <e p="FlexDrawFluid.shader" t="Include" />
-                  <e p="FlexDrawFluid2.shader" t="Include" />
-                  <e p="FlexDrawParticles.shader" t="Include" />
-                  <e p="FlexFluidShader.shader" t="Include" />
-                  <e p="FlexPrepareFluid.shader" t="Include" />
-                  <e p="FluidComposite.shader" t="Include" />
-                  <e p="FluidDepth.shader" t="Include" />
-                  <e p="FluidDepthBlur.shader" t="Include" />
-                  <e p="FluidThickness.shader" t="Include" />
-                  <e p="SourcePreview.shader" t="Include" />
-                  <e p="SurfaceShader.shader" t="Include" />
-                  <e p="SurfaceTest.shader" t="Include" />
-                </e>
-              </e>
-            </e>
-          </e>
           <e p="UndoPro" t="Include">
             <e p="Editor" t="Include">
               <e p="SerializableActionTestWindow.cs" t="Include" />
@@ -704,6 +618,75 @@
                 <e p="TransparentInstanced.shader" t="Include" />
               </e>
             </e>
+          </e>
+          <e p="VLights" t="Include">
+            <e p="Editor" t="Include">
+              <e p="VolumeLightAbout.cs" t="Include" />
+              <e p="VolumeLightCreator.cs" t="Include" />
+              <e p="VolumeLightManagerEditor.cs" t="Include" />
+              <e p="VolumeLightSlicedBasedEditor.cs" t="Include" />
+            </e>
+            <e p="Readme.txt" t="Include" />
+            <e p="Scripts" t="Include">
+              <e p="Demo" t="Include">
+                <e p="MouseOrbitDemo.cs" t="Include" />
+              </e>
+              <e p="PostProcess" t="Include">
+                <e p="VLightInterleavedSampling.cs" t="Include" />
+              </e>
+              <e p="Util" t="Include">
+                <e p="GenerateNoiseTexture.cs" t="Include" />
+                <e p="ShaderLibrary.cs" t="Include" />
+                <e p="VLightGeometryUtil.cs" t="Include" />
+                <e p="VLightShaderUtil.cs" t="Include" />
+              </e>
+              <e p="VLight" t="Include">
+                <e p="VLight.cs" t="Include" />
+                <e p="VLightHelper.cs" t="Include" />
+                <e p="VLightManager.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="Common" t="Include">
+                <e p="Camera-DepthNormalTexture.shader" t="Include" />
+                <e p="DownscaleDepth.shader" t="Include" />
+                <e p="RenderDepth.shader" t="Include" />
+              </e>
+              <e p="Light" t="Include">
+                <e p="Legacy" t="Include">
+                  <e p="VolumeLight.shader" t="Include" />
+                  <e p="VolumeLightArea.shader" t="Include" />
+                  <e p="VolumeLightOrthographic.shader" t="Include" />
+                  <e p="VolumeLightPoint.shader" t="Include" />
+                </e>
+                <e p="VLightHelper.cginc" t="Include" />
+                <e p="VLightHelperArea.cginc" t="Include" />
+                <e p="VLightHelperOrthographic.cginc" t="Include" />
+                <e p="VLightHelperPoint.cginc" t="Include" />
+                <e p="VolumeLightDepth.shader" t="Include" />
+              </e>
+              <e p="PostProcess" t="Include">
+                <e p="Blur.shader" t="Include" />
+                <e p="SimpleComposite.shader" t="Include" />
+                <e p="VolumeLightInterleavedComposite.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="VolumeLight" t="Include">
+            <e p="Blur" t="Include">
+              <e p="BilateralBlur.shader" t="Include" />
+              <e p="BilateralUpsample.shader" t="Include" />
+              <e p="GaussianBlur.shader" t="Include" />
+            </e>
+            <e p="DirectionalLight.shader" t="Include" />
+            <e p="DirectionalLightTest.cs" t="Include" />
+            <e p="PointLight.shader" t="Include" />
+            <e p="PointLightTest.cs" t="Include" />
+            <e p="PostEffectsBase.cs" t="Include" />
+            <e p="SpotLight.shader" t="Include" />
+            <e p="SpotLightTest.cs" t="Include" />
+            <e p="VolumeLightAdd.shader" t="Include" />
+            <e p="VolumeLightManager.cs" t="Include" />
           </e>
         </e>
         <e p="Resources" t="Include">
@@ -874,59 +857,6 @@
               <e p="StartPanel.cs" t="Include" />
             </e>
             <e p="UIManager.cs" t="Include" />
-          </e>
-        </e>
-        <e p="VLights" t="Include">
-          <e p="Editor" t="Include">
-            <e p="VolumeLightAbout.cs" t="Include" />
-            <e p="VolumeLightCreator.cs" t="Include" />
-            <e p="VolumeLightManagerEditor.cs" t="Include" />
-            <e p="VolumeLightSlicedBasedEditor.cs" t="Include" />
-          </e>
-          <e p="Readme.txt" t="Include" />
-          <e p="Scripts" t="Include">
-            <e p="Demo" t="Include">
-              <e p="MouseOrbitDemo.cs" t="Include" />
-            </e>
-            <e p="PostProcess" t="Include">
-              <e p="VLightInterleavedSampling.cs" t="Include" />
-            </e>
-            <e p="Util" t="Include">
-              <e p="GenerateNoiseTexture.cs" t="Include" />
-              <e p="ShaderLibrary.cs" t="Include" />
-              <e p="VLightGeometryUtil.cs" t="Include" />
-              <e p="VLightShaderUtil.cs" t="Include" />
-            </e>
-            <e p="VLight" t="Include">
-              <e p="VLight.cs" t="Include" />
-              <e p="VLightHelper.cs" t="Include" />
-              <e p="VLightManager.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Shaders" t="Include">
-            <e p="Common" t="Include">
-              <e p="Camera-DepthNormalTexture.shader" t="Include" />
-              <e p="DownscaleDepth.shader" t="Include" />
-              <e p="RenderDepth.shader" t="Include" />
-            </e>
-            <e p="Light" t="Include">
-              <e p="Legacy" t="Include">
-                <e p="VolumeLight.shader" t="Include" />
-                <e p="VolumeLightArea.shader" t="Include" />
-                <e p="VolumeLightOrthographic.shader" t="Include" />
-                <e p="VolumeLightPoint.shader" t="Include" />
-              </e>
-              <e p="VLightHelper.cginc" t="Include" />
-              <e p="VLightHelperArea.cginc" t="Include" />
-              <e p="VLightHelperOrthographic.cginc" t="Include" />
-              <e p="VLightHelperPoint.cginc" t="Include" />
-              <e p="VolumeLightDepth.shader" t="Include" />
-            </e>
-            <e p="PostProcess" t="Include">
-              <e p="Blur.shader" t="Include" />
-              <e p="SimpleComposite.shader" t="Include" />
-              <e p="VolumeLightInterleavedComposite.shader" t="Include" />
-            </e>
           </e>
         </e>
       </e>
