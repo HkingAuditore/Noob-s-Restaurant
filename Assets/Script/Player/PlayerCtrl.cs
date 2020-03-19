@@ -44,37 +44,37 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
 
     private void Update()
     {
-        GameObject curIndicator = null;
-        switch (GameManager.Instance.sequenceManager.CurStep.Utensil)
-        {
-            case "Selecttable":
-                curIndicator = SMIndicator;
-                break;
-            case "EggBowl":
-                curIndicator = PIndicator;
-                break;
-            case "ChoppingBLock":
-                curIndicator = CIndicator;
-                break;
-            case "Pan":
-                curIndicator = SFIndicator;
-                break;
-            case "Pot":
-                curIndicator = BIndicator;
-                break;
-            default:
-                break;
-        }
-
-        if (curIndicator != null)
-            if (isCanCtrl)
-            {
-                curIndicator.SetActive(true);
-            }
-            else
-            {
-                curIndicator.SetActive(false);
-            }
+        // GameObject curIndicator = null;
+        // switch (GameManager.Instance.sequenceManager.CurStep.Utensil)
+        // {
+        //     case "Selecttable":
+        //         curIndicator = SMIndicator;
+        //         break;
+        //     case "EggBowl":
+        //         curIndicator = PIndicator;
+        //         break;
+        //     case "ChoppingBLock":
+        //         curIndicator = CIndicator;
+        //         break;
+        //     case "Pan":
+        //         curIndicator = SFIndicator;
+        //         break;
+        //     case "Pot":
+        //         curIndicator = BIndicator;
+        //         break;
+        //     default:
+        //         break;
+        // }
+        //
+        // if (curIndicator != null)
+        //     if (isCanCtrl)
+        //     {
+        //         curIndicator.SetActive(true);
+        //     }
+        //     else
+        //     {
+        //         curIndicator.SetActive(false);
+        //     }
     }
 
     void FixedUpdate()
