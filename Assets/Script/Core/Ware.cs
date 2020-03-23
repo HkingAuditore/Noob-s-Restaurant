@@ -19,7 +19,7 @@ public abstract class Ware : Container, IUsable
 
     protected void Awake()
     {
-        FallingFoodsTrans = GameObject.Find("Environment/Inside/FallingFoods").transform;
+        // FallingFoodsTrans = GameObject.Find("Environment/Inside/FallingFoods").transform;
     }
     protected override void Start()
     {

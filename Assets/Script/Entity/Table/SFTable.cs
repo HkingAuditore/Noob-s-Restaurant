@@ -45,8 +45,8 @@ public sealed class SFTable : Table
         if (Input.GetKeyDown(KeyCode.O))
             PutIngredientsFromPanToCurChosenWare();
 
-        if (endCamera.activeInHierarchy)
-            endCamera.transform.localEulerAngles = new Vector3(endCamera.transform.localEulerAngles.x, endCamera.transform.localEulerAngles.y, endCamera.transform.localEulerAngles.z + 2f);
+        // if (endCamera.activeInHierarchy)
+        //     endCamera.transform.localEulerAngles = new Vector3(endCamera.transform.localEulerAngles.x, endCamera.transform.localEulerAngles.y, endCamera.transform.localEulerAngles.z + 2f);
     }
 
     private void OnGUI()
