@@ -77,7 +77,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _FrostIntensity: 1
-    - _FrostedSize: 8.1
+    - _FrostedSize: 5.49
     - _Gloss: 0.968
     - _GlossMapScale: 0.9
     - _Glossiness: 0.107
@@ -86,13 +86,13 @@ Material:
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.0236
-    - _ReflectSize: 0.175
+    - _ReflectSize: 0.154
     - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 0
-    - _blurSize: 4.77
+    - _blurSize: 8.68
     - _blurSizeXY: 10
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.21568628}

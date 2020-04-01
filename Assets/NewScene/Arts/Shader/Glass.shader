@@ -32,7 +32,7 @@ Shader "Unlit/Glass"
                 float4 _FrostTex_ST;
                 float _blurSize;
                 float _FrostedSize;
-                float _Gloss;
+                // float _Gloss;
                 float _ReflectSize;
                 
                 samplerCUBE _Cube;
@@ -120,7 +120,7 @@ Shader "Unlit/Glass"
                     
                     refraction = lerp(sum/2, lerp( lerp( lerp(sum/2, sum/2, step02), sum/2, step01), sum/2, step00), step03);
                     
-                    float4 reflection = texCUBElod(_Cube,float4(i.reflectTex,_Gloss));     
+                    float4 reflection = texCUBElod(_Cube,float4(i.reflectTex,surfSmooth));     
                     //return reflection;           
                     reflection = lerp(reflection, lerp( lerp( lerp(reflection, reflection, step02), reflection, step01), reflection, step00), step03);
  
