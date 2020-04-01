@@ -18,8 +18,9 @@ namespace NodeEditorFramework.Standard
         [ValueConnectionKnob("in", Direction.Out, "Float")]
         public ValueConnectionKnob OutputNext;
 
-        public enum NodeOriginalType { Tomato = 0, Potato = 1, Egg = 2, Beef = 3 };
-        public NodeOriginalType OriginalType = NodeOriginalType.Beef;
+        
+        //public enum NodeOriginalType { Tomato = 0, Potato = 1, Egg = 2, Beef = 3 };
+        public Original.OriginalType OriginalType = Original.OriginalType.Beef;
         public Mesh OriginalModel;
         public Material OriginalMaterial;
 
@@ -28,7 +29,7 @@ namespace NodeEditorFramework.Standard
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
             OutputNext.DisplayLayout();
-            OriginalType = (NodeOriginalType)RTEditorGUI.EnumPopup(new GUIContent("Original Type", "The type of Original"), OriginalType);
+            OriginalType = (Original.OriginalType)RTEditorGUI.EnumPopup(new GUIContent("Original Type", "The type of Original"), OriginalType);
             GUILayout.Label("Specific Property:");
             GUILayout.Label("Model:");
             OriginalModel = (Mesh)RTEditorGUI.ObjectField(OriginalModel,false);

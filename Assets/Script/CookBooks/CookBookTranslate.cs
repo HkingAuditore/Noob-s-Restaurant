@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Xml;
 using CookBooks;
 using System.IO;
-using System.Linq;
+using System;
 
 namespace CookBookUtilities
 {
@@ -298,27 +298,13 @@ namespace CookBookUtilities
         public static Original.OriginalType FormatOriginalType(string type)
         {
             //public enum OriginalType { Tomato = 0, Potato = 1, Egg = 2, Beef = 3 };
-            if(type == "Tomato")
+            Original.OriginalType t;
+            if (Enum.TryParse(type, out t))
             {
-                return Original.OriginalType.Tomato;
+                t = (Original.OriginalType)Enum.Parse(typeof(Original.OriginalType), type);
             }
-            else if (type == "Potato")
-            {
-                return Original.OriginalType.Potato;
-            }
-            else if (type == "Egg")
-            {
-                return Original.OriginalType.Egg;
-            }
-            else if (type == "Beef")
-            {
-                return Original.OriginalType.Beef;
-            }
-            else
-            {
-                Debug.LogError("Error Type");
-                return Original.OriginalType.Beef;
-            }
+            Debug.LogError("Format Original Type Error!");
+            return t;
         }
 
         public static CookBooks.ProcessTag FormatProcessTag(string type)
@@ -327,31 +313,13 @@ namespace CookBookUtilities
             //{
             //    腌制, 切丁, 切块, 切条, 打碎
             //}
-            if (type == "腌制")
+            CookBooks.ProcessTag t;
+            if (Enum.TryParse(type, out t))
             {
-                return ProcessTag.腌制;
+                t = (CookBooks.ProcessTag)Enum.Parse(typeof(CookBooks.ProcessTag), type);
             }
-            else if (type == "切丁")
-            {
-                return ProcessTag.切丁;
-            }
-            else if (type == "切块")
-            {
-                return ProcessTag.切块;
-            }
-            else if (type == "切条")
-            {
-                return ProcessTag.切条;
-            }
-            else if (type == "打碎")
-            {
-                return ProcessTag.打碎;
-            }
-            else 
-            {
-                Debug.LogError("Error Type");
-                return ProcessTag.打碎;
-            }
+            Debug.LogError("Format Process Tag Error!");
+            return t;
         }
 
         public class FormatNode
