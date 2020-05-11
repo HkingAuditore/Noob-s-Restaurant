@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class GameManager : MonoSingleton<GameManager>
+﻿public class GameManager : MonoSingleton<GameManager>
 {
     public SceneStateManager sceneStateManager;
     public UIManager uiManager;
@@ -29,7 +24,7 @@ public class GameManager : MonoSingleton<GameManager>
         sequenceManager.LoadSequence("StiredEggAndTomato");
     }
 
-    void Update()
+    private void Update()
     {
         sceneStateManager.UpdateState();
         uiManager.UpdateUI();

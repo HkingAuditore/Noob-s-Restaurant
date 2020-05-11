@@ -1,20 +1,18 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System;
 
-public class UIManager {
+public class UIManager
+{
+    private Canvas canvas;
+    private Dictionary<string, GameObject> currentSceneUIPanelDict = new Dictionary<string, GameObject>();
+    private Stack<GPObject> panelStack = new Stack<GPObject>();
+    private Action mdUpdateAction;
 
-    Canvas canvas;
-    Dictionary<string,GameObject> currentSceneUIPanelDict = new Dictionary<string, GameObject>();
-    Stack<GPObject> panelStack = new Stack<GPObject>();
-    Action mdUpdateAction;
-
-    struct GPObject
+    private struct GPObject
     {
-       public GameObject panelObject;
-       public IPanel panelScript;
+        public GameObject panelObject;
+        public IPanel panelScript;
     }
 
     public void Init()
@@ -65,7 +63,7 @@ public class UIManager {
         //调用前一个panel的OnPause()
         if (panelStack.Count > 0)
         {
-            GPObject temp= panelStack.Peek();
+            GPObject temp = panelStack.Peek();
             mdUpdateAction -= temp.panelScript.OnUpdate;
             temp.panelScript.OnPause();
         }

@@ -1,12 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneStateManager
 {
-    IState state;
-    bool isLoadFinish = true;
+    private IState state;
+    private bool isLoadFinish = true;
 
     public void Init()
     {
@@ -64,10 +63,10 @@ public class SceneStateManager
         }
     }
 
-    IEnumerator LoadSceneAsync(IState state)
+    private IEnumerator LoadSceneAsync(IState state)
     {
         yield return null;
-        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(state.GetStateName(),LoadSceneMode.Single);
+        AsyncOperation loadSceneAo = SceneManager.LoadSceneAsync(state.GetStateName(), LoadSceneMode.Single);
         loadSceneAo.allowSceneActivation = false;
 
         while (!loadSceneAo.isDone)
@@ -76,20 +75,20 @@ public class SceneStateManager
             {
                 //if (Input.GetKeyDown(KeyCode.Space))
                 //{
-                    isLoadFinish = false;
-                    GameManager.Instance.uiManager.PopPanel();
-                    this.state.OnStateEnd();
-                    this.state = state;
-                    loadSceneAo.allowSceneActivation = true;
+                isLoadFinish = false;
+                GameManager.Instance.uiManager.PopPanel();
+                this.state.OnStateEnd();
+                this.state = state;
+                loadSceneAo.allowSceneActivation = true;
 
-                    break;
+                break;
                 //}
             }
             yield return null;
         }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         //ui重载
         GameManager.Instance.uiManager.GetCurrentSceneUIObject();
