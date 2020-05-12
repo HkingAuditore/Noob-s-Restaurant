@@ -24,7 +24,7 @@ public sealed class CTable : Table
     {
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
-        thisColumnFoodSetSpace = -3.37f;
+        thisColumnFoodSetSpace = -2.37f;
         thisRowFoodSetSpace = 1.89f;
         wares = new List<Container>(thisMaxPlaceNum);
 

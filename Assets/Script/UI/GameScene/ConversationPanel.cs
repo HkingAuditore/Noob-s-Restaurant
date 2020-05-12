@@ -20,7 +20,7 @@ public class ConversationPanel : MonoBehaviour
 
     private void Awake()
     {
-        _avatar = this.GetComponentsInChildren<Image>()[0];
+        _avatar = this.GetComponentsInChildren<Image>()[1];
         _name = this.GetComponentsInChildren<Text>()[0];
         _dialog = this.GetComponentsInChildren<Text>()[1];
 

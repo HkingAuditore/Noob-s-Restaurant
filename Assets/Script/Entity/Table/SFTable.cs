@@ -16,8 +16,8 @@ public sealed class SFTable : Table
 
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
-        thisColumnFoodSetSpace = 4.37f;
-        thisRowFoodSetSpace = -1.4f;
+        thisColumnFoodSetSpace = 2.67f;
+        thisRowFoodSetSpace = -1f;
         Name = TableName.SF;
     }
 
