@@ -3,6 +3,8 @@
 	   _MainTex("Texture Image", 2D) = "white" {}
 	   _ScaleX("Scale X", Float) = 1.0
 	   _ScaleY("Scale Y", Float) = 1.0
+	   _PositionX("Position X", Float) = 1.0
+	   _PositionY("Position Y", Float) = 1.0
 	   _Color("_Color",Color) = (1,1,1,1)
 	}
 		SubShader{
@@ -24,6 +26,8 @@
 		   uniform sampler2D _MainTex;
 		   uniform float _ScaleX;
 		   uniform float _ScaleY;
+		   uniform float _PositionX;
+		   uniform float _PositionY;
 		   uniform fixed4 _Color;
 		   uniform float4 _MainTex_ST;
 
@@ -43,7 +47,7 @@
 
 			  output.pos = mul(UNITY_MATRIX_P,
 				mul(UNITY_MATRIX_MV, float4(0.0, 0.0, 0.0, 1.0))
-				+ float4(input.vertex.x, input.vertex.y, 0.0, 0.0)
+				+ float4(input.vertex.x + _PositionX, input.vertex.y + _PositionY, 0.0, 0.0)
 				* float4(_ScaleX, _ScaleY, 1.0, 1.0));
 
 				output.tex = TRANSFORM_TEX(input.tex,_MainTex);
