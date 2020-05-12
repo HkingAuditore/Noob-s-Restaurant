@@ -5,6 +5,7 @@ using System.Xml;
 using CookBooks;
 using System.IO;
 using System;
+using System.Text;
 
 namespace CookBookUtilities
 {
@@ -96,7 +97,7 @@ namespace CookBookUtilities
                         {
                             if (subject.Name == "Port")
                             {
-                                if(subject.GetAttribute("name") == "Input_1")
+                                if (subject.GetAttribute("name") == "Input_1")
                                 {
                                     formatRoot.In1PortID = subject.GetAttribute("ID");
                                 }
@@ -142,7 +143,7 @@ namespace CookBookUtilities
                     string port2ID = ele.GetAttribute("port2ID");
                     foreach (var item in FormatCookNodes)
                     {
-                        if(item is FormatRootNode)
+                        if (item is FormatRootNode)
                         {
                             FormatRootNode target = item as FormatRootNode;
                             bookBase.RootNode = target.Node;
@@ -408,10 +409,15 @@ namespace CookBookUtilities
             }
         }
 
-        public class FormatConnection
+        public bool CompareCookBook(CookBookBase targetCookBook, CookBookBase contrast)
         {
-            public string port1ID;
-            public string port2ID;
+            return true;
         }
+    }
+
+    public class FormatConnection
+    {
+        public string port1ID;
+        public string port2ID;
     }
 }
