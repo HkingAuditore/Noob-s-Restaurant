@@ -9,8 +9,9 @@ public class ConversationController : MonoBehaviour
 
     int currentNode = 0;
 
-    public void Init()
+    public void Awake()
     {
+        Debug.Log("In Conversation");
         conversationNodes[currentNode].gameObject.SetActive(true);
     }
 
