@@ -13,9 +13,9 @@ public sealed class PTable : Table
     protected override void Awake()
     {
         base.Awake();
-        // eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
-        // crackGo = eggBowl.transform.Find("Bowl/Crack").gameObject;
-        // crackAnimator = crackGo.GetComponent<Animator>();
+        eggBowl = transform.Find("UtensilSet").gameObject.GetComponentInChildren<EggBowl>();
+        crackGo = eggBowl.transform.Find("Bowl/Crack").gameObject;
+        crackAnimator = crackGo.GetComponent<Animator>();
     }
 
     protected override void Start()
@@ -26,7 +26,7 @@ public sealed class PTable : Table
         thisColumnFoodSetSpace = -1.5f;
         thisRowFoodSetSpace = 0f;
         wares = new List<Container>(thisMaxPlaceNum);
-        // crackGo.SetActive(false);
+        crackGo.SetActive(false);
         base.Start();
     }
 
