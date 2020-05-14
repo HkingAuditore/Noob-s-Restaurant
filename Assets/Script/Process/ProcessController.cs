@@ -29,10 +29,12 @@ public class ProcessController : MonoBehaviour
     public void Init()
     {
         originals.Clear();
-
+        Debug.Log("IN CUT");
 
         if (Table.GetComponentInChildren<Tomato>() != null)
         {
+            Debug.Log("FIND TOMATO");
+
             typeTemp = OriginalTypeTemp.西红柿;
             var temp = GetComponentsInChildren<Tomato>();
             foreach(var item in temp)
@@ -85,6 +87,7 @@ public class ProcessController : MonoBehaviour
 
     public void Selected_0()
     {
+        Debug.Log("SELECT 0");
         Selected(0);
     }
 
@@ -100,6 +103,8 @@ public class ProcessController : MonoBehaviour
 
     void Selected(int value)
     {
+        Debug.Log("PROCESS!");
+
         foreach (var item in originals)
         {
             for (int i = 0; i < item.transform.childCount; i++)

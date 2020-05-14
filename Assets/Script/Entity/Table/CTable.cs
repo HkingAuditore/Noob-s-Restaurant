@@ -4,12 +4,17 @@ using UnityEngine;
 
 public sealed class CTable : Table
 {
+
+    public GameObject CutManager;
+
     [SerializeField]
     GameObject cCamera;
     ChoppingBlock choppingBlock;
     GameObject[] sliced = new  GameObject[1000] ;
     Transform choppingBlockTR;
     Transform bowl;
+
+    
 
     protected override void Awake()
     {
@@ -87,16 +92,18 @@ public sealed class CTable : Table
 
     protected override void OnEnterTable()
     {
-        base.OnEnterTable();
-
+        
+        CutManager.GetComponent<ProcessController>().Init();
         SetUtensilState(true);
         PutWareOnTablePreelectionPos();
         GameManager.Instance.uiManager.PushPanel(new CTableHintPanel());
+        base.OnEnterTable();
     }
 
     protected override void OnQuitTable()
     {
         base.OnQuitTable();
+        
 
         SetUtensilState(false);
         GivePlayerSelectedWare();
