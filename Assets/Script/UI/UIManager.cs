@@ -39,7 +39,7 @@ public class UIManager
             foreach (Transform temp in canvas.transform)
             {
                 currentSceneUIPanelDict.Add(temp.name, temp.gameObject);
-                if(temp.name!= "ConversationProcess")
+                if(temp.name!= "ConversationProcess" && temp.name != "Back")
                     temp.gameObject.SetActive(false);
             }
         }

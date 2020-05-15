@@ -26,7 +26,7 @@ public class StepHintPanel : IPanel
         if (playerCtrl.AtTable == GameManager.Instance.sequenceManager.TargetTable)
             txtHint.text = GameManager.Instance.sequenceManager.CurStep.Desc;
         else
-            txtHint.text = "You may be at a wrong table";
+            txtHint.text = "你现在应该去另一张桌子";
 
         if (!GameManager.Instance.sequenceManager.IsCurSeqOver)
             panel.SetActive(true);
@@ -53,7 +53,7 @@ public class StepHintPanel : IPanel
         if (playerCtrl.AtTable == GameManager.Instance.sequenceManager.TargetTable)
             txtHint.text = GameManager.Instance.sequenceManager.CurStep.Desc;
         else
-            txtHint.text = "You may be at a wrong table";
+            txtHint.text = "你现在应该去另一张桌子";
 
         if (GameManager.Instance.sequenceManager.IsCurSeqOver)
             panel.SetActive(false);

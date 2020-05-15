@@ -36,7 +36,7 @@ public class Turner :Tool {
         base.Start();
 
         oriPosR = this.transform.position + new Vector3(offsetX, offsetY, offsetZ); ;
-        oriPosL = this.transform.position - Vector3.forward * 1.6f + new Vector3(offsetX, offsetY, offsetZ); ;
+        oriPosL = this.transform.position - Vector3.forward * 0.8f + new Vector3(offsetX, offsetY, offsetZ); ;
         lastMousePos = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
         SetRigidbody();

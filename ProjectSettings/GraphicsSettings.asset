@@ -37,7 +37,16 @@ GraphicsSettings:
   - {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 17000, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 16000, guid: 0000000000000000f000000000000000, type: 0}
-  m_PreloadedShaders: []
+  - {fileID: 16001, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 4800000, guid: 55ee44457d7e7a544813a36d66c3bd5c, type: 3}
+  - {fileID: 4800000, guid: 608fb38b6ba82634bb6f209eb7088dba, type: 3}
+  - {fileID: 4800000, guid: eebec436dc83ca2449cce4ebfc9a009e, type: 3}
+  - {fileID: 4800000, guid: 3afae985491ffa74d817ba5cebfb2e3d, type: 3}
+  - {fileID: 4800000, guid: 0b6c0f020e6f9ca49b8646c1dba11122, type: 3}
+  - {fileID: 4800000, guid: 02c2186168ad51f4cb516ee900a600ad, type: 3}
+  - {fileID: 4800000, guid: f4af439e5c7748b4791a1805b3f9b282, type: 3}
+  m_PreloadedShaders:
+  - {fileID: 20000000, guid: 22b4133ca7ff10047af90362545ab0a0, type: 2}
   m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000,
     type: 0}
   m_CustomRenderPipeline: {fileID: 0}
@@ -62,7 +71,7 @@ GraphicsSettings:
       prefer32BitShadowMaps: 0
       enableLPPV: 1
       useDitherMaskForAlphaBlendedShadows: 1
-    m_Automatic: 1
+    m_Automatic: 0
   - serializedVersion: 5
     m_BuildTarget: 1
     m_Tier: 2
@@ -76,7 +85,7 @@ GraphicsSettings:
       useHDR: 1
       useDetailNormalMap: 1
       useCascadedShadowMaps: 1
-      prefer32BitShadowMaps: 0
+      prefer32BitShadowMaps: 1
       enableLPPV: 1
       useDitherMaskForAlphaBlendedShadows: 1
     m_Automatic: 0
