@@ -26,6 +26,9 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
     public GameObject SMIndicator;
     public TableName AtTable = TableName.None;
 
+    private GameObject curIndicator = null;
+
+
     private List<Container> container = new List<Container>(1);
     public List<Container> Contents
     {
@@ -44,37 +47,37 @@ public class PlayerCtrl : MonoBehaviour, IContainable<Container>
 
     private void Update()
     {
-        // GameObject curIndicator = null;
-        // switch (GameManager.Instance.sequenceManager.CurStep.Utensil)
-        // {
-        //     case "Selecttable":
-        //         curIndicator = SMIndicator;
-        //         break;
-        //     case "EggBowl":
-        //         curIndicator = PIndicator;
-        //         break;
-        //     case "ChoppingBLock":
-        //         curIndicator = CIndicator;
-        //         break;
-        //     case "Pan":
-        //         curIndicator = SFIndicator;
-        //         break;
-        //     case "Pot":
-        //         curIndicator = BIndicator;
-        //         break;
-        //     default:
-        //         break;
-        // }
-        //
-        // if (curIndicator != null)
-        //     if (isCanCtrl)
-        //     {
-        //         curIndicator.SetActive(true);
-        //     }
-        //     else
-        //     {
-        //         curIndicator.SetActive(false);
-        //     }
+        Debug.Log("In Indicator");
+        switch (GameManager.Instance.sequenceManager.CurStep.Utensil)
+        {
+            case "Selecttable":
+                curIndicator = SMIndicator;
+                break;
+            case "EggBowl":
+                curIndicator = PIndicator;
+                break;
+            case "ChoppingBLock":
+                curIndicator = CIndicator;
+                break;
+            case "Pan":
+                curIndicator = SFIndicator;
+                break;
+            case "Pot":
+                curIndicator = BIndicator;
+                break;
+            default:
+                break;
+        }
+
+        if (curIndicator != null)
+            if (isCanCtrl)
+            {
+                curIndicator.SetActive(true);
+            }
+            else
+            {
+                curIndicator.SetActive(false);
+            }
     }
 
     void FixedUpdate()

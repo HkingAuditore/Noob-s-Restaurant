@@ -26,6 +26,11 @@ public class ProcessController : MonoBehaviour
 
     private OriginalTypeTemp typeTemp;
 
+    public void PushPanel()
+    {
+        SelectPanel.SetActive(true);
+    }
+
     public void Init()
     {
         originals.Clear();
@@ -33,19 +38,21 @@ public class ProcessController : MonoBehaviour
 
         if (Table.GetComponentInChildren<Tomato>() != null)
         {
-            Debug.Log("FIND TOMATO");
+            Debug.Log("Cut FIND TOMATO");
 
             typeTemp = OriginalTypeTemp.西红柿;
-            var temp = GetComponentsInChildren<Tomato>();
+            var temp = Table.GetComponentsInChildren<Tomato>();
+            
             foreach(var item in temp)
             {
                 originals.Add(item.gameObject);
+                Debug.Log("Cut Find One:" + item.gameObject);
             }
         }
         else if(Table.GetComponentInChildren<Garlic>() != null)
         {
             typeTemp = OriginalTypeTemp.蒜;
-            var temp = GetComponentsInChildren<Garlic>();
+            var temp = Table.GetComponentsInChildren<Garlic>();
             foreach (var item in temp)
             {
                 originals.Add(item.gameObject);
@@ -54,7 +61,7 @@ public class ProcessController : MonoBehaviour
         else if (Table.GetComponentInChildren<Scallion>() != null)
         {
             typeTemp = OriginalTypeTemp.葱;
-            var temp = GetComponentsInChildren<Scallion>();
+            var temp = Table.GetComponentsInChildren<Scallion>();
             foreach (var item in temp)
             {
                 originals.Add(item.gameObject);
@@ -62,7 +69,7 @@ public class ProcessController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Null Type!");
+            Debug.Log("Cut Null Type!");
             Quit();
         }
 
@@ -80,14 +87,13 @@ public class ProcessController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Null Type!");
+            Debug.Log("Cut Null Type!");
         }
-        SelectPanel.SetActive(true);
     }
 
     public void Selected_0()
     {
-        Debug.Log("SELECT 0");
+        Debug.Log("Cut SELECT 0");
         Selected(0);
     }
 
@@ -103,16 +109,24 @@ public class ProcessController : MonoBehaviour
 
     void Selected(int value)
     {
-        Debug.Log("PROCESS!");
-
+        Init();
+        Debug.Log("Cut PROCESS!");
+        Debug.Log("Cut Origins:" + originals);
         foreach (var item in originals)
         {
-            for (int i = 0; i < item.transform.childCount; i++)
-            {
-                Destroy(item.transform.GetChild(i).gameObject);
-            }
-            Instantiate(targetOriginal.targetPrefab[value], item.transform);
+            Transform temp = item.transform.parent;
+            Destroy(item.transform.gameObject);
+            // for (int i = 0; i < item.transform.childCount; i++)
+            // {
+            //     Destroy(item.transform.GetChild(i).gameObject);
+            //     Debug.Log("Cut Destroy:" + item + "[" + i +"]");
+            //
+            // }
+            Instantiate(targetOriginal.targetPrefab[value], temp);
+            Debug.Log("Cut Instance:" + item);
+
         }
+        Quit();
     }
 
     public void Quit()

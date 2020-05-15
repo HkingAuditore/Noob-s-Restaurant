@@ -19,9 +19,9 @@ public sealed class CTable : Table
     protected override void Awake()
     {
         base.Awake();
-        // choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
-        // choppingBlockTR = transform.Find("UtensilSet").Find("Choppingblock");
-        // bowl = transform.Find("UtensilSet").Find("Bowl");
+        choppingBlock = transform.Find("UtensilSet").gameObject.GetComponentInChildren<ChoppingBlock>();
+        choppingBlockTR = transform.Find("UtensilSet").Find("Choppingblock");
+        bowl = transform.Find("UtensilSet").Find("Bowl");
         Name = TableName.C;
     }
 
@@ -30,7 +30,7 @@ public sealed class CTable : Table
         thisRowMaxPlaceNum = 2;
         thisMaxPlaceNum = 4;
         thisColumnFoodSetSpace = -2.37f;
-        thisRowFoodSetSpace = 1.89f;
+        thisRowFoodSetSpace = 1.39f;
         wares = new List<Container>(thisMaxPlaceNum);
 
         base.Start();
@@ -52,7 +52,12 @@ public sealed class CTable : Table
 
         if (Input.GetKeyDown(KeyCode.P))
             if (currentChosenWare != null && currentChosenWare.Contents.Count > 0)
-                currentChosenWare.TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)], choppingBlock);
+            {
+                currentChosenWare
+                   .TakeOneTo(currentChosenWare.Contents[Random.Range(0, currentChosenWare.Contents.Count)],
+                              choppingBlock);
+                CutManager.GetComponent<ProcessController>().PushPanel();
+            }
 
         if (Input.GetKeyDown(KeyCode.O))
             if (currentChosenWare != null && choppingBlock.Contents.Count > 0)
@@ -93,7 +98,6 @@ public sealed class CTable : Table
     protected override void OnEnterTable()
     {
         
-        CutManager.GetComponent<ProcessController>().Init();
         SetUtensilState(true);
         PutWareOnTablePreelectionPos();
         GameManager.Instance.uiManager.PushPanel(new CTableHintPanel());
@@ -114,6 +118,7 @@ public sealed class CTable : Table
     {
         if (choppingBlock != null)
         {
+            
             if (isBeginCtrl)
                 choppingBlock.BeginCtrl();
             else
